@@ -17,7 +17,7 @@ function TodoItem({ description, id, markCompleted, priority, deleteTodo, editTo
     }
 
     const dragOver = e => {
-        e.preventPropagation();
+        e.stopPropagation();
     }
 
     return (
