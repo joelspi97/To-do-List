@@ -1,4 +1,5 @@
 import React from 'react';
+import { useDrag } from 'react-dnd'
 
 function CompletedList(props) {
     const drop = e => {
