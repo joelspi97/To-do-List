@@ -1,0 +1,29 @@
+.no-scroll {
+	overflow: hidden;
+}
+
+.project-padding {
+	padding: 0 2rem;
+}
+
+/* Icons */
+.clog-icon {
+	@include icon('/home/joel/Desktop/platzi/todo-list/src/images/clog-icon.svg', 2.75rem);
+    filter: invert(42%) sepia(62%) saturate(6984%) hue-rotate(75deg) brightness(95%) contrast(101%);
+}
+
+.search-icon {
+	@include icon('/home/joel/Desktop/platzi/todo-list/src/images/search-icon.png', 2rem);
+}
+
+.x-icon {
+	@include icon('/home/joel/Desktop/platzi/todo-list/src/images/x-icon.svg', 1.7rem);
+}
+
+.check-icon {
+	@include icon('/home/joel/Desktop/platzi/todo-list/src/images/todo-check-icon.png', 2rem);
+}
+
+.edit-icon {
+	@include icon('/home/joel/Desktop/platzi/todo-list/src/images/edit-icon.svg', 1.7rem);
+}

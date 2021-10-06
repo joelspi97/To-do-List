@@ -1,0 +1,10 @@
+@mixin focus ($outline-width: 0.1rem, $color: $focus-color, $border-radius: $br){
+	transition: border $focus-duration;
+
+	&:focus {
+		border-radius: $border-radius;
+		border-color: $color;
+
+		outline: $outline-width solid $color;
+	}
+}

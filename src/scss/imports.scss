@@ -1,0 +1,80 @@
+/* Variables */
+@import './abstracts/variables';
+
+/* Mixins */
+@import './abstracts/mixins/icon';
+@import './abstracts/mixins/focus';
+
+/* Reset */
+@import './core/reset';
+
+/* Generic classes */
+@import './core/generic-classes';
+
+/* Header */
+@import '../Header/Header';
+@import '../Header/Settings/Settings';
+
+/* Main */
+@import '../Main/Main';
+@import '../Main/NewTodoBtn/NewTodoBtn';
+@import '../Main/SearchBar/SearchBar';
+@import '../Main/Lists/Lists';
+@import '../Main/Lists/CompletedList';
+@import '../Main/TodoItem/TodoItem';
+@import '../Main/CompletedTodoItem/CompletedTodoItem';
+
+/* Footer */
+@import '../Footer/Footer';
+
+/* Modal */
+@import '../Modal/Modal';
+@import '../Modal/TodoMaker/TodoMaker';
+
+/*
+    General {
+        1) Crear un repositorio en GitHub y subir el 
+        proyecto
+        2) Subir la página a internet
+        3) Compartir el proyecto en mi LinkedIn
+    }
+
+    Accesibilidad {
+        1) Revisar que toda la página sea 100% 
+        navegable usando solamente el teclado
+    }
+
+    Diseño {
+        1) Elegir bien la paleta de colores
+        2) Agregar animaciones/transiciones
+        3) Rediseñar el Header, el Footer y los 
+        TodoItem's
+        4) Hacer que la página sea completamente 
+        responsive
+    }
+
+    Header {
+        1) Hacer que se pueda cambiar el idioma de la 
+        página
+        2) Hacer que se pueda prender un modo de 
+        accesibilidad (antes de hacer esto tengo que 
+        elegir bien la paleta de colores)
+    }
+
+    Main {
+        1) Hacer que los ToDos se puedan arrastrar con 
+        el mouse
+        2) Hacer que cuando haya mas de un solo Todo 
+        aparezca un cartel que diga algo como:
+        "Podes arrastrar las tareas para organizarlas 
+        como quieras"
+        3) Hacer que cuando se cree un nuevo ToDo, 
+        salga un cartel que diga algo como: 
+        "¡Todo creado con éxito!" y que tenga alguna 
+        mínima animación
+    }
+
+    Footer {
+        1) Agregar el link que falta
+    }
+*/

@@ -1,0 +1,24 @@
+.footer {    
+    background: linear-gradient(180deg, $white 0%, $main-color 20%);
+    color: $white;
+    margin-top: 5rem;
+    width: 100%;
+    font-family: $main-font;
+    font-size: map-get($fs, 'sm');
+    text-align: center;
+    padding-top: 8rem;
+    padding-bottom: 2rem;
+
+    &__paragraph {
+        margin-bottom: 1rem;
+    }
+
+    p:last-of-type {
+        font-weight: map-get($fw, 'x-bold');
+    }
+
+    &__link {
+        color: $white;
+        font-weight: map-get($fw, 'bold');
+    }
+}
