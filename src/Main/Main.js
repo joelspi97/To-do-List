@@ -4,8 +4,8 @@ import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { v4 as uuidv4 } from '../../node_modules/uuid';
 
 import { NewTodoBtn } from './NewTodoBtn/NewTodoBtn';
-import { Modal } from '../Modal/Modal';
-import { TodoMaker } from '../Modal/TodoMaker/TodoMaker';
+import { MainModal } from './MainModal/MainModal';
+import { TodoMaker } from './MainModal/TodoMaker/TodoMaker';
 import { SearchBar } from './SearchBar/SearchBar';
 import { CompletedList } from './Lists/CompletedList';
 import { PendingList } from './Lists/PendingList';
@@ -138,7 +138,7 @@ function Main() {
     
 
     /* beautiful-dnd */
-    const reorder = (list, startIndex, endIndex) => {
+    function reorder(list, startIndex, endIndex) {
         const result = [...list];
         const [removed] = result.splice(startIndex, 1);
         result.splice(endIndex, 0, removed);
@@ -156,15 +156,16 @@ function Main() {
                 />
                 
                 {openModal && (
-                <Modal openModal={openModal}>
-                    <TodoMaker
-                        hideModal={hideModal}
-                        createNewTodo={createNewTodo}
-                        formValue={formValue}
-                        setFormValue={setFormValue}
-                        editedTodoId={editedTodoId}
-                    />
-                </Modal>)}
+                    <MainModal openModal={openModal}>
+                        <TodoMaker
+                            hideModal={hideModal}
+                            createNewTodo={createNewTodo}
+                            formValue={formValue}
+                            setFormValue={setFormValue}
+                            editedTodoId={editedTodoId}
+                        />
+                    </MainModal>
+                )}
 
                 <SearchBar
                     searchValue={searchValue}
@@ -185,30 +186,36 @@ function Main() {
                     }}
                 >
                     <Droppable droppableId="pending">
-                        {(dropableProvided) => <PendingList 
+                        {(dropableProvided) => 
+                            <PendingList 
                                 dropableProvided={dropableProvided}
                             >
-                            {(newTodos.length === 0) && "Hooray! You don't have any pending task!"}
-                            {(newTodos.length > 0 && searchedTodos.length === 0) && "We didn't find any Todo in this list that contains that 🤔"}
+                                {(newTodos.length === 0) && "Hooray! You don't have any pending task!"}
+                                {(newTodos.length > 0 && searchedTodos.length === 0) && "We didn't find any Todo in this list that contains that 🤔"}
 
-                            {searchedTodos.map((todo, index) => 
-                                <Draggable key={todo.id} draggableId={todo.id} index={index}>
-                                   {(draggableProvided) => 
-                                        <TodoItem 
-                                            draggableProvided={draggableProvided}
-                                            description={todo.description}
-                                            id={todo.id}
-                                            key={todo.id}
-                                            priority={todo.priority}
-                                            completed={todo.completed}
-                                            markCompleted={markCompleted}
-                                            deleteTodo={deleteTodo}
-                                            editTodo={editTodo}
-                                        />
-                                    }
-                                </Draggable>
-                            )}
-                        </PendingList>}
+                                {searchedTodos.map((todo, index) => 
+                                    <Draggable 
+                                        key={todo.id} 
+                                        draggableId={todo.id} 
+                                        index={index}
+                                    >
+                                        {(draggableProvided) => 
+                                            <TodoItem 
+                                                draggableProvided={draggableProvided}
+                                                description={todo.description}
+                                                id={todo.id}
+                                                key={todo.id}
+                                                priority={todo.priority}
+                                                completed={todo.completed}
+                                                markCompleted={markCompleted}
+                                                deleteTodo={deleteTodo}
+                                                editTodo={editTodo}
+                                            />
+                                        }
+                                    </Draggable>
+                                )}
+                            </PendingList>
+                        }
                     </Droppable>
                 </DragDropContext>
                 <DragDropContext
@@ -225,28 +232,34 @@ function Main() {
                     }}
                 >
                     <Droppable droppableId="completed">
-                        {(dropableProvided) => <CompletedList
-                            dropableProvided={dropableProvided}
-                        >
-                            {(completedTodos.length === 0) && "Your completed To-Do's will be displayed in this section"}
-                            {(completedTodos.length > 0 && searchedCompletedTodos.length === 0) && "We didn't find any Todo in this list that contains that 🤔"}
+                        {(dropableProvided) => 
+                            <CompletedList
+                                dropableProvided={dropableProvided}
+                            >
+                                {(completedTodos.length === 0) && "Your completed To-Do's will be displayed in this section"}
+                                {(completedTodos.length > 0 && searchedCompletedTodos.length === 0) && "We didn't find any Todo in this list that contains that 🤔"}
 
-                            {searchedCompletedTodos.map((todo, index) => 
-                                <Draggable key={todo.id} draggableId={todo.id} index={index}>
-                                    {(draggableProvided) => 
-                                        <CompletedTodoItem 
-                                            draggableProvided={draggableProvided}
-                                            description={todo.description}
-                                            id={todo.id}
-                                            key={todo.id}
-                                            priority={todo.priority}
-                                            completed={todo.completed}
-                                            deleteCompletedTodo={deleteCompletedTodo}
-                                        />
-                                    }
-                                </Draggable>
-                            )}
-                        </CompletedList>}
+                                {searchedCompletedTodos.map((todo, index) => 
+                                    <Draggable 
+                                        key={todo.id} 
+                                        draggableId={todo.id} 
+                                        index={index}
+                                    >
+                                        {(draggableProvided) => 
+                                            <CompletedTodoItem 
+                                                draggableProvided={draggableProvided}
+                                                description={todo.description}
+                                                id={todo.id}
+                                                key={todo.id}
+                                                priority={todo.priority}
+                                                completed={todo.completed}
+                                                deleteCompletedTodo={deleteCompletedTodo}
+                                            />
+                                        }
+                                    </Draggable>
+                                )}
+                            </CompletedList>
+                        }
                     </Droppable>
                 </DragDropContext>
                 

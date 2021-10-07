@@ -17,11 +17,12 @@ function TodoMaker({ hideModal, createNewTodo, formValue, setFormValue, editedTo
 
     return (
         <form 
-            className="todo-maker project-padding"
+            className="todo-maker modal"
             onSubmit={(submitEvent) => createNewTodo(submitEvent, formValue, todoPriority, editedTodoId)} 
         >
             <button 
-                className="todo-maker__close-btn" type="buttton"
+                type="buttton"
+                className="modal__close-btn" 
                 onClick={hideModal}
             >
                 <span className="icon x-icon"></span>
@@ -29,7 +30,10 @@ function TodoMaker({ hideModal, createNewTodo, formValue, setFormValue, editedTo
             <div className="todo-maker__description-wrapper">
                 <label htmlFor="description">Describe the task:</label>
                 <textarea 
-                    id="description" placeholder="e.g. Mow the lawn..." required
+                    className="todo-maker__textarea"
+                    id="description" 
+                    placeholder="e.g. Mow the lawn..." 
+                    required
                     value={formValue}
                     onChange={event => setFormValue(event.target.value)}
                 ></textarea>
@@ -56,7 +60,7 @@ function TodoMaker({ hideModal, createNewTodo, formValue, setFormValue, editedTo
                 </div>
             </div>
 
-            <div className="todo-maker__btns-wrapper">
+            <div className="modal__bottom-btns">
                 <button 
                     type="submit"
                     className={`submit-btn ${formCompleted && 'fill-btn'}`} 
@@ -65,7 +69,8 @@ function TodoMaker({ hideModal, createNewTodo, formValue, setFormValue, editedTo
                     {editedTodoId && "Edit To-Do"}
                 </button>
                 <button 
-                    className="cancel-btn" type="button"
+                    type="button"
+                    className="cancel-btn" 
                     onClick={hideModal}
                 >
                     Cancel

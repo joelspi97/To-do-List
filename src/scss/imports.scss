@@ -4,6 +4,7 @@
 /* Mixins */
 @import './abstracts/mixins/icon';
 @import './abstracts/mixins/focus';
+@import './abstracts/mixins/modal';
 
 /* Reset */
 @import './core/reset';
@@ -13,7 +14,7 @@
 
 /* Header */
 @import '../Header/Header';
-@import '../Header/Settings/Settings';
+@import '../Header/HeaderModal/SettingsMenu/SettingsMenu';
 
 /* Main */
 @import '../Main/Main';
@@ -23,13 +24,10 @@
 @import '../Main/Lists/CompletedList';
 @import '../Main/TodoItem/TodoItem';
 @import '../Main/CompletedTodoItem/CompletedTodoItem';
+@import '../Main/MainModal/TodoMaker/TodoMaker';
 
 /* Footer */
 @import '../Footer/Footer';
-
-/* Modal */
-@import '../Modal/Modal';
-@import '../Modal/TodoMaker/TodoMaker';
 
 /*
     General {
@@ -59,16 +57,16 @@
         2) Hacer que se pueda prender un modo de 
         accesibilidad (antes de hacer esto tengo que 
         elegir bien la paleta de colores)
+        3) Hacer que se puedan guardar las 
+        configuraciones
     }
 
     Main {
-        1) Hacer que los ToDos se puedan arrastrar con 
-        el mouse
-        2) Hacer que cuando haya mas de un solo Todo 
+        1) Hacer que cuando haya mas de un solo Todo 
         aparezca un cartel que diga algo como:
         "Podes arrastrar las tareas para organizarlas 
         como quieras"
-        3) Hacer que cuando se cree un nuevo ToDo, 
+        2) Hacer que cuando se cree un nuevo ToDo, 
         salga un cartel que diga algo como: 
         "¡Todo creado con éxito!" y que tenga alguna 
         mínima animación
