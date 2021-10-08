@@ -29,7 +29,9 @@ function Header() {
                 </div>
 
                 <button 
-                    className="header__settings" type="button"
+                    className="header__settings" 
+                    type="button"
+                    aria-label="Accesibility options"
                     onClick={showHeaderModal}
                 >
                     <span className="icon clog-icon"></span>

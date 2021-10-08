@@ -1,10 +1,11 @@
 import React from 'react';
+import { SwitchBtn } from '../../../genericComponents/SwitchBtn/SwitchBtn';
 
 function SettingsMenu({hideHeaderModal}) {
     function handleSettingsSubmit(e) {
         e.preventDefault();
         hideHeaderModal();
-        alert('xd');
+        alert('Acordarme que cuando haga el language switch también tengo que cambiar el atributo lang del elemento html');
     }
     return (
         <form 
@@ -18,14 +19,41 @@ function SettingsMenu({hideHeaderModal}) {
             >
                 <span className="icon x-icon"></span>
             </button>
+            <h2>Accesibility options</h2>
 
-            <section>
-                <h2>Language</h2>
-            </section>
-
-            <section>
-                <h2>Accesibility options</h2>
-            </section>
+            <div>
+                <SwitchBtn
+                    optionName={"High contrast mode"}
+                    leftTag={"Off"}
+                    inputId={"high-contrast"} 
+                    rightTag={"On"} 
+                />
+            </div>
+            <div>
+                <SwitchBtn
+                    optionName={"Animations"}
+                    leftTag={"Disable"}
+                    inputId={"animations"} 
+                    rightTag={"Enable"} 
+                    defaultCheck={"checked"}
+                />
+            </div>
+            <div>
+                <SwitchBtn
+                    optionName={"Language"}
+                    leftTag={"ENG"}
+                    inputId={"language"} 
+                    rightTag={"ESP"} 
+                />
+            </div>
+            <div>
+                <SwitchBtn
+                    optionName={"Theme"}
+                    leftTag={"Light"}
+                    inputId={"theme"} 
+                    rightTag={"Dark"} 
+                />
+            </div>
 
             <div className="modal__bottom-btns">
                 <button 

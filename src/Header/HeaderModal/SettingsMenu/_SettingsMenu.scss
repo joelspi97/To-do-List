@@ -1,3 +1,11 @@
 .settings {
-    
+    h2 {
+        margin-top: 3rem;
+        margin-bottom: 3rem;
+        font-size: map-get($fs, 'md');
+        font-weight: map-get($fw, 'bold');
+    }
+    .modal__bottom-btns {
+        margin-top: 3rem;
+    }
 }

@@ -12,6 +12,9 @@
 /* Generic classes */
 @import './core/generic-classes';
 
+/* Generic React Components */
+@import '../genericComponents/SwitchBtn/SwitchBtn';
+
 /* Header */
 @import '../Header/Header';
 @import '../Header/HeaderModal/SettingsMenu/SettingsMenu';
