@@ -1,6 +1,13 @@
 import React from 'react';
+import { useSettings } from '../../../SettingsContext/SettingsContext';
 
 function TodoMaker({ hideModal, createNewTodo, formValue, setFormValue, editedTodoId }) {
+    const {
+        animations,
+        highContrast,
+        spanish,
+        darkTheme,} = useSettings();
+
     const [todoPriority, setTodoPriority] = React.useState('');
     const [formCompleted, setFormCompleted] = React.useState(false);
 
@@ -28,11 +35,13 @@ function TodoMaker({ hideModal, createNewTodo, formValue, setFormValue, editedTo
                 <span className="icon x-icon"></span>
             </button>
             <div className="todo-maker__description-wrapper">
-                <label htmlFor="description">Describe the task:</label>
+                <label htmlFor="description">
+                    {spanish? "Describí la tarea" : "Describe the task:"}
+                </label>
                 <textarea 
                     className="todo-maker__textarea"
                     id="description" 
-                    placeholder="e.g. Mow the lawn..." 
+                    placeholder={spanish? "Por ejemplo: Cortar el pasto..." : "e.g. Mow the lawn..."} 
                     required
                     value={formValue}
                     onChange={event => setFormValue(event.target.value)}
@@ -40,21 +49,23 @@ function TodoMaker({ hideModal, createNewTodo, formValue, setFormValue, editedTo
             </div>
             
             <div>
-                <h2>How urgent is it?</h2>
+                <h2>
+                    {spanish? "¿Cuán urgente es?" : "How urgent is it?"}
+                </h2>
                 <div 
                     className="todo-maker__radio-wrapper"
                     onChange={event => setTodoPriority(event.target.value)}
                 >
                     <label>
-                        Not that urgent
+                        {spanish? "No muy urgente" : "Not that urgent"}
                         <input type="radio" name="priority" value="low" required />
                     </label>
                     <label>
-                        Mildly urgent
+                        {spanish? "Algo urgente" : "Mildly urgent"}
                         <input type="radio" name="priority" value="medium" required />
                     </label>
                     <label>
-                        Very urgent
+                        {spanish? "Muy urgente" : "Very urgent"}
                         <input type="radio" name="priority" value="high" required />
                     </label>
                 </div>
@@ -65,15 +76,15 @@ function TodoMaker({ hideModal, createNewTodo, formValue, setFormValue, editedTo
                     type="submit"
                     className={`submit-btn ${formCompleted && 'fill-btn'}`} 
                 >
-                    {!editedTodoId && "Create To-Do!"}
-                    {editedTodoId && "Edit To-Do"}
+                    {spanish? !editedTodoId && "¡Crear To-Do!" : !editedTodoId && "Create To-Do!"}
+                    {spanish? editedTodoId && "Editar To-Do" : editedTodoId && "Edit To-Do"}
                 </button>
                 <button 
                     type="button"
                     className="cancel-btn" 
                     onClick={hideModal}
                 >
-                    Cancel
+                    {spanish? "Cancelar" : "Cancel"}
                 </button>
             </div>
         </form>

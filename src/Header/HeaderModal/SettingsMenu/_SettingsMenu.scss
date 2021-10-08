@@ -4,6 +4,7 @@
         margin-bottom: 3rem;
         font-size: map-get($fs, 'md');
         font-weight: map-get($fw, 'bold');
+        text-align: center;
     }
     .modal__bottom-btns {
         margin-top: 3rem;

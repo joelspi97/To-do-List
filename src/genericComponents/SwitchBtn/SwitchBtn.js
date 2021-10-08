@@ -1,6 +1,6 @@
-import React from 'react'
+import React from 'react';
 
-function SwitchBtn({ optionName, leftTag, rightTag, inputId, defaultCheck }) {
+function SwitchBtn({ optionName, leftTag, rightTag, inputId, defaultCheck, handleChange }) {
     return (
         <div className="switch-btn">
             <h3>{optionName}</h3>
@@ -15,6 +15,7 @@ function SwitchBtn({ optionName, leftTag, rightTag, inputId, defaultCheck }) {
                         type="checkbox" 
                         id={inputId}
                         defaultChecked={defaultCheck}
+                        onChange={handleChange}
                     />
                     <span className="switch-btn__slider"></span>
                 </div>

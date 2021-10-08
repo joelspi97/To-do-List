@@ -5,29 +5,24 @@ import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { v4 as uuidv4 } from '../../node_modules/uuid';
 
 /* Context */
-import { TodoContext } from '../TodoContext/TodoContext';
+import { useTodoContext } from '../TodoContext/TodoContext';
+import { useSettings } from '../SettingsContext/SettingsContext';
 
 /* Components */
 import { NewTodoBtn } from './NewTodoBtn/NewTodoBtn';
 import { MainModal } from './MainModal/MainModal';
 import { TodoMaker } from './MainModal/TodoMaker/TodoMaker';
 import { SearchBar } from './SearchBar/SearchBar';
-import { CompletedList } from './Lists/CompletedList';
-import { PendingList } from './Lists/PendingList';
+import { List } from './List/List';
 import { TodoItem } from './TodoItem/TodoItem';
-import { CompletedTodoItem } from './CompletedTodoItem/CompletedTodoItem';
 
 
 function Main() {
     const {
         animations,
-        toggleAnimations,
         highContrast,
-        toggleHighContrast,
         spanish,
-        toggleSpanish,
-        darkTheme,
-        toggleDarkTheme,} = React.useContext(TodoContext);
+        darkTheme,} = useSettings();
 
     /* Modal */
     const [formValue, setFormValue] = React.useState('');
@@ -159,11 +154,17 @@ function Main() {
         result.splice(endIndex, 0, removed);
         return result;
     }
+
+    
     return (
         <main className="main">
             <section className="project-padding">
-                <h1 className="main__heading">Welcome to To-Do List!</h1>
-                <p className="main__paragraph">This website will allow you to write down your own To-Do list and keep track of your goals in an efficient way</p>
+                <h1 className="main__heading">
+                    {spanish? "¡Bienvenido a To-Do List!" : "Welcome to To-Do List!"}
+                </h1>
+                <p className="main__paragraph">
+                    {spanish? "Este sitio web te permitirá escribir tu propia lista de To-Do's y controlar el avance de tus objetivos de una forma eficiente" : "This website will allow you to write down your own To-Do list and keep track of your goals in an efficient way"}
+                </p>
             </section>
             <section className="project-padding">
                 <NewTodoBtn 
@@ -202,11 +203,12 @@ function Main() {
                 >
                     <Droppable droppableId="pending">
                         {(dropableProvided) => 
-                            <PendingList 
+                            <List 
+                                heading={spanish? "Tareas pendientes" : "Pending tasks"}
                                 dropableProvided={dropableProvided}
                             >
-                                {(newTodos.length === 0) && "Hooray! You don't have any pending task!"}
-                                {(newTodos.length > 0 && searchedTodos.length === 0) && "We didn't find any Todo in this list that contains that 🤔"}
+                                {spanish? (newTodos.length === 0) && "¡Felicitaciones! ¡No tenés ninguna tarea pendiente!" : (newTodos.length === 0) && "Hooray! You don't have any pending task!"}
+                                {spanish? (newTodos.length > 0 && searchedTodos.length === 0) && "No encontramos ningun To-Do en esta lista que contenga eso... 🤔" : (newTodos.length > 0 && searchedTodos.length === 0) && "We didn't find any To-Do in this list that contains that... 🤔"}
 
                                 {searchedTodos.map((todo, index) => 
                                     <Draggable 
@@ -229,7 +231,7 @@ function Main() {
                                         }
                                     </Draggable>
                                 )}
-                            </PendingList>
+                            </List>
                         }
                     </Droppable>
                 </DragDropContext>
@@ -248,11 +250,12 @@ function Main() {
                 >
                     <Droppable droppableId="completed">
                         {(dropableProvided) => 
-                            <CompletedList
+                            <List
+                                heading={spanish? "Tareas completadas" : "Completed tasks"}
                                 dropableProvided={dropableProvided}
                             >
-                                {(completedTodos.length === 0) && "Your completed To-Do's will be displayed in this section"}
-                                {(completedTodos.length > 0 && searchedCompletedTodos.length === 0) && "We didn't find any Todo in this list that contains that 🤔"}
+                                {spanish? (completedTodos.length === 0) && "Los To-Do's que completes se mostrarán en esta lista" : (completedTodos.length === 0) && "Your completed To-Do's will be displayed in this section"}
+                                {spanish? (completedTodos.length > 0 && searchedCompletedTodos.length === 0) && "No encontramos ningun To-Do en esta lista que contenga eso... 🤔" : (completedTodos.length > 0 && searchedCompletedTodos.length === 0) && "We didn't find any Todo in this list that contains that 🤔..."}
 
                                 {searchedCompletedTodos.map((todo, index) => 
                                     <Draggable 
@@ -261,7 +264,7 @@ function Main() {
                                         index={index}
                                     >
                                         {(draggableProvided) => 
-                                            <CompletedTodoItem 
+                                            <TodoItem 
                                                 draggableProvided={draggableProvided}
                                                 description={todo.description}
                                                 id={todo.id}
@@ -273,7 +276,7 @@ function Main() {
                                         }
                                     </Draggable>
                                 )}
-                            </CompletedList>
+                            </List>
                         }
                     </Droppable>
                 </DragDropContext>

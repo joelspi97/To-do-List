@@ -1,12 +1,19 @@
 import React from 'react';
+import { useSettings } from '../../SettingsContext/SettingsContext';
 
 function NewTodoBtn({ showModal }) {
+    const {
+        animations,
+        highContrast,
+        spanish,
+        darkTheme,} = useSettings();
+
     return (
         <button 
             type="button" className="new-todo-btn"
             onClick={showModal}
         >
-            Create your first To-Do!
+            {spanish? "¡Creá un nuevo To-Do!" : "Create a new To-Do!"}
         </button>
     );
 }

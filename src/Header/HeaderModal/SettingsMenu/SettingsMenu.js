@@ -1,17 +1,20 @@
 import React from 'react';
-import { TodoContext } from '../../../TodoContext/TodoContext';
+import { useSettings, useSettingsUpdate } from '../../../SettingsContext/SettingsContext';
 import { SwitchBtn } from '../../../genericComponents/SwitchBtn/SwitchBtn';
 
 function SettingsMenu({hideHeaderModal}) {
     const {
         animations,
-        toggleAnimations,
         highContrast,
-        toggleHighContrast,
         spanish,
-        toggleSpanish,
         darkTheme,
-        toggleDarkTheme,} = React.useContext(TodoContext);
+        } = useSettings();
+
+    const {
+        toggleAnimations,
+        toggleHighContrast,
+        toggleSpanish,
+        toggleDarkTheme,} = useSettingsUpdate();
 
     function handleSettingsSubmit(e) {
         e.preventDefault();
@@ -30,39 +33,45 @@ function SettingsMenu({hideHeaderModal}) {
             >
                 <span className="icon x-icon"></span>
             </button>
-            <h2>Accesibility options</h2>
+            <h2>
+                {spanish? "Opciones de accesibilidad" : "Accesibility options"}
+            </h2>
 
             <div>
                 <SwitchBtn
-                    optionName={"High contrast mode"}
-                    leftTag={"Off"}
+                    optionName={spanish? "Modo de alto contraste" : "High contrast mode"}
+                    leftTag={spanish? "Apagado" : "Off"}
                     inputId={"high-contrast"} 
-                    rightTag={"On"} 
+                    rightTag={spanish? "Prendido" : "On"} 
+                    handleChange={toggleHighContrast}
                 />
             </div>
             <div>
                 <SwitchBtn
-                    optionName={"Animations"}
-                    leftTag={"Disable"}
+                    optionName={spanish? "Animaciones" : "Animations"}
+                    leftTag={spanish? "Desactivar" : "Disable"}
                     inputId={"animations"} 
-                    rightTag={"Enable"} 
+                    rightTag={spanish? "Activar" : "Enable"} 
                     defaultCheck={"checked"}
+                    handleChange={toggleAnimations}
                 />
             </div>
             <div>
                 <SwitchBtn
-                    optionName={"Language"}
+                    optionName={spanish? "Idioma" : "Language"}
                     leftTag={"ENG"}
                     inputId={"language"} 
                     rightTag={"ESP"} 
+                    handleChange={toggleSpanish}
                 />
             </div>
             <div>
                 <SwitchBtn
-                    optionName={"Theme"}
-                    leftTag={"Light"}
+                    optionName={spanish? "Tema" : "Theme"}
+                    leftTag={spanish? "Claro" : "Light"}
                     inputId={"theme"} 
-                    rightTag={"Dark"} 
+                    rightTag={spanish? "Oscuro" : "Dark"} 
+                    handleChange={toggleDarkTheme}
                 />
             </div>
 
@@ -71,14 +80,14 @@ function SettingsMenu({hideHeaderModal}) {
                     type="submit"
                     className={`submit-btn ${true && "fill-btn"}`} 
                 >
-                    Save changes
+                    {spanish? "Guardar cambios" : "Save changes"}
                 </button>
                 <button 
                     type="button"
                     className="cancel-btn" 
                     onClick={hideHeaderModal}
                 >
-                    Cancel
+                    {spanish? "Cancelar" : "Cancel"}
                 </button>
             </div>
         </form>

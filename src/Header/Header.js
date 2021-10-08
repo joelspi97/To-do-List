@@ -1,22 +1,21 @@
 import React from 'react';
 
+/* Logo */
 import logo from '../images/logo.png';
 
-import { TodoContext } from '../TodoContext/TodoContext';
+/* Context */
+import { useSettings } from '../SettingsContext/SettingsContext';
 
+/* Components */
 import { HeaderModal } from './HeaderModal/HeaderModal';
 import { SettingsMenu } from './HeaderModal/SettingsMenu/SettingsMenu';
 
 function Header() {
     const {
         animations,
-        toggleAnimations,
         highContrast,
-        toggleHighContrast,
         spanish,
-        toggleSpanish,
-        darkTheme,
-        toggleDarkTheme,} = React.useContext(TodoContext);
+        darkTheme,} = useSettings();
 
     /* Modal */
     const [openModal, setOpenModal] = React.useState(false);
@@ -45,7 +44,7 @@ function Header() {
                 <button 
                     className="header__settings" 
                     type="button"
-                    aria-label="Accesibility options"
+                    aria-label={spanish? "Opciones de accesibilidad" : "Accesibility options"}
                     onClick={showHeaderModal}
                 >
                     <span className="icon clog-icon"></span>

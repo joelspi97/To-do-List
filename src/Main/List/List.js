@@ -1,9 +1,18 @@
 import React from 'react';
+import { useSettings } from '../../SettingsContext/SettingsContext';
 
-function PendingList(props) {
+function List(props) {
+    const {
+        animations,
+        highContrast,
+        spanish,
+        darkTheme,} = useSettings();
+
     return (
         <section className="list-section">
-            <h2>Pending tasks</h2>
+            <h2>
+                {props.heading}
+            </h2>
             <ul 
                 className="list"
                 {...props.dropableProvided.droppableProps}
@@ -16,4 +25,4 @@ function PendingList(props) {
     );
 }
 
-export { PendingList };
+export { List };
