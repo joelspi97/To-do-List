@@ -1,9 +1,23 @@
 import React from 'react';
+
 import logo from '../images/logo.png';
+
+import { TodoContext } from '../TodoContext/TodoContext';
+
 import { HeaderModal } from './HeaderModal/HeaderModal';
 import { SettingsMenu } from './HeaderModal/SettingsMenu/SettingsMenu';
 
 function Header() {
+    const {
+        animations,
+        toggleAnimations,
+        highContrast,
+        toggleHighContrast,
+        spanish,
+        toggleSpanish,
+        darkTheme,
+        toggleDarkTheme,} = React.useContext(TodoContext);
+
     /* Modal */
     const [openModal, setOpenModal] = React.useState(false);
 

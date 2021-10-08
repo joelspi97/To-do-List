@@ -1,7 +1,18 @@
 import React from 'react';
+import { TodoContext } from '../../../TodoContext/TodoContext';
 import { SwitchBtn } from '../../../genericComponents/SwitchBtn/SwitchBtn';
 
 function SettingsMenu({hideHeaderModal}) {
+    const {
+        animations,
+        toggleAnimations,
+        highContrast,
+        toggleHighContrast,
+        spanish,
+        toggleSpanish,
+        darkTheme,
+        toggleDarkTheme,} = React.useContext(TodoContext);
+
     function handleSettingsSubmit(e) {
         e.preventDefault();
         hideHeaderModal();

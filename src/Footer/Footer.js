@@ -1,6 +1,17 @@
 import React from 'react';
+import { TodoContext } from '../TodoContext/TodoContext';
 
 function Footer() {
+    const {
+        animations,
+        toggleAnimations,
+        highContrast,
+        toggleHighContrast,
+        spanish,
+        toggleSpanish,
+        darkTheme,
+        toggleDarkTheme,} = React.useContext(TodoContext);
+
     return (
         <footer className="footer">
             <div className="project-padding">

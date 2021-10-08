@@ -1,8 +1,13 @@
 import React from 'react';
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
+/* Libraries */
+import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { v4 as uuidv4 } from '../../node_modules/uuid';
 
+/* Context */
+import { TodoContext } from '../TodoContext/TodoContext';
+
+/* Components */
 import { NewTodoBtn } from './NewTodoBtn/NewTodoBtn';
 import { MainModal } from './MainModal/MainModal';
 import { TodoMaker } from './MainModal/TodoMaker/TodoMaker';
@@ -14,6 +19,16 @@ import { CompletedTodoItem } from './CompletedTodoItem/CompletedTodoItem';
 
 
 function Main() {
+    const {
+        animations,
+        toggleAnimations,
+        highContrast,
+        toggleHighContrast,
+        spanish,
+        toggleSpanish,
+        darkTheme,
+        toggleDarkTheme,} = React.useContext(TodoContext);
+
     /* Modal */
     const [formValue, setFormValue] = React.useState('');
 
