@@ -45,6 +45,7 @@ function SettingsMenu({hideHeaderModal}) {
                     leftTag={spanish? "Apagado" : "Off"}
                     inputId={"high-contrast"} 
                     rightTag={spanish? "Prendido" : "On"} 
+                    defaultCheck={highContrast && "checked"}
                     handleChange={toggleHighContrast}
                 />
             </div>
@@ -54,6 +55,7 @@ function SettingsMenu({hideHeaderModal}) {
                     leftTag={spanish? "Apagado" : "Off"}
                     inputId={"color-blind"} 
                     rightTag={spanish? "Prendido" : "On"} 
+                    defaultCheck={colorBlind && "checked"}
                     handleChange={toggleColorBlind}
                 />
             </div>
@@ -63,7 +65,7 @@ function SettingsMenu({hideHeaderModal}) {
                     leftTag={spanish? "Desactivar" : "Disable"}
                     inputId={"animations"} 
                     rightTag={spanish? "Activar" : "Enable"} 
-                    defaultCheck={"checked"}
+                    defaultCheck={animations && "checked"}
                     handleChange={toggleAnimations}
                 />
             </div>
@@ -71,8 +73,9 @@ function SettingsMenu({hideHeaderModal}) {
                 <SwitchBtn
                     optionName={spanish? "Idioma" : "Language"}
                     leftTag={"ENG"}
-                    inputId={"language"} 
+                    inputId={"spanish"} 
                     rightTag={"ESP"} 
+                    defaultCheck={spanish && "checked"}
                     handleChange={toggleSpanish}
                 />
             </div>
@@ -82,6 +85,7 @@ function SettingsMenu({hideHeaderModal}) {
                     leftTag={spanish? "Claro" : "Light"}
                     inputId={"theme"} 
                     rightTag={spanish? "Oscuro" : "Dark"} 
+                    defaultCheck={darkTheme && "checked"}
                     handleChange={toggleDarkTheme}
                 />
             </div>
