@@ -1,7 +1,15 @@
 import React from 'react';
+import { useSettings } from '../../SettingsContext/SettingsContext';
 
 function TodoItem({ description, id, completed, markCompleted, priority, deleteTodo, deleteCompletedTodo, editTodo, draggableProvided }) {
+    const {
+        animations,
+        highContrast,
+        spanish,
+        darkTheme,} = useSettings();
+
     const [openDropdown, setOpenDropdown] = React.useState(false);
+    
     function toggleDropdown() {
         setOpenDropdown(prevState => !prevState);
     }
@@ -64,13 +72,17 @@ function TodoItem({ description, id, completed, markCompleted, priority, deleteT
                                 editTodo(id);
                             }}
                         >
-                            <span>Edit</span>
+                            <span>
+                                {spanish? "Editar" : "Edit"}
+                            </span>
                         </button>
                         <button 
                             className="todo-item__btn todo-item__dropdown-option todo-item__dropdown-option--delete" 
                             onClick={() => deleteTodo(id)}
                         >
-                            <span>Delete</span>
+                            <span>
+                                {spanish? "Descartar" : "Delete"}
+                            </span>
                         </button>
                     </div>
                 </> 

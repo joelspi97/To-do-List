@@ -1,13 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-function MainModal({ children }) {
+function Modal({ children }) {
     return ReactDOM.createPortal(
-        <div className="modal-background project-padding">
+        <div className="modal project-padding">
             { children }
         </div>,
         document.getElementById('modal')
     );
 }
 
-export { MainModal };
+export { Modal };

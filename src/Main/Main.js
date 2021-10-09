@@ -9,8 +9,8 @@ import { useSettings } from '../SettingsContext/SettingsContext';
 
 /* Components */
 import { NewTodoBtn } from './NewTodoBtn/NewTodoBtn';
-import { MainModal } from './MainModal/MainModal';
-import { TodoMaker } from './MainModal/TodoMaker/TodoMaker';
+import { Modal } from '../genericComponents/Modal/Modal'
+import { TodoMaker } from './TodoMaker/TodoMaker';
 import { SearchBar } from './SearchBar/SearchBar';
 import { List } from './List/List';
 import { TodoItem } from './TodoItem/TodoItem';
@@ -170,7 +170,7 @@ function Main() {
                 />
                 
                 {openModal && (
-                    <MainModal openModal={openModal}>
+                    <Modal openModal={openModal}>
                         <TodoMaker
                             hideModal={hideModal}
                             createNewTodo={createNewTodo}
@@ -178,7 +178,7 @@ function Main() {
                             setFormValue={setFormValue}
                             editedTodoId={editedTodoId}
                         />
-                    </MainModal>
+                    </Modal>
                 )}
 
                 <SearchBar

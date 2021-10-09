@@ -6,7 +6,7 @@ function SwitchBtn({ optionName, leftTag, rightTag, inputId, defaultCheck, handl
             <h3>{optionName}</h3>
             <label
                 className="switch-btn__label"
-                for={inputId}
+                htmlFor={inputId}
             >
                 <span className="switch-btn__left-tag">{leftTag}</span>
                 <div className="switch-btn__input-wrapper">

@@ -7,8 +7,8 @@ import logo from '../images/logo.png';
 import { useSettings } from '../SettingsContext/SettingsContext';
 
 /* Components */
-import { HeaderModal } from './HeaderModal/HeaderModal';
-import { SettingsMenu } from './HeaderModal/SettingsMenu/SettingsMenu';
+import { Modal } from '../genericComponents/Modal/Modal';
+import { SettingsMenu } from './SettingsMenu/SettingsMenu';
 
 function Header() {
     const {
@@ -51,11 +51,11 @@ function Header() {
                 </button>
 
                 {openModal && (
-                    <HeaderModal>
+                    <Modal>
                         <SettingsMenu 
                             hideHeaderModal={hideHeaderModal}
                         />
-                    </HeaderModal>
+                    </Modal>
                 )}
             </div>
         </header>

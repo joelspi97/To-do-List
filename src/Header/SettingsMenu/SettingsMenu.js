@@ -1,6 +1,6 @@
 import React from 'react';
-import { useSettings, useSettingsUpdate } from '../../../SettingsContext/SettingsContext';
-import { SwitchBtn } from '../../../genericComponents/SwitchBtn/SwitchBtn';
+import { useSettings, useSettingsUpdate } from '../../SettingsContext/SettingsContext';
+import { SwitchBtn } from '../../genericComponents/SwitchBtn/SwitchBtn';
 
 function SettingsMenu({hideHeaderModal}) {
     const {
@@ -23,12 +23,12 @@ function SettingsMenu({hideHeaderModal}) {
     }
     return (
         <form 
-            className="settings modal"
+            className="settings modal-content"
             onSubmit={handleSettingsSubmit}
         >
             <button 
                 type="buttton"
-                className="modal__close-btn" 
+                className="modal-content__close-btn" 
                 onClick={hideHeaderModal}
             >
                 <span className="icon x-icon"></span>
@@ -75,16 +75,15 @@ function SettingsMenu({hideHeaderModal}) {
                 />
             </div>
 
-            <div className="modal__bottom-btns">
+            <div className="modal-content__bottom-btns">
                 <button 
                     type="submit"
-                    className={`submit-btn ${true && "fill-btn"}`} 
+                    className={true && "fill-btn"} 
                 >
                     {spanish? "Guardar cambios" : "Save changes"}
                 </button>
                 <button 
                     type="button"
-                    className="cancel-btn" 
                     onClick={hideHeaderModal}
                 >
                     {spanish? "Cancelar" : "Cancel"}

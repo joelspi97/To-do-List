@@ -1,5 +1,5 @@
 import React from 'react';
-import { useSettings } from '../../../SettingsContext/SettingsContext';
+import { useSettings } from '../../SettingsContext/SettingsContext';
 
 function TodoMaker({ hideModal, createNewTodo, formValue, setFormValue, editedTodoId }) {
     const {
@@ -24,12 +24,12 @@ function TodoMaker({ hideModal, createNewTodo, formValue, setFormValue, editedTo
 
     return (
         <form 
-            className="todo-maker modal"
+            className="todo-maker modal-content"
             onSubmit={(submitEvent) => createNewTodo(submitEvent, formValue, todoPriority, editedTodoId)} 
         >
             <button 
                 type="buttton"
-                className="modal__close-btn" 
+                className="modal-content__close-btn" 
                 onClick={hideModal}
             >
                 <span className="icon x-icon"></span>
@@ -71,17 +71,16 @@ function TodoMaker({ hideModal, createNewTodo, formValue, setFormValue, editedTo
                 </div>
             </div>
 
-            <div className="modal__bottom-btns">
+            <div className="modal-content__bottom-btns">
                 <button 
                     type="submit"
-                    className={`submit-btn ${formCompleted && 'fill-btn'}`} 
+                    className={formCompleted && 'fill-btn'} 
                 >
                     {spanish? !editedTodoId && "¡Crear To-Do!" : !editedTodoId && "Create To-Do!"}
                     {spanish? editedTodoId && "Editar To-Do" : editedTodoId && "Edit To-Do"}
                 </button>
                 <button 
                     type="button"
-                    className="cancel-btn" 
                     onClick={hideModal}
                 >
                     {spanish? "Cancelar" : "Cancel"}

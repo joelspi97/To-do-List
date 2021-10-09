@@ -25,6 +25,14 @@ function SettingsProvider(props) {
     const [spanish, setSpanish] = React.useState(false);
     function toggleSpanish() {
         setSpanish(prevState => !prevState);
+        
+        const mainElement = document.querySelector('html');
+        if (mainElement.getAttribute('lang') === 'en') {
+            mainElement.setAttribute('lang', 'es');
+        } else {
+            mainElement.setAttribute('lang', 'en');
+
+        }
     }
     
     const [darkTheme, setDarkTheme] = React.useState(false);
