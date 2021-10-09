@@ -16,13 +16,15 @@ function SettingsMenu({hideHeaderModal}) {
         toggleHighContrast,
         toggleColorBlind,
         toggleSpanish,
-        toggleDarkTheme,} = useSettingsUpdate();
+        toggleDarkTheme,
+        settingsChanged,} = useSettingsUpdate();
 
     function saveSettings(e) {
         e.preventDefault();
         hideHeaderModal();
         alert('xd');
     }
+    
     return (
         <form 
             className="settings modal-content"
@@ -93,7 +95,7 @@ function SettingsMenu({hideHeaderModal}) {
             <div className="modal-content__bottom-btns">
                 <button 
                     type="submit"
-                    className={true && "fill-btn"} 
+                    className={settingsChanged? "fill-btn" : undefined} 
                 >
                     {spanish? "Guardar cambios" : "Save changes"}
                 </button>

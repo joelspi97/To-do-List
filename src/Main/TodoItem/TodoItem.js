@@ -22,15 +22,16 @@ function TodoItem({ description, id, completed, priority, draggableProvided }) {
         setOpenDropdown(prevState => !prevState);
     }
 
+    function todoItemClass() {
+        if(completed) return "completed-todo";
+        if(priority === "low") return "todo-item--low";
+        if(priority === "medium") return "todo-item--medium";
+        if(priority === "high") return "todo-item--high";
+    }
+
     return (
         <li 
-            className={`
-                todo-item 
-                ${completed && "completed-todo"}
-                ${(priority === "low") && "todo-item--low"}
-                ${(priority === "medium") && "todo-item--medium"}
-                ${(priority === "high") && "todo-item--high"}
-            `}
+            className={`todo-item ${todoItemClass()}`}
             {...draggableProvided.draggableProps}
             ref={draggableProvided.innerRef}
             {...draggableProvided.dragHandleProps}
@@ -58,7 +59,7 @@ function TodoItem({ description, id, completed, priority, draggableProvided }) {
                     <button 
                         className={`
                             todo-item__btn 
-                            ${openDropdown && "todo-item__btn--open"}
+                            ${openDropdown? "todo-item__btn--open" : ""}
                         `} type="button"
                         onClick={() => toggleDropdown()}
                     >
@@ -66,12 +67,12 @@ function TodoItem({ description, id, completed, priority, draggableProvided }) {
                             className={`
                                 icon 
                                 edit-icon 
-                                ${openDropdown && "edit-icon--open"}
+                                ${openDropdown? "edit-icon--open" : ""}
                             `}></span>
                     </button>
                     <div className={`
                         todo-item__dropdown
-                        ${openDropdown && "todo-item__dropdown--open"}
+                        ${openDropdown? "todo-item__dropdown--open" : ""}
                     `}>
                         <button
                             className="todo-item__btn todo-item__dropdown-option" 

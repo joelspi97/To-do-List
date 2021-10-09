@@ -14,7 +14,8 @@ function NewTodoBtn() {
 
     return (
         <button 
-            type="button" className="new-todo-btn"
+            className="new-todo-btn"
+            type="button" 
             onClick={showModal}
         >
             {spanish? "¡Creá un nuevo To-Do!" : "Create a new To-Do!"}

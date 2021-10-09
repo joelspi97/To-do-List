@@ -12,23 +12,29 @@ function useSettingsUpdate() {
 }
 
 function SettingsProvider(props) {
+    const [settingsChanged, setSettingsChanged] = React.useState(false);
+
     const [animations, setAnimations] = React.useState(true);
     function toggleAnimations() {
+        setSettingsChanged(true);
         setAnimations(prevState => !prevState);
     }
 
     const [highContrast, setHighContrast] = React.useState(false);
     function toggleHighContrast() {
+        setSettingsChanged(true);
         setHighContrast(prevState => !prevState);
     }
 
     const [colorBlind, setColorBlind] = React.useState(false);
     function toggleColorBlind() {
+        setSettingsChanged(true);
         setColorBlind(prevState => !prevState);
     }
 
     const [spanish, setSpanish] = React.useState(false);
     function toggleSpanish() {
+        setSettingsChanged(true);
         setSpanish(prevState => !prevState);
         
         const mainElement = document.querySelector('html');
@@ -62,6 +68,7 @@ function SettingsProvider(props) {
                     toggleColorBlind,
                     toggleSpanish,
                     toggleDarkTheme,
+                    settingsChanged,
                 }}
             >
                 {props.children}

@@ -83,7 +83,7 @@ function TodoMaker() {
             <div className="modal-content__bottom-btns">
                 <button 
                     type="submit"
-                    className={formCompleted && 'fill-btn'} 
+                    className={formCompleted? 'fill-btn' : undefined} 
                 >
                     {spanish? !editedTodoId && "¡Crear To-Do!" : !editedTodoId && "Create To-Do!"}
                     {spanish? editedTodoId && "Editar To-Do" : editedTodoId && "Edit To-Do"}

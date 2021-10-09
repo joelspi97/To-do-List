@@ -2,6 +2,7 @@ import React from 'react';
 import { v4 as uuidv4 } from '../../node_modules/uuid';
 
 const MainContext = React.createContext();
+
 function useMainContext() {
     return React.useContext(MainContext);
 }
