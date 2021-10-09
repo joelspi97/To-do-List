@@ -2,10 +2,10 @@ import React from 'react';
 
 /* Libraries */
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
-import { v4 as uuidv4 } from '../../node_modules/uuid';
 
 /* Context */
 import { useSettings } from '../SettingsContext/SettingsContext';
+import { useMainContext } from '../MainContext/MainContext';
 
 /* Components */
 import { NewTodoBtn } from './NewTodoBtn/NewTodoBtn';
@@ -24,109 +24,19 @@ function Main() {
         spanish,
         darkTheme,} = useSettings();
 
-    /* Modal */
-    const [formValue, setFormValue] = React.useState('');
+    const {
+        newTodos,
+        setNewTodos,
+        openModal,
+        completedTodos,
+        setCompletedTodos,
+        searchedTodos,
+        searchedCompletedTodos,} = useMainContext();
 
-    const [openModal, setOpenModal] = React.useState(false);
-
-    function showModal() {
-        setOpenModal(true);
-        document.body.classList.add('no-scroll')
-    }
-    function hideModal() {
-        setOpenModal(false);
-        setFormValue('');
-        setEditedTodoId('');
-        document.body.classList.remove('no-scroll')
-    }
-
-
-    /* New Todos */
-    const [newTodos, setNewTodos] = React.useState([]);
-
-    function createNewTodo(submitEvent, description, priority, editedTodoId) {
-        submitEvent.preventDefault();
-        hideModal();
-
-        if(newTodos.find(todo => todo.id === editedTodoId)) {
-            const editedTodos = [...newTodos];
-            const pos = editedTodos.map(todo => todo.id).indexOf(editedTodoId);
-            editedTodos[pos].description = description;
-            editedTodos[pos].priority = priority;
-            setNewTodos(editedTodos);
-            setEditedTodoId('');
-        } else {
-            setNewTodos(prevTodos => [...prevTodos, 
-                { 
-                    completed: false,
-                    id: uuidv4(),
-                    description: description,
-                    priority: priority,
-                }
-            ]);
-        }
-    }
-
-
-    /* Completed Todos */
-    const [completedTodos, setCompletedTodos] = React.useState([]);
-
-    function markCompleted(currentId) {
-        const currentTodo = newTodos.find(todo => todo.id === currentId);
-        currentTodo.completed = true;
-        setCompletedTodos([...completedTodos, currentTodo]);
-        deleteTodo(currentId);
-    }
-
-
-    /*Search Todos*/
-    const [searchValue, setSearchValue] = React.useState('');
-
-    let searchedTodos;
-    if(!searchValue.length > 0) {
-        searchedTodos = newTodos;
-    } else {
-        searchedTodos = newTodos.filter(todo => todo.description.toLowerCase().includes(searchValue));
-    }
-
-    let searchedCompletedTodos;
-    if(!searchValue.length > 0) {
-        searchedCompletedTodos = completedTodos;
-    } else {
-        searchedCompletedTodos = completedTodos.filter(todo => todo.description.toLowerCase().includes(searchValue));
-    }
-
-
-    /* Delete Todos */
-    function deleteTodo(currentId) {
-        const reducedTodos = [...newTodos];
-        const pos = reducedTodos.map(todo => todo.id).indexOf(currentId);
-        reducedTodos.splice(pos, 1);
-        setNewTodos(reducedTodos);
-    }
-    function deleteCompletedTodo(currentId) {
-        const reducedTodos = [...completedTodos];
-        const pos = reducedTodos.map(todo => todo.id).indexOf(currentId);
-        reducedTodos.splice(pos, 1);
-        setCompletedTodos(reducedTodos);
-    }
-
-
-    /* Edit Todo */
-    const [editedTodoId, setEditedTodoId] = React.useState('');
-
-    function editTodo(currentId) {
-        showModal();
-        setEditedTodoId(currentId);
-        const currentTodo = newTodos.find(todo => todo.id === currentId);
-        setFormValue(currentTodo.description);
-    }
-    
+    /* Load Local Storage */
     const PENDING_TODOS_KEY = "pendingTodos";
     const COMPLETED_TODOS_KEY = "completedTodos";
 
-
-    /* Load Local Storage */
     React.useEffect(() => {
         const pendingTodos = JSON.parse(localStorage.getItem(PENDING_TODOS_KEY));
         if(pendingTodos) {
@@ -166,26 +76,16 @@ function Main() {
                 </p>
             </section>
             <section className="project-padding">
-                <NewTodoBtn 
-                    showModal={showModal}
-                />
+
+                <NewTodoBtn />
                 
                 {openModal && (
                     <Modal openModal={openModal}>
-                        <TodoMaker
-                            hideModal={hideModal}
-                            createNewTodo={createNewTodo}
-                            formValue={formValue}
-                            setFormValue={setFormValue}
-                            editedTodoId={editedTodoId}
-                        />
+                        <TodoMaker/>
                     </Modal>
                 )}
 
-                <SearchBar
-                    searchValue={searchValue}
-                    setSearchValue={setSearchValue}
-                />
+                <SearchBar />
                 
                 <DragDropContext 
                     onDragEnd={result => {
@@ -207,7 +107,7 @@ function Main() {
                                 dropableProvided={dropableProvided}
                             >
                                 {spanish? (newTodos.length === 0) && "¡Felicitaciones! ¡No tenés ninguna tarea pendiente!" : (newTodos.length === 0) && "Hooray! You don't have any pending task!"}
-                                {spanish? (newTodos.length > 0 && searchedTodos.length === 0) && "No encontramos ningun To-Do en esta lista que contenga eso... 🤔" : (newTodos.length > 0 && searchedTodos.length === 0) && "We didn't find any To-Do in this list that contains that... 🤔"}
+                                {spanish? (newTodos.length > 0 && searchedTodos.length === 0) && "No encontramos ningun To-Do en esta lista que contenga eso... 🤔" : (newTodos.length > 0 && searchedTodos.length === 0) && "We didn't find any To-Do's in this list that contains that... 🤔"}
 
                                 {searchedTodos.map((todo, index) => 
                                     <Draggable 
@@ -223,9 +123,6 @@ function Main() {
                                                 key={todo.id}
                                                 priority={todo.priority}
                                                 completed={todo.completed}
-                                                markCompleted={markCompleted}
-                                                deleteTodo={deleteTodo}
-                                                editTodo={editTodo}
                                             />
                                         }
                                     </Draggable>
@@ -234,6 +131,7 @@ function Main() {
                         }
                     </Droppable>
                 </DragDropContext>
+
                 <DragDropContext
                     onDragEnd={result => {
                         const {source, destination} = result;
@@ -243,7 +141,6 @@ function Main() {
                         if(source.index === destination.index && source.droppableId === destination.droppableId) {
                             return;
                         }
-
                         setCompletedTodos(prevTodos => reorder(prevTodos, source.index, destination.index));
                     }}
                 >
@@ -254,7 +151,7 @@ function Main() {
                                 dropableProvided={dropableProvided}
                             >
                                 {spanish? (completedTodos.length === 0) && "Los To-Do's que completes se mostrarán en esta lista" : (completedTodos.length === 0) && "Your completed To-Do's will be displayed in this section"}
-                                {spanish? (completedTodos.length > 0 && searchedCompletedTodos.length === 0) && "No encontramos ningun To-Do en esta lista que contenga eso... 🤔" : (completedTodos.length > 0 && searchedCompletedTodos.length === 0) && "We didn't find any Todo in this list that contains that 🤔..."}
+                                {spanish? (completedTodos.length > 0 && searchedCompletedTodos.length === 0) && "No encontramos ningun To-Do en esta lista que contenga eso... 🤔" : (completedTodos.length > 0 && searchedCompletedTodos.length === 0) && "We didn't find any To-Do's in this list that contains that... 🤔"}
 
                                 {searchedCompletedTodos.map((todo, index) => 
                                     <Draggable 
@@ -270,7 +167,6 @@ function Main() {
                                                 key={todo.id}
                                                 priority={todo.priority}
                                                 completed={todo.completed}
-                                                deleteCompletedTodo={deleteCompletedTodo}
                                             />
                                         }
                                     </Draggable>

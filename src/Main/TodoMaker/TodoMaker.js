@@ -1,13 +1,21 @@
 import React from 'react';
 import { useSettings } from '../../SettingsContext/SettingsContext';
+import { useMainContext } from '../../MainContext/MainContext';
 
-function TodoMaker({ hideModal, createNewTodo, formValue, setFormValue, editedTodoId }) {
+function TodoMaker() {
     const {
         animations,
         highContrast,
         colorBlind,
         spanish,
         darkTheme,} = useSettings();
+
+    const {
+        hideModal,
+        createNewTodo,
+        formValue,
+        setFormValue,
+        editedTodoId,}= useMainContext();
 
     const [todoPriority, setTodoPriority] = React.useState('');
     const [formCompleted, setFormCompleted] = React.useState(false);

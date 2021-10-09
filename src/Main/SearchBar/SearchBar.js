@@ -1,13 +1,18 @@
 import React from 'react';
 import { useSettings } from '../../SettingsContext/SettingsContext';
+import { useMainContext } from '../../MainContext/MainContext';
 
-function SearchBar({ searchValue, setSearchValue }) {
+function SearchBar() {
     const {
         animations,
         highContrast,
         colorBlind,
         spanish,
         darkTheme,} = useSettings();
+
+    const {
+        searchValue,
+        setSearchValue,}= useMainContext();
 
     return (
         <div className="search-bar">

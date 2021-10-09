@@ -1,13 +1,20 @@
 import React from 'react';
 import { useSettings } from '../../SettingsContext/SettingsContext';
+import { useMainContext } from '../../MainContext/MainContext';
 
-function TodoItem({ description, id, completed, markCompleted, priority, deleteTodo, deleteCompletedTodo, editTodo, draggableProvided }) {
+function TodoItem({ description, id, completed, priority, draggableProvided }) {
     const {
         animations,
         highContrast,
         colorBlind,
         spanish,
         darkTheme,} = useSettings();
+
+    const {
+        markCompleted,
+        deleteTodo,
+        editTodo,
+        deleteCompletedTodo,}= useMainContext();
 
     const [openDropdown, setOpenDropdown] = React.useState(false);
     

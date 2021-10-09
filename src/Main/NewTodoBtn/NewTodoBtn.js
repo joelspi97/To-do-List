@@ -1,13 +1,16 @@
 import React from 'react';
 import { useSettings } from '../../SettingsContext/SettingsContext';
+import { useMainContext } from '../../MainContext/MainContext';
 
-function NewTodoBtn({ showModal }) {
+function NewTodoBtn() {
     const {
         animations,
         highContrast,
         colorBlind,
         spanish,
         darkTheme,} = useSettings();
+
+    const {showModal} = useMainContext();
 
     return (
         <button 
