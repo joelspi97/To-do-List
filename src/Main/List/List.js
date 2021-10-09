@@ -5,6 +5,7 @@ function List(props) {
     const {
         animations,
         highContrast,
+        colorBlind,
         spanish,
         darkTheme,} = useSettings();
 

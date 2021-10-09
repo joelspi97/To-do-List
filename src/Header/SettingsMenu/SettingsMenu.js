@@ -6,6 +6,7 @@ function SettingsMenu({hideHeaderModal}) {
     const {
         animations,
         highContrast,
+        colorBlind,
         spanish,
         darkTheme,
         } = useSettings();
@@ -13,18 +14,19 @@ function SettingsMenu({hideHeaderModal}) {
     const {
         toggleAnimations,
         toggleHighContrast,
+        toggleColorBlind,
         toggleSpanish,
         toggleDarkTheme,} = useSettingsUpdate();
 
-    function handleSettingsSubmit(e) {
+    function saveSettings(e) {
         e.preventDefault();
         hideHeaderModal();
-        alert('Acordarme que cuando haga el language switch también tengo que cambiar el atributo lang del elemento html');
+        alert('xd');
     }
     return (
         <form 
             className="settings modal-content"
-            onSubmit={handleSettingsSubmit}
+            onSubmit={saveSettings}
         >
             <button 
                 type="buttton"
@@ -44,6 +46,15 @@ function SettingsMenu({hideHeaderModal}) {
                     inputId={"high-contrast"} 
                     rightTag={spanish? "Prendido" : "On"} 
                     handleChange={toggleHighContrast}
+                />
+            </div>
+            <div>
+                <SwitchBtn
+                    optionName={spanish? "Modo daltónico" : "Color blind mode"}
+                    leftTag={spanish? "Apagado" : "Off"}
+                    inputId={"color-blind"} 
+                    rightTag={spanish? "Prendido" : "On"} 
+                    handleChange={toggleColorBlind}
                 />
             </div>
             <div>

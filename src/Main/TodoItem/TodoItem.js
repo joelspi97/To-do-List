@@ -5,6 +5,7 @@ function TodoItem({ description, id, completed, markCompleted, priority, deleteT
     const {
         animations,
         highContrast,
+        colorBlind,
         spanish,
         darkTheme,} = useSettings();
 

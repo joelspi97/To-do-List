@@ -20,6 +20,7 @@ function Main() {
     const {
         animations,
         highContrast,
+        colorBlind,
         spanish,
         darkTheme,} = useSettings();
 

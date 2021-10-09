@@ -14,6 +14,7 @@ function Header() {
     const {
         animations,
         highContrast,
+        colorBlind,
         spanish,
         darkTheme,} = useSettings();
 

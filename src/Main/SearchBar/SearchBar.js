@@ -5,6 +5,7 @@ function SearchBar({ searchValue, setSearchValue }) {
     const {
         animations,
         highContrast,
+        colorBlind,
         spanish,
         darkTheme,} = useSettings();
 

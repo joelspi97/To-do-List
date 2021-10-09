@@ -5,6 +5,7 @@ function Footer() {
     const {
         animations,
         highContrast,
+        colorBlind,
         spanish,
         darkTheme,} = useSettings();
 

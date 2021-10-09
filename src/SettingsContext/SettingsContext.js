@@ -22,6 +22,11 @@ function SettingsProvider(props) {
         setHighContrast(prevState => !prevState);
     }
 
+    const [colorBlind, setColorBlind] = React.useState(false);
+    function toggleColorBlind() {
+        setColorBlind(prevState => !prevState);
+    }
+
     const [spanish, setSpanish] = React.useState(false);
     function toggleSpanish() {
         setSpanish(prevState => !prevState);
@@ -45,6 +50,7 @@ function SettingsProvider(props) {
             value={{
                 animations,
                 highContrast,
+                colorBlind,
                 spanish,
                 darkTheme,
             }}
@@ -53,6 +59,7 @@ function SettingsProvider(props) {
                 value={{
                     toggleAnimations,
                     toggleHighContrast,
+                    toggleColorBlind,
                     toggleSpanish,
                     toggleDarkTheme,
                 }}

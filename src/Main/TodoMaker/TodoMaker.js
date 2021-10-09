@@ -5,6 +5,7 @@ function TodoMaker({ hideModal, createNewTodo, formValue, setFormValue, editedTo
     const {
         animations,
         highContrast,
+        colorBlind,
         spanish,
         darkTheme,} = useSettings();
 
