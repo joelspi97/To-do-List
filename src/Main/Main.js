@@ -5,7 +5,6 @@ import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { v4 as uuidv4 } from '../../node_modules/uuid';
 
 /* Context */
-import { useTodoContext } from '../TodoContext/TodoContext';
 import { useSettings } from '../SettingsContext/SettingsContext';
 
 /* Components */
@@ -154,7 +153,6 @@ function Main() {
         result.splice(endIndex, 0, removed);
         return result;
     }
-
     
     return (
         <main className="main">
