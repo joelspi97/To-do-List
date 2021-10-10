@@ -56,9 +56,19 @@ function SettingsProvider(props) {
         
     /* Save in Local Storage */
     React.useEffect(() => {
-            localStorage.setItem('spanish', JSON.stringify(spanish));
+        localStorage.setItem('spanish', JSON.stringify(spanish));
     }, [spanish]);
 
+
+    /* High contrast */
+    React.useEffect(() => {
+        const root = document.documentElement;
+        const MAIN_COLOR = '#288000';
+
+        const MAIN_COLOR_HC = "#000000";
+
+        root.style.setProperty('--main-color', highContrast ? MAIN_COLOR_HC : MAIN_COLOR);
+    }, [highContrast])
 
     return (
         <SettingsContext.Provider

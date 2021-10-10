@@ -20,7 +20,7 @@
         font-size: map-get($fs, 'sm');
         font-weight: map-get($fw, 'regular');
 
-        border: 0.2rem solid $main-color;
+        border: 0.2rem solid var(--main-color);
         border-radius: $br;
         
         resize: none;

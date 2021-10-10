@@ -1,4 +1,5 @@
 /* Variables */
+@import './abstracts/dinamic-variables';
 @import './abstracts/variables';
 
 /* Mixins */
@@ -60,6 +61,7 @@
         del componente Settings
         2) Hacer que se guarden las 
         configuraciones
+        3) Solucionar bug de html lang
     }
 
     Main {

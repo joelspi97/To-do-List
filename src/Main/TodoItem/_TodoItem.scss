@@ -6,12 +6,12 @@
 
     cursor: pointer;
     border-radius: 2.5rem;
-    color: $white;
+    color: var(--white);
     margin: 1.5rem 0;
     padding: 1rem 1.5rem;
     
     &--low {
-        background-color: $main-color;
+        background-color: var(--main-color);
     }
     &--medium {
         background-color: orange;
@@ -25,7 +25,7 @@
         align-items: center;
         justify-content: center;
 
-        background-color: $white;
+        background-color: var(--white);
         border: none;
         border-radius: 2.5rem;
         padding: 0.75rem;
@@ -35,7 +35,7 @@
         font-weight: map-get($fw, 'bold');
     }
     &__btn:focus {
-        outline: 0.3rem solid $focus-color-brighter;
+        outline: 0.3rem solid var(--focus-color-brighter);
     }
     &__btn--open {
         border-radius: 2.5rem 2.5rem 0 0;
@@ -45,9 +45,9 @@
     }
 
     &__text {
-        background-color: $white;
+        background-color: var(--white);
         border-radius: 0.5rem;
-        color: $black;
+        color: var(--black);
         font-size: map-get($fs, 'sm');
         font-weight: map-get($fw, 'medium');
         flex-grow: 1;
@@ -65,7 +65,7 @@
         right: 1.5rem;
         top: 4.2rem;
 
-        background-color: $white;
+        background-color: var(--white);
         border-radius: 0.5rem;
         border-top-right-radius: 0;
         padding: 1rem;

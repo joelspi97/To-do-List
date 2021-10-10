@@ -4,6 +4,6 @@
 
 .list {
     list-style: none;
-    border-bottom: 0.2rem solid $main-color;
+    border-bottom: 0.2rem solid var(--main-color);
     padding: 1rem;
 }

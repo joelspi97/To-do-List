@@ -27,7 +27,7 @@
     }
 
     &__heading {
-        color: $main-color;
+        color: var(--main-color);
         font-family: $main-font;
         font-weight: map-get($fw, 'black');
     }
@@ -49,10 +49,10 @@
         padding: 0.5rem;
         cursor: pointer;
     
-        transition: outline $focus-duration ease-in-out;
+        transition: outline var(--focus-duration) ease-in-out;
     
         &:focus {
-            outline: 0.3rem solid $focus-color;
+            outline: 0.3rem solid var(--focus-color);
         }
     }
 }

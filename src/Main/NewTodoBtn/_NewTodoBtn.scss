@@ -1,23 +1,23 @@
 .new-todo-btn {
     width: 13rem;
     height: 13rem;
-    background-color: $main-color;
+    background-color: var(--main-color);
     border: none;
     border-radius: 50%;
-    color: $white;
+    color: var(--white);
     font-family: $main-font;
     font-size: map-get($fs, 'sm');
     font-weight: map-get($fw, 'bold');
     padding: 1rem 2rem;
     margin-bottom: 2rem;
 
-    transition: all $focus-duration ease-in-out;
+    transition: all var(--focus-duration) ease-in-out;
 
     &:hover,
     &:focus {
-    outline: 0.3rem solid $focus-color-brighter;
+    outline: 0.3rem solid var(--focus-color-brighter);
     transform: scale(1.05);
-    color: $focus-color-brighter;
+    color: var(--focus-color-brighter);
 }
 }
 

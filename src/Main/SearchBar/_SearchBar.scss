@@ -13,16 +13,16 @@
         justify-content: space-around;
 
         border-radius: 0.5rem;
-        border: 0.2rem solid $main-color;
+        border: 0.2rem solid var(--main-color);
         padding: 0.7rem 1rem;
         width: 100%;
 
-        transition: outline $focus-duration ease-in-out, 
-                    border $focus-duration ease-in-out;
+        transition: outline var(--focus-duration) ease-in-out, 
+                    border var(--focus-duration) ease-in-out;
     }
     &__wrapper:focus-within {
-        border-color: $focus-color;
-        outline: 0.1rem solid $focus-color;
+        border-color: var(--focus-color);
+        outline: 0.1rem solid var(--focus-color);
     }
 
     &__input {

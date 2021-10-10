@@ -49,13 +49,13 @@
         width: 2.6rem;
         left: 0.4rem;
         bottom: 0.2rem;
-        background-color: $main-color;
+        background-color: var(--main-color);
         border-radius: 50%;
         transition: 0.4s;
     }
     
     &__input:checked + &__slider {
-        background-color: $focus-color-brighter;
+        background-color: var(--focus-color-brighter);
     }
 
     &__input:checked + &__slider::before {
