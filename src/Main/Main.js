@@ -72,7 +72,8 @@ function Main() {
                     {spanish? "¡Bienvenido a To-Do List!" : "Welcome to To-Do List!"}
                 </h1>
                 <p className="main__paragraph">
-                    {spanish? "Este sitio web te permitirá escribir tu propia lista de To-Do's y controlar el avance de tus objetivos de una forma eficiente" : "This website will allow you to write down your own To-Do list and keep track of your goals in an efficient way"}
+                    {spanish? "Este sitio web te permitirá escribir tu propia lista de To-Do's y controlar el avance de tus objetivos de una forma eficiente" 
+                            : "This website will allow you to write down your own To-Do list and keep track of your goals in an efficient way"}
                 </p>
             </section>
             <section className="project-padding">
@@ -106,8 +107,11 @@ function Main() {
                                 heading={spanish? "Tareas pendientes" : "Pending tasks"}
                                 dropableProvided={dropableProvided}
                             >
-                                {spanish? (newTodos.length === 0) && "¡Felicitaciones! ¡No tenés ninguna tarea pendiente!" : (newTodos.length === 0) && "Hooray! You don't have any pending task!"}
-                                {spanish? (newTodos.length > 0 && searchedTodos.length === 0) && "No encontramos ningun To-Do en esta lista que contenga eso... 🤔" : (newTodos.length > 0 && searchedTodos.length === 0) && "We didn't find any To-Do's in this list that contains that... 🤔"}
+                                {spanish? (newTodos.length === 0) && "¡Felicitaciones! ¡No tenés ninguna tarea pendiente!" 
+                                        : (newTodos.length === 0) && "Hooray! You don't have any pending task!"}
+
+                                {spanish? (newTodos.length > 0 && searchedTodos.length === 0) && "No encontramos ningun To-Do en esta lista que contenga eso... 🤔" 
+                                        : (newTodos.length > 0 && searchedTodos.length === 0) && "We didn't find any To-Do's in this list that contains that... 🤔"}
 
                                 {searchedTodos.map((todo, index) => 
                                     <Draggable 
@@ -150,8 +154,11 @@ function Main() {
                                 heading={spanish? "Tareas completadas" : "Completed tasks"}
                                 dropableProvided={dropableProvided}
                             >
-                                {spanish? (completedTodos.length === 0) && "Los To-Do's que completes se mostrarán en esta lista" : (completedTodos.length === 0) && "Your completed To-Do's will be displayed in this section"}
-                                {spanish? (completedTodos.length > 0 && searchedCompletedTodos.length === 0) && "No encontramos ningun To-Do en esta lista que contenga eso... 🤔" : (completedTodos.length > 0 && searchedCompletedTodos.length === 0) && "We didn't find any To-Do's in this list that contains that... 🤔"}
+                                {spanish? (completedTodos.length === 0) && "Los To-Do's que completes se mostrarán en esta lista" 
+                                        : (completedTodos.length === 0) && "Your completed To-Do's will be displayed in this section"}
+                                
+                                {spanish? (completedTodos.length > 0 && searchedCompletedTodos.length === 0) && "No encontramos ningun To-Do en esta lista que contenga eso... 🤔" 
+                                        : (completedTodos.length > 0 && searchedCompletedTodos.length === 0) && "We didn't find any To-Do's in this list that contains that... 🤔"}
 
                                 {searchedCompletedTodos.map((todo, index) => 
                                     <Draggable 
