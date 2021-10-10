@@ -12,29 +12,24 @@ function useSettingsUpdate() {
 }
 
 function SettingsProvider(props) {
-    const [settingsChanged, setSettingsChanged] = React.useState(false);
 
     const [animations, setAnimations] = React.useState(true);
     function toggleAnimations() {
-        setSettingsChanged(true);
         setAnimations(prevState => !prevState);
     }
 
     const [highContrast, setHighContrast] = React.useState(false);
     function toggleHighContrast() {
-        setSettingsChanged(true);
         setHighContrast(prevState => !prevState);
     }
 
     const [colorBlind, setColorBlind] = React.useState(false);
     function toggleColorBlind() {
-        setSettingsChanged(true);
         setColorBlind(prevState => !prevState);
     }
 
     const [spanish, setSpanish] = React.useState(false);
     function toggleSpanish() {
-        setSettingsChanged(true);
         setSpanish(prevState => !prevState);
         
         const mainElement = document.querySelector('html');
@@ -42,7 +37,6 @@ function SettingsProvider(props) {
             mainElement.setAttribute('lang', 'es');
         } else {
             mainElement.setAttribute('lang', 'en');
-
         }
     }
     
@@ -50,6 +44,21 @@ function SettingsProvider(props) {
     function toggleDarkTheme() {
         setDarkTheme(prevState => !prevState);
     }
+    
+
+    /* Load local storage */
+    React.useEffect(()=> {
+        const savedValue = JSON.parse(localStorage.getItem('spanish'));
+        if(savedValue) {
+            setSpanish(savedValue);
+        }
+    }, []);
+        
+    /* Save in Local Storage */
+    React.useEffect(() => {
+            localStorage.setItem('spanish', JSON.stringify(spanish));
+    }, [spanish]);
+
 
     return (
         <SettingsContext.Provider
@@ -68,7 +77,6 @@ function SettingsProvider(props) {
                     toggleColorBlind,
                     toggleSpanish,
                     toggleDarkTheme,
-                    settingsChanged,
                 }}
             >
                 {props.children}

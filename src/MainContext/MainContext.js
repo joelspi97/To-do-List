@@ -8,6 +8,23 @@ function useMainContext() {
 }
 
 function MainProvider(props) {
+    /* Modal */
+    const [formValue, setFormValue] = React.useState('');
+
+    const [openModal, setOpenModal] = React.useState(false);
+
+    function showModal() {
+        setOpenModal(true);
+        document.body.classList.add('no-scroll')
+    }
+    function hideModal() {
+        setOpenModal(false);
+        setFormValue('');
+        setEditedTodoId('');
+        document.body.classList.remove('no-scroll')
+    }
+
+
     /* New Todos */
     const [newTodos, setNewTodos] = React.useState([]);
 
@@ -32,22 +49,6 @@ function MainProvider(props) {
                 }
             ]);
         }
-    }
-
-    /* Modal */
-    const [formValue, setFormValue] = React.useState('');
-
-    const [openModal, setOpenModal] = React.useState(false);
-
-    function showModal() {
-        setOpenModal(true);
-        document.body.classList.add('no-scroll')
-    }
-    function hideModal() {
-        setOpenModal(false);
-        setFormValue('');
-        setEditedTodoId('');
-        document.body.classList.remove('no-scroll')
     }
 
 
