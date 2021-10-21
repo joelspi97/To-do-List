@@ -3,12 +3,8 @@ import { useSettings } from '../../SettingsContext/SettingsContext';
 import { useMainContext } from '../../MainContext/MainContext';
 
 function TodoItem({ description, id, completed, priority, draggableProvided }) {
-    const {
-        animations,
-        highContrast,
-        colorBlind,
-        spanish,
-        darkTheme,} = useSettings();
+    const { spanish } = useSettings();
+
 
     const {
         markCompleted,

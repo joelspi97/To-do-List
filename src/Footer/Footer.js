@@ -2,12 +2,7 @@ import React from 'react';
 import { useSettings } from '../SettingsContext/SettingsContext';
 
 function Footer() {
-    const {
-        animations,
-        highContrast,
-        colorBlind,
-        spanish,
-        darkTheme,} = useSettings();
+    const { spanish } = useSettings();
 
     return (
         <footer className="footer">

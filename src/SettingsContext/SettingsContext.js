@@ -23,11 +23,6 @@ function SettingsProvider(props) {
         setHighContrast(prevState => !prevState);
     }
 
-    const [colorBlind, setColorBlind] = React.useState(false);
-    function toggleColorBlind() {
-        setColorBlind(prevState => !prevState);
-    }
-
     const [spanish, setSpanish] = React.useState(false);
     function toggleSpanish() {
         setSpanish(prevState => !prevState);
@@ -64,18 +59,29 @@ function SettingsProvider(props) {
     React.useEffect(() => {
         const root = document.documentElement;
         const MAIN_COLOR = '#288000';
-
         const MAIN_COLOR_HC = "#000000";
+        const BG_COLOR_DARK = "#090d1c";
+        const WHITE = "#ffffff";
 
         root.style.setProperty('--main-color', highContrast ? MAIN_COLOR_HC : MAIN_COLOR);
-    }, [highContrast])
+        root.style.setProperty('--footer-color', WHITE);
+
+        root.style.setProperty('--secondary-color', darkTheme ? BG_COLOR_DARK : WHITE);
+        root.style.setProperty('--black', darkTheme ? WHITE : BG_COLOR_DARK);
+
+        if(highContrast && darkTheme) {
+            root.style.setProperty('--main-color', WHITE);
+            root.style.setProperty('--secondary-color', MAIN_COLOR_HC);
+            root.style.setProperty('--black', WHITE);
+            root.style.setProperty('--footer-color', MAIN_COLOR_HC);
+        }
+    }, [highContrast, darkTheme])
 
     return (
         <SettingsContext.Provider
             value={{
                 animations,
                 highContrast,
-                colorBlind,
                 spanish,
                 darkTheme,
             }}
@@ -84,7 +90,6 @@ function SettingsProvider(props) {
                 value={{
                     toggleAnimations,
                     toggleHighContrast,
-                    toggleColorBlind,
                     toggleSpanish,
                     toggleDarkTheme,
                 }}

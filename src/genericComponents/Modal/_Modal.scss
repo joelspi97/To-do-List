@@ -19,7 +19,8 @@
 	
 		width: 100%;
 	
-		background-color: var(--white);
+		background-color: var(--secondary-color);
+		border: 0.2rem solid white;
 		border-radius: $br;
 		font-family: $main-font;
 		padding: 2rem;
@@ -48,7 +49,7 @@
 			flex-direction: column;
 			
 			button {
-				background-color: var(--white);
+				background-color: var(--secondary-color);
 				border: 0.2rem solid var(--main-color);
 				border-radius: $br;
 				color: var(--main-color);
@@ -60,7 +61,7 @@
 	
 			.fill-btn {
 				background-color: var(--main-color);
-				color: var(--white);
+				color: var(--secondary-color);
 			}
 		}
 	}

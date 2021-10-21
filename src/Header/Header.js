@@ -11,12 +11,7 @@ import { Modal } from '../genericComponents/Modal/Modal';
 import { SettingsMenu } from './SettingsMenu/SettingsMenu';
 
 function Header() {
-    const {
-        animations,
-        highContrast,
-        colorBlind,
-        spanish,
-        darkTheme,} = useSettings();
+    const { spanish } = useSettings();
 
     /* Modal */
     const [openModal, setOpenModal] = React.useState(false);

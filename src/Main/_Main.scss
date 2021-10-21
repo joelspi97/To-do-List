@@ -1,9 +1,10 @@
 .main {
+    flex-grow: 1;
+    background-color: var(--secondary-color);
     font-family: $main-font;
     font-size: map-get($fs, 'sm');
     text-align: center;
 
-    flex-grow: 1;
 
     &__heading {
         margin-bottom: 1.5rem;

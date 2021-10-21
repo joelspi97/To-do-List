@@ -26,6 +26,7 @@
     }
 
     &__input {
+        background-color: var(--secondary-color);
         border: none;
         font-family: $main-font;
         font-size: map-get($fs, 'sm') + 0.2rem;

@@ -1,9 +1,9 @@
 .list-section {
     margin-top: 3rem;
-}
-
-.list {
-    list-style: none;
-    border-bottom: 0.2rem solid var(--main-color);
-    padding: 1rem;
+    
+    ul {
+        list-style: none;
+        border-bottom: 0.2rem solid var(--main-color);
+        padding: 2.5rem 1rem;
+    }
 }

@@ -6,7 +6,6 @@ function SettingsMenu({hideHeaderModal}) {
     const {
         animations,
         highContrast,
-        colorBlind,
         spanish,
         darkTheme,
         } = useSettings();
@@ -14,7 +13,6 @@ function SettingsMenu({hideHeaderModal}) {
     const {
         toggleAnimations,
         toggleHighContrast,
-        toggleColorBlind,
         toggleSpanish,
         toggleDarkTheme,} = useSettingsUpdate();
 
@@ -49,16 +47,6 @@ function SettingsMenu({hideHeaderModal}) {
                     rightTag={spanish? "Prendido" : "On"} 
                     defaultCheck={highContrast && "checked"}
                     handleChange={toggleHighContrast}
-                />
-            </div>
-            <div>
-                <SwitchBtn
-                    optionName={spanish? "Modo daltónico" : "Color blind mode"}
-                    leftTag={spanish? "Apagado" : "Off"}
-                    inputId={"color-blind"} 
-                    rightTag={spanish? "Prendido" : "On"} 
-                    defaultCheck={colorBlind && "checked"}
-                    handleChange={toggleColorBlind}
                 />
             </div>
             <div>

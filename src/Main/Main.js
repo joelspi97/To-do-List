@@ -17,12 +17,7 @@ import { TodoItem } from './TodoItem/TodoItem';
 
 
 function Main() {
-    const {
-        animations,
-        highContrast,
-        colorBlind,
-        spanish,
-        darkTheme,} = useSettings();
+    const { spanish } = useSettings();
 
     const {
         newTodos,

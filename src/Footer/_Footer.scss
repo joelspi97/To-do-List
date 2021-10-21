@@ -1,6 +1,6 @@
 .footer {    
-    background: linear-gradient(180deg, var(--white) 0%, var(--main-color) 20%);
-    color: var(--white);
+    background: linear-gradient(180deg, var(--secondary-color) 0%, var(--main-color) 20%);
+    color: var(--footer-color);
     margin-top: 5rem;
     width: 100%;
     font-family: $main-font;
@@ -18,7 +18,7 @@
     }
 
     &__link {
-        color: var(--white);
+        color: var(--footer-color);
         font-weight: map-get($fw, 'bold');
     }
 }

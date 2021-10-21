@@ -6,7 +6,7 @@
 
     cursor: pointer;
     border-radius: 2.5rem;
-    color: var(--white);
+    color: var(--secondary-color);
     margin: 1.5rem 0;
     padding: 1rem 1.5rem;
     
@@ -25,7 +25,7 @@
         align-items: center;
         justify-content: center;
 
-        background-color: var(--white);
+        background-color: var(--secondary-color);
         border: none;
         border-radius: 2.5rem;
         padding: 0.75rem;
@@ -45,7 +45,7 @@
     }
 
     &__text {
-        background-color: var(--white);
+        background-color: var(--secondary-color);
         border-radius: 0.5rem;
         color: var(--black);
         font-size: map-get($fs, 'sm');
@@ -65,7 +65,7 @@
         right: 1.5rem;
         top: 4.2rem;
 
-        background-color: var(--white);
+        background-color: var(--secondary-color);
         border-radius: 0.5rem;
         border-top-right-radius: 0;
         padding: 1rem;

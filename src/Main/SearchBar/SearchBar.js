@@ -3,12 +3,7 @@ import { useSettings } from '../../SettingsContext/SettingsContext';
 import { useMainContext } from '../../MainContext/MainContext';
 
 function SearchBar() {
-    const {
-        animations,
-        highContrast,
-        colorBlind,
-        spanish,
-        darkTheme,} = useSettings();
+    const { spanish } = useSettings();
 
     const {
         searchValue,
