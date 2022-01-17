@@ -13,4 +13,4 @@ function Modal({ children }) {
     );
 }
 
-export { Modal };
+export default Modal;

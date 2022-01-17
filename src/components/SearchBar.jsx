@@ -5,7 +5,6 @@ import '../scss/components/SearchBar.scss';
 
 function SearchBar() {
     const { spanish } = useSettings();
-
     const {
         searchValue,
         setSearchValue,}= useMainContext();
@@ -30,4 +29,4 @@ function SearchBar() {
     );
 }
 
-export { SearchBar };
+export default SearchBar;

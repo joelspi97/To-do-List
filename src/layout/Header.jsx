@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../scss/layout/Header.scss';
 
 /* Logo */
@@ -8,14 +8,14 @@ import logo from '../images/logo.png';
 import { useSettings } from '../contexts/SettingsContext';
 
 /* Components */
-import { Modal } from '../components/Modal';
-import { SettingsMenu } from '../components/SettingsMenu';
+import Modal from '../components/Modal';
+import SettingsMenu from '../components/SettingsMenu';
 
 function Header() {
     const { spanish } = useSettings();
 
     /* Modal */
-    const [openModal, setOpenModal] = React.useState(false);
+    const [openModal, setOpenModal] = useState(false);
 
     function showHeaderModal() {
         setOpenModal(true);

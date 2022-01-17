@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useSettings } from '../contexts/SettingsContext';
 import { useMainContext } from '../contexts/MainContext';
 import '../scss/components/TodoItem.scss';
@@ -6,14 +6,13 @@ import '../scss/components/TodoItem.scss';
 function TodoItem({ description, id, completed, priority, draggableProvided }) {
     const { spanish } = useSettings();
 
-
     const {
         markCompleted,
         deleteTodo,
         editTodo,
         deleteCompletedTodo,}= useMainContext();
 
-    const [openDropdown, setOpenDropdown] = React.useState(false);
+    const [openDropdown, setOpenDropdown] = useState(false);
     
     function toggleDropdown() {
         setOpenDropdown(prevState => !prevState);
@@ -97,4 +96,4 @@ function TodoItem({ description, id, completed, priority, draggableProvided }) {
     );
 }
 
-export { TodoItem };
+export default TodoItem;

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSettings, useSettingsUpdate } from '../contexts/SettingsContext';
-import { SwitchBtn } from '../components/SwitchBtn';
+import SwitchBtn from '../components/SwitchBtn';
 import '../scss/components/SettingsMenu.scss';
 
 function SettingsMenu({hideHeaderModal}) {
@@ -94,4 +94,4 @@ function SettingsMenu({hideHeaderModal}) {
     );
 }
 
-export { SettingsMenu };
+export default SettingsMenu;

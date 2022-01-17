@@ -5,7 +5,6 @@ import '../scss/components/NewTodoBtn.scss';
 
 function NewTodoBtn() {
     const { spanish } = useSettings();
-
     const {showModal} = useMainContext();
 
     return (
@@ -19,4 +18,4 @@ function NewTodoBtn() {
     );
 }
 
-export { NewTodoBtn };
+export default NewTodoBtn;

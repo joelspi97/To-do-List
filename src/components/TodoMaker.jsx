@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSettings } from '../contexts/SettingsContext';
 import { useMainContext } from '../contexts/MainContext';
 import '../scss/components/TodoMaker.scss';
@@ -13,10 +13,10 @@ function TodoMaker() {
         setFormValue,
         editedTodoId,}= useMainContext();
 
-    const [todoPriority, setTodoPriority] = React.useState('');
-    const [formCompleted, setFormCompleted] = React.useState(false);
+    const [todoPriority, setTodoPriority] = useState('');
+    const [formCompleted, setFormCompleted] = useState(false);
 
-    React.useEffect(
+   useEffect(
         () => {
             if (formValue.length > 0 && todoPriority) {
                 setFormCompleted(true);
@@ -95,4 +95,4 @@ function TodoMaker() {
     );
 }
 
-export { TodoMaker };
+export default TodoMaker;

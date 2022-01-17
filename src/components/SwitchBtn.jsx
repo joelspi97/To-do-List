@@ -26,4 +26,4 @@ function SwitchBtn({ optionName, leftTag, rightTag, inputId, defaultCheck, handl
     );
 }
 
-export { SwitchBtn };
+export default SwitchBtn;

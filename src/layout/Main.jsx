@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import '../scss/layout/Main.scss';
 
 /* Libraries */
@@ -9,12 +9,12 @@ import { useSettings } from '../contexts/SettingsContext';
 import { useMainContext } from '../contexts/MainContext';
 
 /* Components */
-import { NewTodoBtn } from '../components/NewTodoBtn';
-import { Modal } from '../components/Modal'
-import { TodoMaker } from '../components/TodoMaker';
-import { SearchBar } from '../components/SearchBar';
-import { List } from '../components/List';
-import { TodoItem } from '../components/TodoItem';
+import NewTodoBtn from '../components/NewTodoBtn';
+import Modal from '../components/Modal'
+import TodoMaker from '../components/TodoMaker';
+import SearchBar from '../components/SearchBar';
+import List from '../components/List';
+import TodoItem from '../components/TodoItem';
 
 
 function Main() {
@@ -33,7 +33,7 @@ function Main() {
     const PENDING_TODOS_KEY = "pendingTodos";
     const COMPLETED_TODOS_KEY = "completedTodos";
 
-    React.useEffect(() => {
+    useEffect(() => {
         const pendingTodos = JSON.parse(localStorage.getItem(PENDING_TODOS_KEY));
         if(pendingTodos) {
             setNewTodos(pendingTodos);
@@ -47,7 +47,7 @@ function Main() {
 
 
     /* Save Local Storage */
-    React.useEffect(() => {
+    useEffect(() => {
         localStorage.setItem(PENDING_TODOS_KEY, JSON.stringify(newTodos));
         localStorage.setItem(COMPLETED_TODOS_KEY, JSON.stringify(completedTodos));
     }, [newTodos, completedTodos]);
