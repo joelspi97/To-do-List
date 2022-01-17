@@ -1,12 +1,11 @@
-import { createStore } from "redux";
+import { createStore } from 'redux';
+import modalReducer from './reducers/modalReducers';
 
 const initialState = {
+    showHeaderModal: false,
+    showTodoModal: false,
     todos: [],
     completedTodos: [],
 };
 
-function reducer(state = initialState, action) {
-    return state;
-};
-
-export default createStore(reducer);
+export default createStore(modalReducer, initialState, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());

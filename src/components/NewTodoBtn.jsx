@@ -1,22 +1,26 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { toggleTodoModal } from '../actions/modalActions';
 import { useSettings } from '../contexts/SettingsContext';
 import { useMainContext } from '../contexts/MainContext';
 import '../scss/components/NewTodoBtn.scss';
 
-function NewTodoBtn() {
+function NewTodoBtn({ toggleTodoModal }) {
     const { spanish } = useSettings();
-    const {showModal} = useMainContext();
 
     return (
         <button 
             className="new-todo-btn"
             type="button" 
-            onClick={showModal}
+            onClick={toggleTodoModal}
         >
             {spanish? "¡Creá un nuevo To-Do!" : "Create a new To-Do!"}
         </button>
     );
 }
 
-export default connect(null, null)(NewTodoBtn);
+const mapDispatchToProps = {
+    toggleTodoModal,
+};
+
+export default connect(null, mapDispatchToProps)(NewTodoBtn);

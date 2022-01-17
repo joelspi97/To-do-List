@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
+
+/* Redux */
 import { connect } from 'react-redux';
-import '../scss/layout/Main.scss';
 
 /* Libraries */
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
@@ -17,14 +18,15 @@ import SearchBar from '../components/SearchBar';
 import List from '../components/List';
 import TodoItem from '../components/TodoItem';
 
+/* Styles */
+import '../scss/layout/Main.scss';
 
-function Main() {
+function Main({ showTodoModal }) {
     const { spanish } = useSettings();
 
     const {
         newTodos,
         setNewTodos,
-        openModal,
         completedTodos,
         setCompletedTodos,
         searchedTodos,
@@ -77,8 +79,8 @@ function Main() {
 
                 <NewTodoBtn />
                 
-                {openModal && (
-                    <Modal openModal={openModal}>
+                {showTodoModal && (
+                    <Modal>
                         <TodoMaker/>
                     </Modal>
                 )}
@@ -185,4 +187,12 @@ function Main() {
     )
 }
 
-export default connect(null, null)(Main);
+function mapStateToProps(state) {
+    return (
+        {
+            showTodoModal: state.showTodoModal,
+        }
+    );
+};
+
+export default connect(mapStateToProps, null)(Main);

@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
+import { toggleHeaderModal } from '../actions/modalActions';
 import '../scss/layout/Header.scss';
 
 /* Logo */
@@ -12,24 +13,8 @@ import { useSettings } from '../contexts/SettingsContext';
 import Modal from '../components/Modal';
 import SettingsMenu from '../components/SettingsMenu';
 
-function Header() {
+function Header({ showHeaderModal, toggleHeaderModal, }) {
     const { spanish } = useSettings();
-
-    /* Modal */
-    const [openModal, setOpenModal] = useState(false);
-
-    function showHeaderModal() {
-        setOpenModal(true);
-        document.body.classList.add('no-scroll');
-    }
-    function hideHeaderModal() {
-        setOpenModal(false);
-        document.body.classList.remove('no-scroll');
-    }
-
-    /* Load Settings */
-    
-    /* Save Settings */
 
     return (
         <header className="header">
@@ -43,16 +28,14 @@ function Header() {
                     className="header__settings" 
                     type="button"
                     aria-label={spanish? "Opciones de accesibilidad" : "Accesibility options"}
-                    onClick={showHeaderModal}
+                    onClick={toggleHeaderModal}
                 >
                     <span className="icon clog-icon"></span>
                 </button>
 
-                {openModal && (
+                {showHeaderModal && (
                     <Modal>
-                        <SettingsMenu 
-                            hideHeaderModal={hideHeaderModal}
-                        />
+                        <SettingsMenu />
                     </Modal>
                 )}
             </div>
@@ -60,4 +43,16 @@ function Header() {
     )
 }
 
-export default connect(null, null)(Header);
+function mapStateToProps(state) {
+    return (
+        {
+            showHeaderModal: state.showHeaderModal,
+        }
+    );
+};
+
+const mapDispatchToProps = {
+    toggleHeaderModal,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from 'react';
+
 import { connect } from 'react-redux';
+import { toggleTodoModal } from '../actions/modalActions';
+
 import { useSettings } from '../contexts/SettingsContext';
 import { useMainContext } from '../contexts/MainContext';
 import '../scss/components/TodoMaker.scss';
 
-function TodoMaker() {
+function TodoMaker({ toggleTodoModal }) {
     const { spanish } = useSettings();
 
     const {
-        hideModal,
         createNewTodo,
         formValue,
         setFormValue,
@@ -36,7 +38,7 @@ function TodoMaker() {
             <button 
                 type="buttton"
                 className="modal-content__close-btn" 
-                onClick={hideModal}
+                onClick={toggleTodoModal}
             >
                 <span className="icon x-icon"></span>
             </button>
@@ -87,7 +89,7 @@ function TodoMaker() {
                 </button>
                 <button 
                     type="button"
-                    onClick={hideModal}
+                    onClick={toggleTodoModal}
                 >
                     {spanish? "Cancelar" : "Cancel"}
                 </button>
@@ -96,4 +98,8 @@ function TodoMaker() {
     );
 }
 
-export default connect(null, null)(TodoMaker);
+const mapDispatchToProps = {
+    toggleTodoModal,
+};
+
+export default connect(null, mapDispatchToProps)(TodoMaker);

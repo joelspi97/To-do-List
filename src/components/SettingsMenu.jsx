@@ -1,10 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { toggleHeaderModal } from '../actions/modalActions';
 import { useSettings, useSettingsUpdate } from '../contexts/SettingsContext';
 import SwitchBtn from '../components/SwitchBtn';
 import '../scss/components/SettingsMenu.scss';
 
-function SettingsMenu({hideHeaderModal}) {
+function SettingsMenu({ toggleHeaderModal }) {
     const {
         animations,
         highContrast,
@@ -20,7 +21,6 @@ function SettingsMenu({hideHeaderModal}) {
 
     function saveSettings(e) {
         e.preventDefault();
-        hideHeaderModal();
         alert('xd');
     }
 
@@ -33,7 +33,7 @@ function SettingsMenu({hideHeaderModal}) {
             <button 
                 type="buttton"
                 className="modal-content__close-btn" 
-                onClick={hideHeaderModal}
+                onClick={toggleHeaderModal}
             >
                 <span className="icon x-icon"></span>
             </button>
@@ -86,7 +86,7 @@ function SettingsMenu({hideHeaderModal}) {
                 <button 
                     type="button"
                     className="fill-btn"
-                    onClick={hideHeaderModal}
+                    onClick={toggleHeaderModal}
                 >
                     {spanish? "Aceptar" : "Continue"}
                 </button>
@@ -95,4 +95,8 @@ function SettingsMenu({hideHeaderModal}) {
     );
 }
 
-export default connect(null, null)(SettingsMenu);
+const mapDispatchToProps = {
+    toggleHeaderModal,
+};
+
+export default connect(null, mapDispatchToProps)(SettingsMenu);
