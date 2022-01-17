@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { useSettings } from '../contexts/SettingsContext';
 import { useMainContext } from '../contexts/MainContext';
 import '../scss/components/SearchBar.scss';
@@ -29,4 +30,4 @@ function SearchBar() {
     );
 }
 
-export default SearchBar;
+export default connect(null, null)(SearchBar);

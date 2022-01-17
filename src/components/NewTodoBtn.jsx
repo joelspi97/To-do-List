@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { useSettings } from '../contexts/SettingsContext';
 import { useMainContext } from '../contexts/MainContext';
 import '../scss/components/NewTodoBtn.scss';
@@ -18,4 +19,4 @@ function NewTodoBtn() {
     );
 }
 
-export default NewTodoBtn;
+export default connect(null, null)(NewTodoBtn);

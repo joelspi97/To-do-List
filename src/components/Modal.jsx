@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { connect } from 'react-redux';
 import '../scss/components/Modal.scss';
 
 function Modal({ children }) {
@@ -13,4 +14,4 @@ function Modal({ children }) {
     );
 }
 
-export default Modal;
+export default connect(null, null)(Modal);

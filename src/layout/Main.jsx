@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
 import '../scss/layout/Main.scss';
 
 /* Libraries */
@@ -184,4 +185,4 @@ function Main() {
     )
 }
 
-export default Main;
+export default connect(null, null)(Main);

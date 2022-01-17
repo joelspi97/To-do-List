@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import '../scss/components/List.scss';
 
 function List(props) {
@@ -18,4 +19,4 @@ function List(props) {
     );
 }
 
-export default List;
+export default connect(null, null)(List);

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
 import { useSettings } from '../contexts/SettingsContext';
 import { useMainContext } from '../contexts/MainContext';
 import '../scss/components/TodoMaker.scss';
@@ -95,4 +96,4 @@ function TodoMaker() {
     );
 }
 
-export default TodoMaker;
+export default connect(null, null)(TodoMaker);

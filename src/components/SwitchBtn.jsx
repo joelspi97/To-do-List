@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import '../scss/components/SwitchBtn.scss';
 
 function SwitchBtn({ optionName, leftTag, rightTag, inputId, defaultCheck, handleChange }) {
@@ -26,4 +27,4 @@ function SwitchBtn({ optionName, leftTag, rightTag, inputId, defaultCheck, handl
     );
 }
 
-export default SwitchBtn;
+export default connect(null, null)(SwitchBtn);

@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { useSettings } from '../contexts/SettingsContext';
 import '../scss/layout/Footer.scss';
 
@@ -40,4 +41,4 @@ function Footer() {
     )
 }
 
-export default Footer;
+export default connect(null, null)(Footer);

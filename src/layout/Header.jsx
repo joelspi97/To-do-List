@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { connect } from 'react-redux';
 import '../scss/layout/Header.scss';
 
 /* Logo */
@@ -59,4 +60,4 @@ function Header() {
     )
 }
 
-export default Header;
+export default connect(null, null)(Header);

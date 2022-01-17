@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { connect } from 'react-redux';
 import { useSettings } from '../contexts/SettingsContext';
 import { useMainContext } from '../contexts/MainContext';
 import '../scss/components/TodoItem.scss';
@@ -96,4 +97,4 @@ function TodoItem({ description, id, completed, priority, draggableProvided }) {
     );
 }
 
-export default TodoItem;
+export default connect(null, null)(TodoItem);

@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { useSettings, useSettingsUpdate } from '../contexts/SettingsContext';
 import SwitchBtn from '../components/SwitchBtn';
 import '../scss/components/SettingsMenu.scss';
@@ -94,4 +95,4 @@ function SettingsMenu({hideHeaderModal}) {
     );
 }
 
-export default SettingsMenu;
+export default connect(null, null)(SettingsMenu);
