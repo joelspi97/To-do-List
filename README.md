@@ -1,2 +1,2 @@
 # To-do-List
-A project made to practice React.js
+Project made with React.js, Redux, TypeScript and Sass. 
