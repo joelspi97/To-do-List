@@ -12,23 +12,23 @@
 }
 
 /* Icons */
-// .clog-icon {
-// 	@include icon('../../images/clog-icon.svg', 2.75rem);
-//     filter: invert(42%) sepia(62%) saturate(6984%) hue-rotate(75deg) brightness(95%) contrast(101%);
-// }
+.clog-icon {
+	@include icon('../../../assets/clog-icon.svg', 2.75rem);
+    filter: invert(42%) sepia(62%) saturate(6984%) hue-rotate(75deg) brightness(95%) contrast(101%);
+}
 
-// .search-icon {
-// 	@include icon('../../images/search-icon.png', 2rem);
-// }
+.search-icon {
+	@include icon('../../../assets/search-icon.png', 2rem);
+}
 
-// .x-icon {
-// 	@include icon('../../images/x-icon.svg', 1.7rem);
-// }
+.x-icon {
+	@include icon('../../../assets/x-icon.svg', 1.7rem);
+}
 
-// .check-icon {
-// 	@include icon('../../images/todo-check-icon.png', 2rem);
-// }
+.check-icon {
+	@include icon('../../../assets/todo-check-icon.png', 2rem);
+}
 
-// .edit-icon {
-// 	@include icon('../../images/edit-icon.svg', 1.7rem);
-// }
+.edit-icon {
+	@include icon('../../../assets/edit-icon.svg', 1.7rem);
+}

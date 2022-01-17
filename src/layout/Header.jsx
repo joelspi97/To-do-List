@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import '../scss/layout/Header.scss';
 
 /* Logo */
-import logo from '../images/logo.png';
+import logo from '../assets/logo.png';
 
 /* Context */
 import { useSettings } from '../contexts/SettingsContext';

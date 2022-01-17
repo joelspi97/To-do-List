@@ -45,9 +45,9 @@
     &__btn--open {
         border-radius: 2.5rem 2.5rem 0 0;
     }
-    // .edit-icon--open {
-    //     @include icon('../../images/x-icon.svg', 1.5rem);
-    // }
+    .edit-icon--open {
+        @include icon('../../../assets/x-icon.svg', 1.5rem);
+    }
 
     &__text {
         background-color: var(--secondary-color);
