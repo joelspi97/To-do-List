@@ -1,0 +1,29 @@
+@import '../abstracts/variables.scss';
+@import '../abstracts/dinamic-variables.scss';
+@import '../abstracts/mixins/icon.scss';
+@import '../abstracts/mixins/focus.scss';
+
+.footer {    
+    background: linear-gradient(180deg, var(--secondary-color) 0%, var(--main-color) 20%);
+    color: var(--footer-color);
+    margin-top: 5rem;
+    width: 100%;
+    font-family: $main-font;
+    font-size: map-get($fs, 'sm');
+    text-align: center;
+    padding-top: 8rem;
+    padding-bottom: 2rem;
+
+    &__paragraph {
+        margin-bottom: 1rem;
+    }
+
+    p:last-of-type {
+        font-weight: map-get($fw, 'x-bold');
+    }
+
+    &__link {
+        color: var(--footer-color);
+        font-weight: map-get($fw, 'bold');
+    }
+}

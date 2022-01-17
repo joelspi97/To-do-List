@@ -1,0 +1,17 @@
+@import '../abstracts/variables.scss';
+@import '../abstracts/dinamic-variables.scss';
+@import '../abstracts/mixins/icon.scss';
+@import '../abstracts/mixins/focus.scss';
+
+.settings {
+    h2 {
+        margin-top: 3rem;
+        margin-bottom: 3rem;
+        font-size: map-get($fs, 'md');
+        font-weight: map-get($fw, 'bold');
+        text-align: center;
+    }
+    .modal__bottom-btns {
+        margin-top: 3rem;
+    }
+}

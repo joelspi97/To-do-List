@@ -1,0 +1,96 @@
+@import '../abstracts/variables.scss';
+@import '../abstracts/dinamic-variables.scss';
+@import '../abstracts/mixins/icon.scss';
+@import '../abstracts/mixins/focus.scss';
+
+.todo-item {
+    display: flex;
+    align-items: center;
+
+    position: relative;
+
+    cursor: pointer;
+    border-radius: 2.5rem;
+    color: var(--secondary-color);
+    margin: 1.5rem 0;
+    padding: 1rem 1.5rem;
+    
+    &--low {
+        background-color: var(--main-color);
+    }
+    &--medium {
+        background-color: orange;
+    }
+    &--high {
+        background-color: red;
+    }
+
+    &__btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        background-color: var(--secondary-color);
+        border: none;
+        border-radius: 2.5rem;
+        padding: 0.75rem;
+
+        font-family: $main-font;
+        font-size: map-get($fs, 'sm');
+        font-weight: map-get($fw, 'bold');
+    }
+    &__btn:focus {
+        outline: 0.3rem solid var(--focus-color-brighter);
+    }
+    &__btn--open {
+        border-radius: 2.5rem 2.5rem 0 0;
+    }
+    // .edit-icon--open {
+    //     @include icon('../../images/x-icon.svg', 1.5rem);
+    // }
+
+    &__text {
+        background-color: var(--secondary-color);
+        border-radius: 0.5rem;
+        color: var(--black);
+        font-size: map-get($fs, 'sm');
+        font-weight: map-get($fw, 'medium');
+        flex-grow: 1;
+        hyphens: auto;
+        margin: 0 0.6rem;
+        word-break: break-word;
+        user-select: none;
+    }
+
+    &__dropdown {
+        display: none;
+
+        position: absolute;
+        z-index: 1;
+        right: 1.5rem;
+        top: 4.2rem;
+
+        background-color: var(--secondary-color);
+        border-radius: 0.5rem;
+        border-top-right-radius: 0;
+        padding: 1rem;
+    }
+    &__dropdown--open {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    &__dropdown-option {
+        border-radius: 0;
+        border-bottom: 0.1rem solid grey;
+        width: 100%;
+    }
+    &__dropdown-option--delete {
+        border: none;
+    }
+}
+
+.completed-todo {
+    background-color: grey;
+}

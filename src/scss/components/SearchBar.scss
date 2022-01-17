@@ -1,0 +1,47 @@
+@import '../abstracts/variables.scss';
+@import '../abstracts/dinamic-variables.scss';
+@import '../abstracts/mixins/icon.scss';
+@import '../abstracts/mixins/focus.scss';
+
+.search-bar {
+    margin-top: 3rem;
+
+    &__label {
+        font-size: map-get($fs, 'md');
+        font-weight: map-get($fw, 'bold');
+        margin-bottom: 5rem;
+    }
+
+    &__wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+
+        border-radius: 0.5rem;
+        border: 0.2rem solid var(--main-color);
+        padding: 0.7rem 1rem;
+        width: 100%;
+
+        transition: outline var(--focus-duration) ease-in-out, 
+                    border var(--focus-duration) ease-in-out;
+    }
+    &__wrapper:focus-within {
+        border-color: var(--focus-color);
+        outline: 0.1rem solid var(--focus-color);
+    }
+
+    &__input {
+        background-color: var(--secondary-color);
+        border: none;
+        font-family: $main-font;
+        font-size: map-get($fs, 'sm') + 0.2rem;
+        width: 85%;
+    }
+    &__input:focus {
+        outline: none;
+    }
+    &__input::placeholder {
+        font-family: $main-font;
+        font-size: map-get($fs, 'sm');
+    }
+}
