@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
+import { toggleTodoModal } from '../actions/modalActions';
 import { useSettings } from '../contexts/SettingsContext';
 import { useMainContext } from '../contexts/MainContext';
 import '../scss/components/TodoItem.scss';
@@ -97,4 +98,8 @@ function TodoItem({ description, id, completed, priority, draggableProvided }) {
     );
 }
 
-export default connect(null, null)(TodoItem);
+const mapDispatchToProps = {
+    toggleTodoModal,
+};
+
+export default connect(null, mapDispatchToProps)(TodoItem);

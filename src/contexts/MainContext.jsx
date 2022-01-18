@@ -1,32 +1,24 @@
-import React from 'react';
+import React, { useState, createContext, useContext } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
-const MainContext = React.createContext();
+const MainContext = createContext();
 
 function useMainContext() {
-    return React.useContext(MainContext);
+    return useContext(MainContext);
 }
 
 function MainProvider(props) {
     /* Modal */
-    const [formValue, setFormValue] = React.useState('');
+    const [formValue, setFormValue] = useState('');
 
-    const [openModal, setOpenModal] = React.useState(false);
-
-    function showModal() {
-        setOpenModal(true);
-        document.body.classList.add('no-scroll')
-    }
     function hideModal() {
-        setOpenModal(false);
         setFormValue('');
         setEditedTodoId('');
-        document.body.classList.remove('no-scroll')
     }
 
 
     /* New Todos */
-    const [newTodos, setNewTodos] = React.useState([]);
+    const [newTodos, setNewTodos] = useState([]);
 
     function createNewTodo(submitEvent, description, priority, editedTodoId) {
         submitEvent.preventDefault();
@@ -53,7 +45,7 @@ function MainProvider(props) {
 
 
     /* Completed Todos */
-    const [completedTodos, setCompletedTodos] = React.useState([]);
+    const [completedTodos, setCompletedTodos] = useState([]);
 
     function markCompleted(currentId) {
         const currentTodo = newTodos.find(todo => todo.id === currentId);
@@ -64,7 +56,7 @@ function MainProvider(props) {
 
 
     /*Search Todos*/
-    const [searchValue, setSearchValue] = React.useState('');
+    const [searchValue, setSearchValue] = useState('');
 
     let searchedTodos;
     if(!searchValue.length > 0) {
@@ -97,10 +89,9 @@ function MainProvider(props) {
 
 
     /* Edit Todo */
-    const [editedTodoId, setEditedTodoId] = React.useState('');
+    const [editedTodoId, setEditedTodoId] = useState('');
 
     function editTodo(currentId) {
-        showModal();
         setEditedTodoId(currentId);
         const currentTodo = newTodos.find(todo => todo.id === currentId);
         setFormValue(currentTodo.description);
@@ -115,8 +106,6 @@ function MainProvider(props) {
                 createNewTodo,
                 formValue, 
                 setFormValue,
-                openModal,
-                showModal,
                 hideModal,
                 completedTodos,
                 setCompletedTodos,

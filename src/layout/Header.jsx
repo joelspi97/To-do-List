@@ -46,7 +46,7 @@ function Header({ showHeaderModal, toggleHeaderModal, }) {
 function mapStateToProps(state) {
     return (
         {
-            showHeaderModal: state.showHeaderModal,
+            showHeaderModal: state.modals.showHeaderModal,
         }
     );
 };

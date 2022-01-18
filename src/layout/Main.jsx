@@ -190,7 +190,7 @@ function Main({ showTodoModal }) {
 function mapStateToProps(state) {
     return (
         {
-            showTodoModal: state.showTodoModal,
+            showTodoModal: state.modals.showTodoModal,
         }
     );
 };

@@ -1,11 +1,10 @@
-import { createStore } from 'redux';
-import modalReducer from './reducers/modalReducers';
+import { createStore, combineReducers } from 'redux';
+import modalsReducer from './reducers/modalsReducer';
+import settingsReducer from './reducers/settingsReducer';
 
-const initialState = {
-    showHeaderModal: false,
-    showTodoModal: false,
-    todos: [],
-    completedTodos: [],
-};
+const rootReducer = combineReducers({
+    modals: modalsReducer,
+    settings: settingsReducer,
+});
 
-export default createStore(modalReducer, initialState, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+export default createStore(rootReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());

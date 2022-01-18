@@ -1,4 +1,9 @@
-function modalReducer(state, action) {
+const modalsInitialState = {    
+    showHeaderModal: false,
+    showTodoModal: false,
+};
+
+function modalsReducer(state = modalsInitialState, action) {
     switch (action.type) {
         case 'TOGGLE_HEADER_MODAL':
             return {
@@ -17,4 +22,4 @@ function modalReducer(state, action) {
     }
 };
 
-export default modalReducer;
+export default modalsReducer;

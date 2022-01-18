@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
-
 import { connect } from 'react-redux';
 import { toggleTodoModal } from '../actions/modalActions';
-
 import { useSettings } from '../contexts/SettingsContext';
 import { useMainContext } from '../contexts/MainContext';
 import '../scss/components/TodoMaker.scss';
