@@ -1,13 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { toggleTodoModal } from '../actions/modalActions';
-import { useSettings } from '../contexts/SettingsContext';
-import { useMainContext } from '../contexts/MainContext';
 import '../scss/components/NewTodoBtn.scss';
 
-function NewTodoBtn({ toggleTodoModal }) {
-    const { spanish } = useSettings();
-
+function NewTodoBtn({ toggleTodoModal, spanish }) {
     return (
         <button 
             className="new-todo-btn"
@@ -17,10 +13,18 @@ function NewTodoBtn({ toggleTodoModal }) {
             {spanish? "¡Creá un nuevo To-Do!" : "Create a new To-Do!"}
         </button>
     );
-}
+};
+
+function mapStateToProps(state) {
+    return (
+        {
+            spanish: state.settings.spanish,
+        }
+    );
+};
 
 const mapDispatchToProps = {
     toggleTodoModal,
 };
 
-export default connect(null, mapDispatchToProps)(NewTodoBtn);
+export default connect(mapStateToProps, mapDispatchToProps)(NewTodoBtn);

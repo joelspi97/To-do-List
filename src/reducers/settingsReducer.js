@@ -5,33 +5,33 @@ const settingsInitialState = {
     darkTheme: false,
 };
 
-function settingsReducer(state = settingsInitialState, action) {
+function settingsReducer(settingsState = settingsInitialState, action) {
     switch(action.type) {
-        case 'TOGGLE_HIGHT_CONTRAST':
+        case 'TOGGLE_HIGH_CONTRAST':
             return {
-                ...state,
-                highContrast: !state.highContrast,
+                ...settingsState,
+                highContrast: !settingsState.highContrast,
             };
         case 'TOGGLE_ANIMATIONS':
             return {
-                ...state,
-                highContrast: !state.highContrast,
+                ...settingsState,
+                animations: !settingsState.animations,
             };
 
-        case 'TOGGLE_TOGGLE_SPANISH':
+        case 'TOGGLE_SPANISH':
             return {
-                ...state,
-                highContrast: !state.highContrast,
+                ...settingsState,
+                spanish: !settingsState.spanish,
             };
         
         case 'TOGGLE_DARK_THEME':
             return {
-                ...state,
-                highContrast: !state.highContrast,
+                ...settingsState,
+                darkTheme: !settingsState.darkTheme,
             };
         
         default:
-            return state;
+            return settingsState;
     };
 };
 

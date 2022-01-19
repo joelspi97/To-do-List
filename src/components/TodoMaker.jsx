@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { toggleTodoModal } from '../actions/modalActions';
-import { useSettings } from '../contexts/SettingsContext';
 import { useMainContext } from '../contexts/MainContext';
 import '../scss/components/TodoMaker.scss';
 
-function TodoMaker({ toggleTodoModal }) {
-    const { spanish } = useSettings();
-
+function TodoMaker({ toggleTodoModal, spanish }) {
     const {
         createNewTodo,
         formValue,
@@ -31,7 +28,7 @@ function TodoMaker({ toggleTodoModal }) {
     return (
         <form 
             className="todo-maker modal-content"
-            onSubmit={(submitEvent) => createNewTodo(submitEvent, formValue, todoPriority, editedTodoId)} 
+            onSubmit={(submitEvent) => (createNewTodo(submitEvent, formValue, todoPriority, editedTodoId), toggleTodoModal)} 
         >
             <button 
                 type="buttton"
@@ -94,10 +91,18 @@ function TodoMaker({ toggleTodoModal }) {
             </div>
         </form>
     );
-}
+};
+
+function mapStateToProps(state) {
+    return (
+        {
+            spanish: state.settings.spanish,
+        }
+    );
+};
 
 const mapDispatchToProps = {
     toggleTodoModal,
 };
 
-export default connect(null, mapDispatchToProps)(TodoMaker);
+export default connect(mapStateToProps, mapDispatchToProps)(TodoMaker);

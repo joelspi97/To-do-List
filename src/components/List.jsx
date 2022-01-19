@@ -17,6 +17,6 @@ function List(props) {
             </ul>
         </section>
     );
-}
+};
 
 export default connect(null, null)(List);

@@ -6,8 +6,7 @@ import { connect } from 'react-redux';
 /* Libraries */
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
-/* Contexts */
-import { useSettings } from '../contexts/SettingsContext';
+/* Context */
 import { useMainContext } from '../contexts/MainContext';
 
 /* Components */
@@ -21,16 +20,13 @@ import TodoItem from '../components/TodoItem';
 /* Styles */
 import '../scss/layout/Main.scss';
 
-function Main({ showTodoModal }) {
-    const { spanish } = useSettings();
-
-    const {
-        newTodos,
-        setNewTodos,
-        completedTodos,
-        setCompletedTodos,
-        searchedTodos,
-        searchedCompletedTodos,} = useMainContext();
+function Main({ showTodoModal, spanish }) {
+    const { newTodos,
+            setNewTodos,
+            completedTodos,
+            setCompletedTodos,
+            searchedTodos,
+            searchedCompletedTodos, } = useMainContext();
 
     /* Load Local Storage */
     const PENDING_TODOS_KEY = "pendingTodos";
@@ -184,13 +180,14 @@ function Main({ showTodoModal }) {
                 
             </section>
         </main>
-    )
-}
+    );
+};
 
 function mapStateToProps(state) {
     return (
         {
             showTodoModal: state.modals.showTodoModal,
+            spanish: state.settings.spanish,
         }
     );
 };

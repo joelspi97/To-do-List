@@ -3,23 +3,23 @@ const modalsInitialState = {
     showTodoModal: false,
 };
 
-function modalsReducer(state = modalsInitialState, action) {
+function modalsReducer(modalsState = modalsInitialState, action) {
     switch (action.type) {
         case 'TOGGLE_HEADER_MODAL':
             return {
-                ...state,
-                showHeaderModal: !state.showHeaderModal,
+                ...modalsState,
+                showHeaderModal: !modalsState.showHeaderModal,
             };
 
         case 'TOGGLE_TODO_MODAL':
             return {
-                ...state,
-                showTodoModal: !state.showTodoModal,
+                ...modalsState,
+                showTodoModal: !modalsState.showTodoModal,
             };
 
         default:
-            return state;
-    }
+            return modalsState;
+    };
 };
 
 export default modalsReducer;

@@ -1,30 +1,26 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { toggleHeaderModal } from '../actions/modalActions';
-import { useSettings, useSettingsUpdate } from '../contexts/SettingsContext';
+import { toggleHighContrast, toggleAnimations, toggleSpanish, toggleDarkTheme } from '../actions/settingsActions';
 import SwitchBtn from '../components/SwitchBtn';
 import '../scss/components/SettingsMenu.scss';
 
-function SettingsMenu({ toggleHeaderModal }) {
-    const {
-        animations,
-        highContrast,
-        spanish,
-        darkTheme,
-        } = useSettings();
-
-    const {
-        toggleAnimations,
-        toggleHighContrast,
-        toggleSpanish,
-        toggleDarkTheme,} = useSettingsUpdate();
+function SettingsMenu(props) {
+    const { toggleHeaderModal,
+            toggleHighContrast,
+            toggleAnimations,
+            toggleSpanish,
+            toggleDarkTheme, 
+            highContrast, 
+            animations,
+            spanish,
+            darkTheme, } = props;
 
     function saveSettings(e) {
         e.preventDefault();
         alert('xd');
-    }
+    };
 
-    
     return (
         <form 
             className="settings modal-content"
@@ -93,10 +89,25 @@ function SettingsMenu({ toggleHeaderModal }) {
             </div>
         </form>
     );
-}
+};
+
+function mapStateToProps(state) {
+    return (
+        {
+            highContrast: state.settings.highContrast,
+            animations: state.settings.animations,
+            spanish: state.settings.spanish,
+            darkTheme: state.settings.darkTheme,
+        }
+    );
+}; 
 
 const mapDispatchToProps = {
     toggleHeaderModal,
+    toggleHighContrast,
+    toggleAnimations,
+    toggleSpanish,
+    toggleDarkTheme,
 };
 
-export default connect(null, mapDispatchToProps)(SettingsMenu);
+export default connect(mapStateToProps, mapDispatchToProps)(SettingsMenu);

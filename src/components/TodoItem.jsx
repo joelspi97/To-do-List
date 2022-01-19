@@ -1,13 +1,10 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { toggleTodoModal } from '../actions/modalActions';
-import { useSettings } from '../contexts/SettingsContext';
 import { useMainContext } from '../contexts/MainContext';
 import '../scss/components/TodoItem.scss';
 
-function TodoItem({ description, id, completed, priority, draggableProvided }) {
-    const { spanish } = useSettings();
-
+function TodoItem({ description, id, completed, priority, draggableProvided, spanish }) {
     const {
         markCompleted,
         deleteTodo,
@@ -96,10 +93,18 @@ function TodoItem({ description, id, completed, priority, draggableProvided }) {
             }
         </li>
     );
-}
+};
+
+function mapStateToProps(state) {
+    return (
+        {
+            spanish: state.settings.spanish,
+        }
+    );
+};
 
 const mapDispatchToProps = {
     toggleTodoModal,
 };
 
-export default connect(null, mapDispatchToProps)(TodoItem);
+export default connect(mapStateToProps, mapDispatchToProps)(TodoItem);

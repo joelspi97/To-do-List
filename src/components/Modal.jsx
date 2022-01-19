@@ -12,6 +12,6 @@ function Modal({ children }) {
         </div>,
         document.getElementById('modal')
     );
-}
+};
 
 export default connect(null, null)(Modal);

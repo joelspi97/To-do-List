@@ -1,11 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { useSettings } from '../contexts/SettingsContext';
 import '../scss/layout/Footer.scss';
 
-function Footer() {
-    const { spanish } = useSettings();
-
+function Footer({ spanish }) {
     return (
         <footer className="footer">
             <div className="project-padding">
@@ -38,7 +35,15 @@ function Footer() {
                 </p>
             </div>
         </footer>
-    )
-}
+    );
+};
 
-export default connect(null, null)(Footer);
+function mapStateToProps(state) {
+    return (
+        {
+            spanish: state.settings.spanish,
+        }
+    );
+};
+
+export default connect(mapStateToProps, null)(Footer);

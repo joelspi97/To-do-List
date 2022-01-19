@@ -1,21 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { toggleHeaderModal } from '../actions/modalActions';
-import '../scss/layout/Header.scss';
-
-/* Logo */
 import logo from '../assets/logo.png';
-
-/* Context */
-import { useSettings } from '../contexts/SettingsContext';
-
-/* Components */
 import Modal from '../components/Modal';
 import SettingsMenu from '../components/SettingsMenu';
+import '../scss/layout/Header.scss';
 
-function Header({ showHeaderModal, toggleHeaderModal, }) {
-    const { spanish } = useSettings();
-
+function Header({ showHeaderModal, toggleHeaderModal, spanish }) {
     return (
         <header className="header">
             <div className="project-padding header__grid">
@@ -40,13 +31,14 @@ function Header({ showHeaderModal, toggleHeaderModal, }) {
                 )}
             </div>
         </header>
-    )
-}
+    );
+};
 
 function mapStateToProps(state) {
     return (
         {
             showHeaderModal: state.modals.showHeaderModal,
+            spanish: state.settings.spanish,
         }
     );
 };

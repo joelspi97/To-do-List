@@ -1,14 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { useSettings } from '../contexts/SettingsContext';
 import { useMainContext } from '../contexts/MainContext';
 import '../scss/components/SearchBar.scss';
 
-function SearchBar() {
-    const { spanish } = useSettings();
-    const {
-        searchValue,
-        setSearchValue,}= useMainContext();
+function SearchBar({ spanish }) {
+    const { searchValue,
+            setSearchValue, }= useMainContext();
 
     return (
         <div className="search-bar">
@@ -28,6 +25,14 @@ function SearchBar() {
             </div>
         </div>
     );
-}
+};
 
-export default connect(null, null)(SearchBar);
+function mapStateToProps(state) {
+    return (
+        {
+            spanish: state.settings.spanish,
+        }
+    );
+};
+
+export default connect(mapStateToProps, null)(SearchBar);

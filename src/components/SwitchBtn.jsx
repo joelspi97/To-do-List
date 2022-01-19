@@ -2,7 +2,15 @@ import React from 'react';
 import { connect } from 'react-redux';
 import '../scss/components/SwitchBtn.scss';
 
-function SwitchBtn({ optionName, leftTag, rightTag, inputId, defaultCheck, handleChange }) {
+function SwitchBtn(props) {
+
+    const { optionName, 
+            leftTag, 
+            rightTag, 
+            inputId, 
+            defaultCheck, 
+            handleChange, } = props;
+
     return (
         <div className="switch-btn">
             <h3>{optionName}</h3>
@@ -25,6 +33,6 @@ function SwitchBtn({ optionName, leftTag, rightTag, inputId, defaultCheck, handl
             </label>
         </div>
     );
-}
+};
 
 export default connect(null, null)(SwitchBtn);
