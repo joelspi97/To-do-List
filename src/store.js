@@ -1,10 +1,12 @@
 import { createStore, combineReducers } from 'redux';
 import {persistStore, persistReducer} from "redux-persist";
 import storage from 'redux-persist/lib/storage';
+import todosReducer from './reducers/todosReducers';
 import modalsReducer from './reducers/modalsReducer';
 import settingsReducer from './reducers/settingsReducer';
 
 const rootReducer = combineReducers({
+    todos: todosReducer,
     modals: modalsReducer,
     settings: settingsReducer,
 });

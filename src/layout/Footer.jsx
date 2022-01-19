@@ -8,9 +8,9 @@ function Footer({ spanish }) {
             <div className="project-padding">
                 <p className="footer__paragraph">
                     {spanish? "¿Querés ver el código fuente de este sitio web?" : "Want to see the source code of this website?"}
-                    {/* <a className="footer__link" href="#">
+                    <a className="footer__link" href="https://github.com/joelspi97/To-do-List">
                         {spanish? "Visita el repositiorio de este proyecto en GitHub" : "Visit this project's GitHub repository"}
-                    </a> */}
+                    </a>
                 </p>
                 <p className="footer__paragraph">
                     {spanish? "¿Querés ver más páginas que hice? " : "Want to see more pages I made? "}

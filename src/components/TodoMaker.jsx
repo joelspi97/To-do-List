@@ -28,7 +28,7 @@ function TodoMaker({ toggleTodoModal, spanish }) {
     return (
         <form 
             className="todo-maker modal-content"
-            onSubmit={(submitEvent) => (createNewTodo(submitEvent, formValue, todoPriority, editedTodoId), toggleTodoModal)} 
+            onSubmit={(submitEvent) => (createNewTodo(submitEvent, formValue, todoPriority, editedTodoId))} 
         >
             <button 
                 type="buttton"
