@@ -8,7 +8,7 @@ import settingsReducer from './reducers/settingsReducer';
 const persistConfig = {
     key: 'root',
     storage,
-    blacklist: ['todos', 'modals'],
+    blacklist: ['modals'],
 };
 
 const rootReducer = combineReducers({

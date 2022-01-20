@@ -1,12 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { useMainContext } from '../contexts/MainContext';
 import '../scss/components/SearchBar.scss';
 
-function SearchBar({ spanish }) {
-    const { searchValue,
-            setSearchValue, }= useMainContext();
-
+function SearchBar({ searchValue, setSearchValue, spanish }) {
     return (
         <div className="search-bar">
             <label className="search-bar__label" htmlFor="search">

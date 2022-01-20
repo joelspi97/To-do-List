@@ -34,4 +34,7 @@ function deleteTodo(payload) {
     );
 };
 
-export { createNewTodo, completeTodo, editTodo, deleteTodo };
+export { createNewTodo, 
+         completeTodo, 
+         editTodo, 
+         deleteTodo, };

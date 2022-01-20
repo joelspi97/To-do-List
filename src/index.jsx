@@ -17,6 +17,12 @@ ReactDOM.render(
 );
 
 /*
+    Actual {
+      falta implementar redux en search bar y también 
+      en edit.
+      Falta el reorder de dnd
+    }
+
     General {
         1) Implementar redux (solo falta la logica
           de los todos)
