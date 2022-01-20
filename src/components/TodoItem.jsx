@@ -1,15 +1,19 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { toggleTodoModal } from '../actions/modalActions';
-import { useMainContext } from '../contexts/MainContext';
+import { completeTodo, deleteTodo, editTodo } from '../actions/todosActions';
 import '../scss/components/TodoItem.scss';
 
-function TodoItem({ description, id, completed, priority, draggableProvided, spanish }) {
-    const {
-        markCompleted,
-        deleteTodo,
-        editTodo,
-        deleteCompletedTodo,}= useMainContext();
+function TodoItem(props) {
+    const { description, 
+            id, 
+            completed, 
+            priority, 
+            draggableProvided, 
+            completeTodo,
+            editTodo,
+            deleteTodo, 
+            spanish } = props;
 
     const [openDropdown, setOpenDropdown] = useState(false);
     
@@ -17,16 +21,18 @@ function TodoItem({ description, id, completed, priority, draggableProvided, spa
         setOpenDropdown(prevState => !prevState);
     }
 
-    function todoItemClass() {
-        if(completed) return "completed-todo";
-        if(priority === "low") return "todo-item--low";
-        if(priority === "medium") return "todo-item--medium";
-        if(priority === "high") return "todo-item--high";
-    }
+    const currentTodo = {
+        description: description,
+        id: id,
+        completed: completed,
+        priority: priority,
+    };
 
     return (
         <li 
-            className={`todo-item ${todoItemClass()}`}
+            className={
+                completed ? `todo-item completed-todo` : `todo-item todo-item--${priority}`
+            }
             {...draggableProvided.draggableProps}
             ref={draggableProvided.innerRef}
             {...draggableProvided.dragHandleProps}
@@ -34,7 +40,7 @@ function TodoItem({ description, id, completed, priority, draggableProvided, spa
 
             {!completed && <button 
                 className="todo-item__btn" type="button"
-                onClick={() => markCompleted(id)} 
+                onClick={() => completeTodo({...currentTodo, completed: true})} 
             >
                 <span className="icon check-icon"></span>
             </button>}
@@ -44,7 +50,7 @@ function TodoItem({ description, id, completed, priority, draggableProvided, spa
             </p>
 
             {completed &&  
-                <button onClick={() => deleteCompletedTodo(id)} className="todo-item__btn" type="button">
+                <button onClick={() => deleteTodo(currentTodo)} className="todo-item__btn" type="button">
                         <span className="icon x-icon"></span>
                 </button>
             }
@@ -73,7 +79,7 @@ function TodoItem({ description, id, completed, priority, draggableProvided, spa
                             className="todo-item__btn todo-item__dropdown-option" 
                             onClick={() => {
                                 toggleDropdown();
-                                editTodo(id);
+                                editTodo(currentTodo);
                             }}
                         >
                             <span>
@@ -82,7 +88,7 @@ function TodoItem({ description, id, completed, priority, draggableProvided, spa
                         </button>
                         <button 
                             className="todo-item__btn todo-item__dropdown-option todo-item__dropdown-option--delete" 
-                            onClick={() => deleteTodo(id)}
+                            onClick={() => deleteTodo(currentTodo)}
                         >
                             <span>
                                 {spanish? "Descartar" : "Delete"}
@@ -105,6 +111,9 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = {
     toggleTodoModal,
+    completeTodo,
+    deleteTodo,
+    editTodo,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(TodoItem);

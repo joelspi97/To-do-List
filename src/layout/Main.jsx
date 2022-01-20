@@ -1,57 +1,16 @@
-import React, { useEffect } from 'react';
-
-/* Redux */
+import React from 'react';
 import { connect } from 'react-redux';
-
-/* Libraries */
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
-
-/* Context */
-import { useMainContext } from '../contexts/MainContext';
-
-/* Components */
 import NewTodoBtn from '../components/NewTodoBtn';
 import Modal from '../components/Modal'
 import TodoMaker from '../components/TodoMaker';
 import SearchBar from '../components/SearchBar';
 import List from '../components/List';
 import TodoItem from '../components/TodoItem';
-
-/* Styles */
 import '../scss/layout/Main.scss';
 
-function Main({ showTodoModal, spanish }) {
-    const { newTodos,
-            setNewTodos,
-            completedTodos,
-            setCompletedTodos,
-            searchedTodos,
-            searchedCompletedTodos, } = useMainContext();
-
-    /* Load Local Storage */
-    const PENDING_TODOS_KEY = "pendingTodos";
-    const COMPLETED_TODOS_KEY = "completedTodos";
-
-    useEffect(() => {
-        const pendingTodos = JSON.parse(localStorage.getItem(PENDING_TODOS_KEY));
-        if(pendingTodos) {
-            setNewTodos(pendingTodos);
-        }
-
-        const finishedTodos = JSON.parse(localStorage.getItem(COMPLETED_TODOS_KEY));
-        if(finishedTodos) {
-            setCompletedTodos(finishedTodos);
-        }
-    }, []);
-
-
-    /* Save Local Storage */
-    useEffect(() => {
-        localStorage.setItem(PENDING_TODOS_KEY, JSON.stringify(newTodos));
-        localStorage.setItem(COMPLETED_TODOS_KEY, JSON.stringify(completedTodos));
-    }, [newTodos, completedTodos]);
+function Main({ showTodoModal, uncompletedTodos, completedTodos, spanish }) {
     
-
     /* beautiful-dnd */
     function reorder(list, startIndex, endIndex) {
         const result = [...list];
@@ -59,6 +18,7 @@ function Main({ showTodoModal, spanish }) {
         result.splice(endIndex, 0, removed);
         return result;
     }
+    /* /beautiful-dnd */
     
     return (
         <main className="main">
@@ -93,7 +53,7 @@ function Main({ showTodoModal, spanish }) {
                             return;
                         }
 
-                        setNewTodos(prevTodos => reorder(prevTodos, source.index, destination.index));
+                        // setNewTodos(prevTodos => reorder(prevTodos, source.index, destination.index));
                     }}
                 >
                     <Droppable droppableId="pending">
@@ -102,13 +62,13 @@ function Main({ showTodoModal, spanish }) {
                                 heading={spanish? "Tareas pendientes" : "Pending tasks"}
                                 dropableProvided={dropableProvided}
                             >
-                                {spanish? (newTodos.length === 0) && "¡Felicitaciones! ¡No tenés ninguna tarea pendiente!" 
-                                        : (newTodos.length === 0) && "Hooray! You don't have any pending task!"}
+                                {spanish? (uncompletedTodos.length === 0) && "¡Felicitaciones! ¡No tenés ninguna tarea pendiente!" 
+                                        : (uncompletedTodos.length === 0) && "Hooray! You don't have any pending task!"}
 
-                                {spanish? (newTodos.length > 0 && searchedTodos.length === 0) && "No encontramos ningun To-Do en esta lista que contenga eso... 🤔" 
-                                        : (newTodos.length > 0 && searchedTodos.length === 0) && "We didn't find any To-Do's in this list that contains that... 🤔"}
+                                {/* {spanish? (uncompletedTodos.length > 0 && searchedTodos.length === 0) && "No encontramos ningun To-Do en esta lista que contenga eso... 🤔" 
+                                        : (uncompletedTodos.length > 0 && searchedTodos.length === 0) && "We didn't find any To-Do's in this list that contains that... 🤔"} */}
 
-                                {searchedTodos.map((todo, index) => 
+                                {uncompletedTodos.map((todo, index) => 
                                     <Draggable 
                                         key={todo.id} 
                                         draggableId={todo.id} 
@@ -126,6 +86,25 @@ function Main({ showTodoModal, spanish }) {
                                         }
                                     </Draggable>
                                 )}
+
+                                {/* {searchedTodos.map((todo, index) => 
+                                    <Draggable 
+                                        key={todo.id} 
+                                        draggableId={todo.id} 
+                                        index={index}
+                                    >
+                                        {(draggableProvided) => 
+                                            <TodoItem 
+                                                draggableProvided={draggableProvided}
+                                                description={todo.description}
+                                                id={todo.id}
+                                                key={todo.id}
+                                                priority={todo.priority}
+                                                completed={todo.completed}
+                                            />
+                                        }
+                                    </Draggable>
+                                )} */}
                             </List>
                         }
                     </Droppable>
@@ -140,7 +119,7 @@ function Main({ showTodoModal, spanish }) {
                         if(source.index === destination.index && source.droppableId === destination.droppableId) {
                             return;
                         }
-                        setCompletedTodos(prevTodos => reorder(prevTodos, source.index, destination.index));
+                        // setCompletedTodos(prevTodos => reorder(prevTodos, source.index, destination.index));
                     }}
                 >
                     <Droppable droppableId="completed">
@@ -152,10 +131,10 @@ function Main({ showTodoModal, spanish }) {
                                 {spanish? (completedTodos.length === 0) && "Los To-Do's que completes se mostrarán en esta lista" 
                                         : (completedTodos.length === 0) && "Your completed To-Do's will be displayed in this section"}
                                 
-                                {spanish? (completedTodos.length > 0 && searchedCompletedTodos.length === 0) && "No encontramos ningun To-Do en esta lista que contenga eso... 🤔" 
-                                        : (completedTodos.length > 0 && searchedCompletedTodos.length === 0) && "We didn't find any To-Do's in this list that contains that... 🤔"}
+                                {/* {spanish? (completedTodos.length > 0 && searchedCompletedTodos.length === 0) && "No encontramos ningun To-Do en esta lista que contenga eso... 🤔" 
+                                        : (completedTodos.length > 0 && searchedCompletedTodos.length === 0) && "We didn't find any To-Do's in this list that contains that... 🤔"} */}
 
-                                {searchedCompletedTodos.map((todo, index) => 
+                                {completedTodos.map((todo, index) => 
                                     <Draggable 
                                         key={todo.id} 
                                         draggableId={todo.id} 
@@ -173,11 +152,29 @@ function Main({ showTodoModal, spanish }) {
                                         }
                                     </Draggable>
                                 )}
+
+                                {/* {searchedCompletedTodos.map((todo, index) => 
+                                    <Draggable 
+                                        key={todo.id} 
+                                        draggableId={todo.id} 
+                                        index={index}
+                                    >
+                                        {(draggableProvided) => 
+                                            <TodoItem 
+                                                draggableProvided={draggableProvided}
+                                                description={todo.description}
+                                                id={todo.id}
+                                                key={todo.id}
+                                                priority={todo.priority}
+                                                completed={todo.completed}
+                                            />
+                                        }
+                                    </Draggable>
+                                )} */}
                             </List>
                         }
                     </Droppable>
                 </DragDropContext>
-                
             </section>
         </main>
     );
@@ -187,6 +184,8 @@ function mapStateToProps(state) {
     return (
         {
             showTodoModal: state.modals.showTodoModal,
+            uncompletedTodos: state.todos.uncompletedTodos,
+            completedTodos: state.todos.completedTodos,
             spanish: state.settings.spanish,
         }
     );

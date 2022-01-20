@@ -1,34 +1,61 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { toggleTodoModal } from '../actions/modalActions';
+import { createNewTodo } from '../actions/todosActions';
 import { useMainContext } from '../contexts/MainContext';
+import { v4 as uuidv4 } from 'uuid';
 import '../scss/components/TodoMaker.scss';
 
-function TodoMaker({ toggleTodoModal, spanish }) {
-    const {
-        createNewTodo,
-        formValue,
-        setFormValue,
-        editedTodoId,}= useMainContext();
+function TodoMaker({ toggleTodoModal, createNewTodo, spanish }) {
+    const { editedTodoId, }= useMainContext();
 
-    const [todoPriority, setTodoPriority] = useState('');
-    const [formCompleted, setFormCompleted] = useState(false);
-
-   useEffect(
-        () => {
-            if (formValue.length > 0 && todoPriority) {
-                setFormCompleted(true);
-            } else {
-                setFormCompleted(false);
-            }
-        },
-        [formValue, todoPriority]
+    // const [todoPriority, setTodoPriority] = useState(false);
+    // const [formCompleted, setFormCompleted] = useState(false);
+    // useEffect(
+    //     () => {
+    //         if (formValue.description > 0 && todoPriority) {
+    //             setFormCompleted(true);
+    //         } else {
+    //             setFormCompleted(false);
+    //         }
+    //     },
+    //     [formValue, todoPriority]
+    // );
+    
+    const [formValue, setFormValue] = useState(
+        {
+            description: '',
+            priority: '',
+        }
     );
+
+    function handleInput(event) {
+        setFormValue(
+            {
+                ...formValue,
+                [event.target.name]: [event.target.value],
+            }
+        );
+    };
+
+    function handleNewTodo(submitEvent, description, priority) {
+        submitEvent.preventDefault();
+        createNewTodo(
+            {
+                description: description, 
+                priority: priority, 
+                id: uuidv4(), 
+                completed: false,
+            }
+        );
+        toggleTodoModal();
+    };
+
 
     return (
         <form 
             className="todo-maker modal-content"
-            onSubmit={(submitEvent) => (createNewTodo(submitEvent, formValue, todoPriority, editedTodoId))} 
+            onSubmit={submitEvent => handleNewTodo(submitEvent, formValue.description, formValue.priority)} 
         >
             <button 
                 type="buttton"
@@ -46,8 +73,9 @@ function TodoMaker({ toggleTodoModal, spanish }) {
                     id="description" 
                     placeholder={spanish? "Por ejemplo: Cortar el pasto..." : "e.g. Mow the lawn..."} 
                     required
-                    value={formValue}
-                    onChange={event => setFormValue(event.target.value)}
+                    value={formValue.description}
+                    name="description"
+                    onChange={event => handleInput(event)}
                 ></textarea>
             </div>
             
@@ -57,7 +85,7 @@ function TodoMaker({ toggleTodoModal, spanish }) {
                 </h2>
                 <div 
                     className="todo-maker__radio-wrapper"
-                    onChange={event => setTodoPriority(event.target.value)}
+                    onChange={event => handleInput(event)}
                 >
                     <label>
                         {spanish? "No muy urgente" : "Not that urgent"}
@@ -77,7 +105,7 @@ function TodoMaker({ toggleTodoModal, spanish }) {
             <div className="modal-content__bottom-btns">
                 <button 
                     type="submit"
-                    className={formCompleted? 'fill-btn' : undefined} 
+                    className={(formValue.description > 0 && formValue.priority > 0) ? 'fill-btn' : undefined} 
                 >
                     {spanish? !editedTodoId && "¡Crear To-Do!" : !editedTodoId && "Create To-Do!"}
                     {spanish? editedTodoId && "Editar To-Do" : editedTodoId && "Edit To-Do"}
@@ -103,6 +131,7 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = {
     toggleTodoModal,
+    createNewTodo,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(TodoMaker);
