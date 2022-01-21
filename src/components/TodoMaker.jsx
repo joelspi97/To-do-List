@@ -38,6 +38,7 @@ function TodoMaker(props) {
                 priority: currentTodo.priority,
             })
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     function handleSubmit(submitEvent, description, priority) {

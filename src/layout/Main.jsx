@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
+import { reorderUncompletedTodos, reorderCompletedTodos } from '../actions/todosActions';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import NewTodoBtn from '../components/NewTodoBtn';
 import Modal from '../components/Modal'
@@ -13,7 +14,9 @@ function Main(props) {
     const { showTodoModal,
             uncompletedTodos,
             completedTodos,
-            spanish, } = props;
+            spanish,
+            reorderUncompletedTodos,
+            reorderCompletedTodos, } = props;
     
     const [searchValue, setSearchValue] = useState('');
 
@@ -35,15 +38,6 @@ function Main(props) {
         );
     };
 
-    /* beautiful-dnd */
-    function reorder(list, startIndex, endIndex) {
-        const result = [...list];
-        const [removed] = result.splice(startIndex, 1);
-        result.splice(endIndex, 0, removed);
-        return result;
-    }
-    /* /beautiful-dnd */
-    
     return (
         <main className="main">
             <section className="project-padding">
@@ -80,7 +74,12 @@ function Main(props) {
                             return;
                         }
 
-                        // setNewTodos(prevTodos => reorder(prevTodos, source.index, destination.index));
+                        reorderUncompletedTodos(
+                            {
+                                startIndex: source.index, 
+                                endIndex: destination.index,
+                            }
+                        );
                     }}
                 >
                     <Droppable droppableId="pending">
@@ -127,7 +126,13 @@ function Main(props) {
                         if(source.index === destination.index && source.droppableId === destination.droppableId) {
                             return;
                         }
-                        // setCompletedTodos(prevTodos => reorder(prevTodos, source.index, destination.index));
+
+                        reorderCompletedTodos(
+                            {
+                                startIndex: source.index, 
+                                endIndex: destination.index,
+                            }
+                        );                    
                     }}
                 >
                     <Droppable droppableId="completed">
@@ -169,7 +174,6 @@ function Main(props) {
     );
 };
 
-
 function mapStateToProps(state) {
     return (
         {
@@ -181,4 +185,9 @@ function mapStateToProps(state) {
     );
 };
 
-export default connect(mapStateToProps, null)(Main);
+const mapDispatchToProps = {
+    reorderUncompletedTodos,
+    reorderCompletedTodos,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Main);

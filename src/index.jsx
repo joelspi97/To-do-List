@@ -17,18 +17,12 @@ ReactDOM.render(
 );
 
 /*
-    Actual {
-      Falta el reorder de dnd
-    }
-
     General {
-        1) Implementar redux (solo falta la logica
-          de los todos)
-        2) Implementar typescript
-        3) Que cuando la pagina cargue del local
+        1) Implementar typescript
+        2) Que cuando la página cargue del local
         storage no quede en blanco por ese instante
-        4) Subir la página a internet
-        5) Compartir el proyecto en mi LinkedIn
+        3) Subir la página a internet
+        4) Compartir el proyecto en mi LinkedIn
     }
 
     Accesibilidad {

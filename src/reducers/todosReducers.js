@@ -60,6 +60,24 @@ function todosReducer(todosState = todosInitialState, action) {
                 };
             };
 
+        case 'REORDER_UNCOMPLETED_TODOS':
+            const reorderedUncompletedTodos = [...todosState.uncompletedTodos];
+            const [removedUncompletedTodo] = reorderedUncompletedTodos.splice(action.payload.startIndex, 1);
+            reorderedUncompletedTodos.splice(action.payload.endIndex, 0, removedUncompletedTodo);
+            return {
+                ...todosState,           
+                uncompletedTodos: reorderedUncompletedTodos,     
+            };
+
+        case 'REORDER_COMPLETED_TODOS':
+            const reorderedCompletedTodos = [...todosState.completedTodos];
+            const [removedCompletedTodo] = reorderedCompletedTodos.splice(action.payload.startIndex, 1);
+            reorderedCompletedTodos.splice(action.payload.endIndex, 0, removedCompletedTodo);
+            return {
+                ...todosState,           
+                completedTodos: reorderedCompletedTodos,     
+            };
+    
         default:
             return todosState;
     };

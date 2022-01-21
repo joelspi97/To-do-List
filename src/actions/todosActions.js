@@ -52,9 +52,29 @@ function deleteTodo(payload) {
     );
 };
 
+function reorderUncompletedTodos(payload) {
+    return (
+        {
+            type: 'REORDER_UNCOMPLETED_TODOS',
+            payload,
+        }
+    );
+};
+
+function reorderCompletedTodos(payload) {
+    return (
+        {
+            type: 'REORDER_COMPLETED_TODOS',
+            payload,
+        }
+    );
+};
+
 export { createNewTodo, 
          completeTodo, 
          editTodo, 
          updateTodo,
          cancelUpdate,
-         deleteTodo, };
+         deleteTodo,
+         reorderUncompletedTodos,
+         reorderCompletedTodos };
