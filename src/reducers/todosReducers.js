@@ -1,6 +1,7 @@
 const todosInitialState = {
     uncompletedTodos: [],
     completedTodos: [],
+    currentTodo: {},
 };
 
 function todosReducer(todosState = todosInitialState, action) {
@@ -19,19 +20,32 @@ function todosReducer(todosState = todosInitialState, action) {
             };
         
         case 'EDIT_TODO':
-            let editedTodoIndex;
+            return {
+                ...todosState,
+                currentTodo: { ...todosState.currentTodo,
+                               id: action.payload.id,
+                               priority: action.payload.priority,
+                               description:action.payload.description,
+                               completed: action.payload.completed, },
+            };
 
-            if(!action.payload.completed) {
-                editedTodoIndex = todosState.uncompletedTodos.findIndex(todo => todo.id === action.payload.id);
-                return {
-                    ...todosState,
-                };
-            } else {
-                editedTodoIndex = todosState.completedTodos.findIndex(todo => todo.id === action.payload.id);
-                return {
-                    ...todosState,
-                };
-            }
+        case 'UPDATE_TODO': 
+            const editedTodoIndex = todosState.uncompletedTodos.findIndex(todo => todo.id === action.payload.id);
+            const updatedUncompletedTodos = [...todosState.uncompletedTodos];
+            updatedUncompletedTodos[editedTodoIndex].priority = action.payload.priority;
+            updatedUncompletedTodos[editedTodoIndex].description = action.payload.description;
+
+            return {
+                ...todosState,
+                uncompletedTodos: updatedUncompletedTodos,
+                currentTodo: {},
+            };
+
+        case 'CANCEL_UPDATE':
+            return {
+                ...todosState,
+                currentTodo: {},
+            };
 
         case 'DELETE_TODO':
             if(!action.payload.completed) {

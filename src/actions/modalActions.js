@@ -1,6 +1,4 @@
 function toggleHeaderModal() {
-    document.body.classList.toggle('no-scroll');
-
     return (
         {
             type: 'TOGGLE_HEADER_MODAL',
@@ -9,8 +7,6 @@ function toggleHeaderModal() {
 };
 
 function toggleTodoModal() {
-    document.body.classList.toggle('no-scroll');
-
     return (
         {
             type: 'TOGGLE_TODO_MODAL',

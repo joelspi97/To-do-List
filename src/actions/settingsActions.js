@@ -1,25 +1,33 @@
 function toggleHighContrast() {
-    return {
-        type: 'TOGGLE_HIGH_CONTRAST',
-    };
+    return (
+        {
+            type: 'TOGGLE_HIGH_CONTRAST',
+        }
+    );
 };
 
 function toggleAnimations() {
-    return {
-        type: 'TOGGLE_ANIMATIONS',
-    };
+    return (
+        {
+            type: 'TOGGLE_ANIMATIONS',
+        }
+    );
 };
 
 function toggleSpanish() {
-    return {
-        type: 'TOGGLE_SPANISH',
-    };
+    return (
+        {
+            type: 'TOGGLE_SPANISH',
+        }
+    );
 };
 
 function toggleDarkTheme() {
-    return {
-        type: 'TOGGLE_DARK_THEME',
-    };
+    return (
+        {
+            type: 'TOGGLE_DARK_THEME',
+        }
+    );
 };
 
 export { toggleHighContrast, toggleAnimations, toggleSpanish, toggleDarkTheme };

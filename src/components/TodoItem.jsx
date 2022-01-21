@@ -12,20 +12,23 @@ function TodoItem(props) {
             draggableProvided, 
             completeTodo,
             editTodo,
-            deleteTodo, 
+            deleteTodo,
+            toggleTodoModal, 
             spanish } = props;
-
-    const [openDropdown, setOpenDropdown] = useState(false);
-    
-    function toggleDropdown() {
-        setOpenDropdown(prevState => !prevState);
-    }
 
     const currentTodo = {
         description: description,
         id: id,
         completed: completed,
         priority: priority,
+    };
+    
+    const [openDropdown, setOpenDropdown] = useState(false);
+    
+    function handleEdit() {
+        setOpenDropdown(prevState => !prevState);
+        editTodo(currentTodo);
+        toggleTodoModal();
     };
 
     return (
@@ -62,7 +65,7 @@ function TodoItem(props) {
                             todo-item__btn 
                             ${openDropdown? "todo-item__btn--open" : ""}
                         `} type="button"
-                        onClick={() => toggleDropdown()}
+                        onClick={() => setOpenDropdown(prevState => !prevState)}
                     >
                         <span 
                             className={`
@@ -77,10 +80,7 @@ function TodoItem(props) {
                     `}>
                         <button
                             className="todo-item__btn todo-item__dropdown-option" 
-                            onClick={() => {
-                                toggleDropdown();
-                                editTodo(currentTodo);
-                            }}
+                            onClick={handleEdit}
                         >
                             <span>
                                 {spanish? "Editar" : "Edit"}

@@ -18,8 +18,6 @@ ReactDOM.render(
 
 /*
     Actual {
-      falta implementar redux en search bar y también 
-      en edit.
       Falta el reorder de dnd
     }
 

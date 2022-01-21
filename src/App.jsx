@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import { MainProvider } from './contexts/MainContext';
 import { connect } from 'react-redux';
 import Header from './layout/Header';
 import Main from './layout/Main';
@@ -51,9 +50,7 @@ function App({ highContrast, spanish, animations, darkTheme }) {
     return (
         <>
             <Header />
-            <MainProvider>
-                <Main />
-            </MainProvider>
+            <Main />
             <Footer />
         </>
     );

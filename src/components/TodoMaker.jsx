@@ -1,27 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { toggleTodoModal } from '../actions/modalActions';
-import { createNewTodo } from '../actions/todosActions';
-import { useMainContext } from '../contexts/MainContext';
+import { createNewTodo, cancelUpdate, updateTodo } from '../actions/todosActions';
 import { v4 as uuidv4 } from 'uuid';
 import '../scss/components/TodoMaker.scss';
 
-function TodoMaker({ toggleTodoModal, createNewTodo, spanish }) {
-    const { editedTodoId, }= useMainContext();
+function TodoMaker(props) {
+    const { toggleTodoModal, 
+            createNewTodo, 
+            currentTodo,
+            updateTodo, 
+            cancelUpdate,
+            spanish, } = props;
 
-    // const [todoPriority, setTodoPriority] = useState(false);
-    // const [formCompleted, setFormCompleted] = useState(false);
-    // useEffect(
-    //     () => {
-    //         if (formValue.description > 0 && todoPriority) {
-    //             setFormCompleted(true);
-    //         } else {
-    //             setFormCompleted(false);
-    //         }
-    //     },
-    //     [formValue, todoPriority]
-    // );
-    
     const [formValue, setFormValue] = useState(
         {
             description: '',
@@ -38,29 +29,76 @@ function TodoMaker({ toggleTodoModal, createNewTodo, spanish }) {
         );
     };
 
-    function handleNewTodo(submitEvent, description, priority) {
+    const editingTodo = Object.keys(currentTodo).length > 0;
+
+    useEffect(() => {
+        if(editingTodo) {
+            setFormValue({
+                description: currentTodo.description,
+                priority: currentTodo.priority,
+            })
+        }
+    }, []);
+
+    function handleSubmit(submitEvent, description, priority) {
         submitEvent.preventDefault();
-        createNewTodo(
-            {
-                description: description, 
-                priority: priority, 
-                id: uuidv4(), 
-                completed: false,
-            }
-        );
+
+        if(editingTodo) {
+            updateTodo(
+                {
+                    description: description, 
+                    priority: priority,
+                    id: currentTodo.id,
+                }
+            ); 
+        } else {
+            createNewTodo(
+                {
+                    description: description, 
+                    priority: priority, 
+                    id: uuidv4(), 
+                    completed: false,
+                }
+            );
+        };
+
         toggleTodoModal();
     };
 
+    function handleDefaultCheck(inputPriority) {
+        if(editingTodo && currentTodo.priority.toString() === inputPriority) {
+            return true;
+        } else {
+            return false;
+        };
+    };
+
+    function closeModal() {
+        cancelUpdate();
+        toggleTodoModal();
+    };
+
+    const [formCompleted, setFormCompleted] = useState(false);
+    useEffect(
+        () => {
+            if (formValue.description.toString().length > 0 && formValue.priority.length > 0) {
+                setFormCompleted(true);
+            } else {
+                setFormCompleted(false);
+            }
+        },
+        [formValue]
+    );
 
     return (
         <form 
             className="todo-maker modal-content"
-            onSubmit={submitEvent => handleNewTodo(submitEvent, formValue.description, formValue.priority)} 
+            onSubmit={submitEvent => handleSubmit(submitEvent, formValue.description, formValue.priority)} 
         >
             <button 
                 type="buttton"
                 className="modal-content__close-btn" 
-                onClick={toggleTodoModal}
+                onClick={closeModal}
             >
                 <span className="icon x-icon"></span>
             </button>
@@ -89,15 +127,33 @@ function TodoMaker({ toggleTodoModal, createNewTodo, spanish }) {
                 >
                     <label>
                         {spanish? "No muy urgente" : "Not that urgent"}
-                        <input type="radio" name="priority" value="low" required />
+                        <input 
+                            type="radio" 
+                            name="priority" 
+                            value="low" 
+                            required 
+                            defaultChecked={handleDefaultCheck('low')}
+                        />
                     </label>
                     <label>
                         {spanish? "Algo urgente" : "Mildly urgent"}
-                        <input type="radio" name="priority" value="medium" required />
+                        <input 
+                            type="radio" 
+                            name="priority" 
+                            value="medium" 
+                            required 
+                            defaultChecked={handleDefaultCheck('medium')}
+                        />
                     </label>
                     <label>
                         {spanish? "Muy urgente" : "Very urgent"}
-                        <input type="radio" name="priority" value="high" required />
+                        <input 
+                            type="radio" 
+                            name="priority" 
+                            value="high" 
+                            required 
+                            defaultChecked={handleDefaultCheck('high')}
+                        />
                     </label>
                 </div>
             </div>
@@ -105,14 +161,14 @@ function TodoMaker({ toggleTodoModal, createNewTodo, spanish }) {
             <div className="modal-content__bottom-btns">
                 <button 
                     type="submit"
-                    className={(formValue.description > 0 && formValue.priority > 0) ? 'fill-btn' : undefined} 
+                    className={formCompleted ? 'fill-btn' : undefined} 
                 >
-                    {spanish? !editedTodoId && "¡Crear To-Do!" : !editedTodoId && "Create To-Do!"}
-                    {spanish? editedTodoId && "Editar To-Do" : editedTodoId && "Edit To-Do"}
+                    {spanish? !editingTodo && "¡Crear To-Do!" : !editingTodo && "Create To-Do!"}
+                    {spanish? editingTodo && "Editar To-Do" : editingTodo && "Edit To-Do"}
                 </button>
                 <button 
                     type="button"
-                    onClick={toggleTodoModal}
+                    onClick={closeModal}
                 >
                     {spanish? "Cancelar" : "Cancel"}
                 </button>
@@ -124,6 +180,7 @@ function TodoMaker({ toggleTodoModal, createNewTodo, spanish }) {
 function mapStateToProps(state) {
     return (
         {
+            currentTodo: state.todos.currentTodo,
             spanish: state.settings.spanish,
         }
     );
@@ -132,6 +189,8 @@ function mapStateToProps(state) {
 const mapDispatchToProps = {
     toggleTodoModal,
     createNewTodo,
+    cancelUpdate,
+    updateTodo,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(TodoMaker);

@@ -25,6 +25,24 @@ function editTodo(payload) {
     );
 };
 
+function updateTodo(payload) {
+    return (
+        {
+            type: 'UPDATE_TODO',
+            payload,
+        }
+    );
+};
+
+function cancelUpdate() {
+    return (
+        {
+            type: 'CANCEL_UPDATE',
+        }
+    );
+};
+
+
 function deleteTodo(payload) {
     return (
         {
@@ -37,4 +55,6 @@ function deleteTodo(payload) {
 export { createNewTodo, 
          completeTodo, 
          editTodo, 
+         updateTodo,
+         cancelUpdate,
          deleteTodo, };
