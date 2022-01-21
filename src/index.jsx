@@ -18,11 +18,11 @@ ReactDOM.render(
 
 /*
     General {
-        1) Implementar typescript
-        2) Que cuando la página cargue del local
-        storage no quede en blanco por ese instante
-        3) Subir la página a internet
-        4) Compartir el proyecto en mi LinkedIn
+        1) Que cuando la página cargue del local
+        storage no quede en blanco por ese instante 
+        (¿Agregar loading screen?)
+        2) Subir la página a internet
+        3) Compartir el proyecto en mi LinkedIn
     }
 
     Accesibilidad {
@@ -55,6 +55,5 @@ ReactDOM.render(
         salga un cartel que diga algo como: 
         "¡Todo creado con éxito!" y que tenga alguna 
         mínima animación
-        3) Agregar loading screen?
     }
 */

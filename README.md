@@ -1,2 +1,2 @@
 # To-do-List
-Project made with React.js, Redux, TypeScript and Sass. 
+Project made with React.js, Redux and Sass. 
