@@ -1,0 +1,40 @@
+@import '../abstracts/variables.scss';
+@import '../abstracts/dinamic-variables.scss';
+@import '../abstracts/mixins/focus.scss';
+@import '../abstracts/mixins/icon.scss';
+
+.new-todo-animation {
+    animation-name            : growModal;
+    animation-duration        : $new-todo-animation;
+    animation-iteration-count : 2;
+    animation-fill-mode       : forwards;
+    animation-direction       : alternate;
+
+    img {
+        height: 15rem;
+        width: 15rem;
+        margin-bottom: 2rem;
+
+        animation-name            : spinningImage;
+        animation-duration        : $new-todo-animation;
+        animation-iteration-count : 2;
+        animation-fill-mode       : forwards;
+        animation-direction       : alternate;
+    }
+    
+    p {
+        font-size: 2rem;
+        font-weight: 500;
+    }
+}
+
+@keyframes growModal {
+    0% { transform: scale(0); }
+    66% { transform: scale(1); }
+}
+
+@keyframes spinningImage {
+    0% { transform: rotate(0); }
+    66% { transform: rotate(720deg); }
+    100% { transform: rotate(720deg); }
+}

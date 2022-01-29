@@ -4,11 +4,18 @@ import { toggleHeaderModal } from '../actions/modalActions';
 import logo from '../assets/logo.png';
 import Modal from '../components/Modal';
 import SettingsMenu from '../components/SettingsMenu';
+import SuccesBanner from '../components/SuccesBanner';
 import '../scss/layout/Header.scss';
 
-function Header({ showHeaderModal, toggleHeaderModal, spanish }) {
+function Header(props) {
+    const { showHeaderModal, 
+            toggleHeaderModal,  
+            spanish, } = props;
+
     return (
         <header className="header">
+            <SuccesBanner />
+
             <div className="project-padding header__grid">
                 <div className="header__wrapper">
                     <img className="header__logo" src={logo} alt="Logo" />

@@ -7,7 +7,8 @@ function Modal({ children }) {
     return ReactDOM.createPortal(
         <div 
             id="modal-backdrop"
-            className="modal project-padding">
+            className="modal project-padding"
+        >
             { children }
         </div>,
         document.getElementById('modal')

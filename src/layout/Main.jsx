@@ -5,6 +5,7 @@ import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import NewTodoBtn from '../components/NewTodoBtn';
 import Modal from '../components/Modal'
 import TodoMaker from '../components/TodoMaker';
+import TodoAnimation from '../components/TodoAnimation';
 import SearchBar from '../components/SearchBar';
 import List from '../components/List';
 import TodoItem from '../components/TodoItem';
@@ -12,6 +13,7 @@ import '../scss/layout/Main.scss';
 
 function Main(props) {
     const { showTodoModal,
+            showTodoAnimationModal,
             uncompletedTodos,
             completedTodos,
             spanish,
@@ -56,6 +58,12 @@ function Main(props) {
                 {showTodoModal && (
                     <Modal>
                         <TodoMaker/>
+                    </Modal>
+                )}
+
+                {showTodoAnimationModal && (
+                    <Modal>
+                        <TodoAnimation />
                     </Modal>
                 )}
 
@@ -178,6 +186,7 @@ function mapStateToProps(state) {
     return (
         {
             showTodoModal: state.modals.showTodoModal,
+            showTodoAnimationModal: state.modals.showTodoAnimationModal,
             uncompletedTodos: state.todos.uncompletedTodos,
             completedTodos: state.todos.completedTodos,
             spanish: state.settings.spanish,

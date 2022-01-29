@@ -1,0 +1,28 @@
+@import '../abstracts/variables.scss';
+@import '../abstracts/dinamic-variables.scss';
+@import '../abstracts/mixins/focus.scss';
+@import '../abstracts/mixins/icon.scss';
+
+.success-banner {
+    position: fixed;
+    z-index: 1001;
+    top: -4rem;
+    right: 0;
+    left: 0;
+    transition: all var(--banner-duration) ease-in-out;
+
+    background-color: var(--main-color);
+    padding: 0.5rem 0;
+    text-align: center;
+    border-bottom: 0.2rem solid var(--secondary-color);
+
+    p {
+        color: var(--secondary-color);
+        font-size: 1.6rem;
+        font-weight: 700;
+    }
+
+    &--active {
+        top: 0;
+    }
+}

@@ -14,4 +14,23 @@ function toggleTodoModal() {
     );
 };
 
-export { toggleHeaderModal, toggleTodoModal };
+function toggleTodoAnimationModal() {
+    return (
+        {
+            type: 'TOGGLE_TODO_ANIMATION_MODAL',
+        }
+    );
+};
+
+function toggleSuccessBanner() {
+    return (
+        {
+            type: 'TOGGLE_SUCCESS_BANNER',
+        }
+    );
+};
+
+export { toggleHeaderModal, 
+         toggleTodoModal, 
+         toggleTodoAnimationModal,
+         toggleSuccessBanner };

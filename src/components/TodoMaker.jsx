@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { toggleTodoModal } from '../actions/modalActions';
+import { toggleTodoModal, toggleTodoAnimationModal, toggleSuccessBanner } from '../actions/modalActions';
 import { createNewTodo, cancelUpdate, updateTodo } from '../actions/todosActions';
 import { v4 as uuidv4 } from 'uuid';
 import '../scss/components/TodoMaker.scss';
@@ -11,7 +11,10 @@ function TodoMaker(props) {
             currentTodo,
             updateTodo, 
             cancelUpdate,
-            spanish, } = props;
+            spanish,
+            animations,
+            toggleTodoAnimationModal,
+            toggleSuccessBanner, } = props;
 
     const [formValue, setFormValue] = useState(
         {
@@ -52,6 +55,13 @@ function TodoMaker(props) {
                     id: currentTodo.id,
                 }
             ); 
+
+            toggleSuccessBanner();
+                 
+            setTimeout(() => {
+                toggleSuccessBanner();
+            }, 4000);
+
         } else {
             createNewTodo(
                 {
@@ -61,6 +71,14 @@ function TodoMaker(props) {
                     completed: false,
                 }
             );
+            
+            if(animations) {
+                toggleTodoAnimationModal();
+     
+                setTimeout(() => {
+                    toggleTodoAnimationModal();
+                }, 4500);
+            };
         };
 
         toggleTodoModal();
@@ -183,12 +201,15 @@ function mapStateToProps(state) {
         {
             currentTodo: state.todos.currentTodo,
             spanish: state.settings.spanish,
+            animations: state.settings.animations,
         }
     );
 };
 
 const mapDispatchToProps = {
     toggleTodoModal,
+    toggleTodoAnimationModal,
+    toggleSuccessBanner,
     createNewTodo,
     cancelUpdate,
     updateTodo,
