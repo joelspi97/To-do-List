@@ -44,6 +44,14 @@ function TodoMaker(props) {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
+    function handleSuccessBanner(newTodoProperty) {
+        toggleSuccessBanner(newTodoProperty);
+                 
+        setTimeout(() => {
+            toggleSuccessBanner(newTodoProperty);
+        }, 4000);
+    }
+
     function handleSubmit(submitEvent, description, priority) {
         submitEvent.preventDefault();
 
@@ -55,13 +63,8 @@ function TodoMaker(props) {
                     id: currentTodo.id,
                 }
             ); 
-
-            toggleSuccessBanner();
-                 
-            setTimeout(() => {
-                toggleSuccessBanner();
-            }, 4000);
-
+            handleSuccessBanner({ newTodo: false });
+            
         } else {
             createNewTodo(
                 {
@@ -77,7 +80,10 @@ function TodoMaker(props) {
      
                 setTimeout(() => {
                     toggleTodoAnimationModal();
-                }, 4500);
+                }, 3600);
+
+            } else {
+                handleSuccessBanner({ newTodo: true });
             };
         };
 

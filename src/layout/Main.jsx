@@ -72,6 +72,13 @@ function Main(props) {
                     setSearchValue={setSearchValue}
                 />
                 
+                <p 
+                    className="main__paragraph"
+                >
+                    {spanish? "Podés arrastrar y soltar los To-do's para ordenarlos como mejor te parezca" : 
+                              "You can drag and drop your To-do's to arrange them however you want"}
+                </p>
+
                 <DragDropContext 
                     onDragEnd={result => {
                         const {source, destination} = result;
@@ -96,11 +103,19 @@ function Main(props) {
                                 heading={spanish? "Tareas pendientes" : "Pending tasks"}
                                 dropableProvided={dropableProvided}
                             >
-                                {spanish? (uncompletedTodos.length === 0) && "¡Felicitaciones! ¡No tenés ninguna tarea pendiente!" 
-                                        : (uncompletedTodos.length === 0) && "Hooray! You don't have any pending task!"}
+                                {
+                                    (uncompletedTodos.length === 0) && (
+                                        spanish ? "¡Felicitaciones! ¡No tenés ninguna tarea pendiente!" 
+                                                : "Hooray! You don't have any pending task!"
+                                    )
+                                }
 
-                                {spanish? (uncompletedTodos.length > 0 && searchedUncompletedTodos.length === 0) && "No encontramos ningun To-Do en esta lista que contenga eso... 🤔" 
-                                        : (uncompletedTodos.length > 0 && searchedUncompletedTodos.length === 0) && "We didn't find any To-Do's in this list that contains that... 🤔"}
+                                {
+                                    (uncompletedTodos.length > 0 && searchedUncompletedTodos.length === 0) && (
+                                        spanish ? "No encontramos ningún To-Do en esta lista que contenga eso... 🤔" 
+                                        : "We didn't find any To-Do's in this list that contains that... 🤔"
+                                    )
+                                }
 
                                 {searchedUncompletedTodos.map((todo, index) => 
                                     <Draggable 
@@ -149,11 +164,19 @@ function Main(props) {
                                 heading={spanish? "Tareas completadas" : "Completed tasks"}
                                 dropableProvided={dropableProvided}
                             >
-                                {spanish? (completedTodos.length === 0) && "Los To-Do's que completes se mostrarán en esta lista" 
-                                        : (completedTodos.length === 0) && "Your completed To-Do's will be displayed in this section"}
-                                
-                                {spanish? (completedTodos.length > 0 && searchedCompletedTodos.length === 0) && "No encontramos ningun To-Do en esta lista que contenga eso... 🤔" 
-                                        : (completedTodos.length > 0 && searchedCompletedTodos.length === 0) && "We didn't find any To-Do's in this list that contains that... 🤔"}
+                                {
+                                    (completedTodos.length === 0) && (
+                                        spanish ? "Los To-Do's que completes se mostrarán en esta lista" 
+                                                : "Your completed To-Do's will be displayed in this section"
+                                    )
+                                }
+
+                                {
+                                    (completedTodos.length > 0 && searchedCompletedTodos.length === 0) && (
+                                        spanish ? "No encontramos ningún To-Do en esta lista que contenga eso... 🤔" 
+                                        : "We didn't find any To-Do's in this list that contains that... 🤔"
+                                    )
+                                }
 
                                 {searchedCompletedTodos.map((todo, index) => 
                                     <Draggable 

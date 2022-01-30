@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import '../scss/components/SuccessBanner.scss';
 
-function SuccessBanner({ showSuccessBanner, spanish }) {
+function SuccessBanner({ showSuccessBanner, newTodoMessage, spanish }) {
   return (
     <div 
         className={
@@ -14,7 +14,8 @@ function SuccessBanner({ showSuccessBanner, spanish }) {
         <p
             aria-live="assertive"
         >
-            {spanish? "To-do editado éxitosamente" : "To-do successfully edited"}
+            {newTodoMessage ? (spanish ? "To-do creado éxitosamente" : "To-do successfully created") 
+                            : (spanish ? "To-do editado éxitosamente" : "To-do successfully edited")}
         </p>
     </div>);
 }
@@ -23,6 +24,7 @@ function mapStateToProps(state) {
     return {
         spanish: state.settings.spanish,
         showSuccessBanner: state.modals.showSuccessBanner,
+        newTodoMessage: state.modals.newTodoMessage,
     };
 };
 

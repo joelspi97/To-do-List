@@ -17,42 +17,40 @@ ReactDOM.render(
 );
 
 /*
-    General {
-      1) Que cuando la página cargue del local
-      storage no quede en blanco por ese instante 
-      (¿Agregar loading screen?)
-      2) Subir la página a internet
-      3) Compartir el proyecto en mi LinkedIn
-    }
+  To-do's {
+    1) Agregar animación para el modal de crear todo
+  }
 
-    Accesibilidad {
-      1) Revisar que toda la página sea 100% 
-      navegable usando solamente el teclado
-      2) Asegurarse que todo sea accesible 
-      para lectores de pantalla (tanto en 
-      español como en inglés)
-    }
+  Settings {
+    1) Solucionar bug del botón de animaciones 
+    cuando se pone en español 
+    2) Solucionar bug de animaciones (destiempo 
+    en el cambio de transiciones)
+    3) Que cuando la página cargue del local
+    storage no quede en blanco por ese instante 
+    (¿Agregar loading screen?)
+  }
 
-    Diseño {
-      1) Elegir bien la paleta de colores
-      2) Hacer que la página sea completamente 
-      responsive. Cuando este en desktop, que las 
-      listas no se vean en una unica columnna, 
-      que sean dos columnas lado a lado.
-      3) Rediseñar el Header, el Footer y los 
-      TodoItem's
-    }
+  Diseño {
+    1) Elegir bien la paleta de colores
+    2) Hacer que la página sea completamente 
+    responsive. Cuando este en desktop, que las 
+    listas no se vean en una unica columnna, 
+    que sean dos columnas lado a lado.
+    3) Rediseñar el Header, el Footer y los 
+    TodoItem's
+  }
 
-    Header {
-      1) Solucionar bug de animaciones
-      2) Solucionar bug del boton de animaciones 
-      cuando se pone en español 
-    }
+  Accesibilidad {
+    1) Revisar que toda la página sea 100% 
+    navegable usando solamente el teclado
+    2) Asegurarse que todo sea accesible 
+    para lectores de pantalla (tanto en 
+    español como en inglés)
+  }
 
-    Main {
-      1) Hacer que cuando haya más de un solo Todo 
-      aparezca un cartel que diga algo como:
-      "Podés arrastrar las tareas para organizarlas 
-      como quieras"
-    }
+  General {
+    1) Subir la página a internet
+    2) Compartir el proyecto en mi LinkedIn
+  }
 */

@@ -3,6 +3,7 @@ const modalsInitialState = {
     showTodoModal: false,
     showTodoAnimationModal: false,
     showSuccessBanner: false,
+    newTodoMessage: false,
 };
 
 function modalsReducer(modalsState = modalsInitialState, action) {
@@ -32,6 +33,15 @@ function modalsReducer(modalsState = modalsInitialState, action) {
             };
 
         case 'TOGGLE_SUCCESS_BANNER':
+
+            if(action.payload.newTodo) {
+                return {
+                    ...modalsState,
+                    showSuccessBanner: !modalsState.showSuccessBanner,
+                    newTodoMessage: !modalsState.newTodoMessage,
+                };    
+            }; 
+
             return {
                 ...modalsState,
                 showSuccessBanner: !modalsState.showSuccessBanner,

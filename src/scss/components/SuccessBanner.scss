@@ -18,8 +18,8 @@
 
     p {
         color: var(--secondary-color);
-        font-size: 1.6rem;
-        font-weight: 700;
+        font-size: map-get($fs, "sm");
+        font-weight: map-get($fw, "bold");
     }
 
     &--active {

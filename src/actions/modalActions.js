@@ -22,10 +22,11 @@ function toggleTodoAnimationModal() {
     );
 };
 
-function toggleSuccessBanner() {
+function toggleSuccessBanner(payload) {
     return (
         {
             type: 'TOGGLE_SUCCESS_BANNER',
+            payload,
         }
     );
 };

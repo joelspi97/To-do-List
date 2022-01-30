@@ -7,20 +7,25 @@ function Footer({ spanish }) {
         <footer className="footer">
             <div className="project-padding">
                 <p className="footer__paragraph">
-                    {spanish? "¿Querés ver el código fuente de este sitio web?" : "Want to see the source code of this website?"}
+                    {spanish? "¿Querés ver el código fuente de este sitio web? " 
+                            : "Want to see the source code of this website? "}
                     <a className="footer__link" href="https://github.com/joelspi97/To-do-List">
-                        {spanish? "Visita el repositiorio de este proyecto en GitHub" : "Visit this project's GitHub repository"}
+                        {spanish? "Visita el repositiorio de este proyecto en GitHub" 
+                                : "Visit this project's GitHub repository"}
                     </a>
                 </p>
                 <p className="footer__paragraph">
-                    {spanish? "¿Querés ver más páginas que hice? " : "Want to see more pages I made? "}
+                    {spanish? "¿Querés ver más páginas que hice? " 
+                            : "Want to see more pages I made? "}
                     <a className="footer__link" href="https://joelspinelli.herokuapp.com/">
-                        {spanish? "¡Visitá mi portfolio!" : "Check my portfolio!"}
+                        {spanish? "¡Visitá mi portfolio!" 
+                                : "Check my portfolio!"}
                     </a>
                 </p>
                 <p className="footer__paragraph">
-                    {spanish? "Hecho por Joel Spinelli con React.js, " : "Made by Joel Spinelli with React.js, "}
-                     <span 
+                    {spanish? "Hecho por Joel Spinelli con React.js, Redux " 
+                            : "Made by Joel Spinelli with React.js, Redux "}
+                    <span 
                         role="img" 
                         aria-label={spanish? "amor" : "love"}
                     >
@@ -29,7 +34,8 @@ function Footer({ spanish }) {
                     {spanish? "y " : "and "}
                     <span 
                         role="img" 
-                        aria-label={spanish? "cerdos felices" : "happy pigs"}>
+                        aria-label={spanish? "chanchos felices" : "happy pigs"}
+                    >
                         🐷
                     </span>
                 </p>

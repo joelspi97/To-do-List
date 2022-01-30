@@ -18,6 +18,10 @@
     &__paragraph {
         font-size: map-get($fs, 'sm');
         margin-bottom: 3rem;
+    
+        &:last-of-type {
+            margin-top: 3rem;
+        }
     }
 }
 

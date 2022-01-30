@@ -23,8 +23,8 @@
     }
     
     p {
-        font-size: 2rem;
-        font-weight: 500;
+        font-size: map-get($fs, "md");
+        font-weight: map-get($fw, "medium");
     }
 }
 
