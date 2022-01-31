@@ -16,15 +16,15 @@
     padding: 1rem 2rem;
     margin-bottom: 2rem;
 
-    transition: background-color var(--theme-transition) ease-in-out, 
+    transition: background-color var(--theme-duration) ease-in-out, 
                 color var(--focus-duration) ease-in-out,
                 outline var(--focus-duration) ease-in-out,
                 transform var(--focus-duration) ease-in-out;
 
     &:hover,
     &:focus {
+        color: var(--focus-color-brighter);
         outline: 0.3rem solid var(--focus-color-brighter);
         transform: scale(1.05);
-        color: var(--focus-color-brighter);
     }
 }

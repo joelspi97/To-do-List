@@ -21,12 +21,6 @@ ReactDOM.render(
     1) Agregar animación para el modal de crear todo
   }
 
-  Settings {
-    1) Que cuando la página cargue del local
-    storage no quede en blanco por ese instante 
-    (¿Agregar loading screen?)
-  }
-
   Diseño {
     1) Elegir bien la paleta de colores
     2) Hacer que la página sea completamente 

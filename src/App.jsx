@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useLayoutEffect } from 'react';
 import { connect } from 'react-redux';
 import Header from './layout/Header';
 import Main from './layout/Main';
@@ -7,7 +7,7 @@ import './scss/core/reset.scss';
 import './scss/core/generic-classes.scss';
 
 function App({ highContrast, spanish, animations, darkTheme }) {
-    useEffect(() => {
+    useLayoutEffect(() => {
         const root = document.documentElement;
         const MAIN_COLOR = '#288000';
         const MAIN_COLOR_HC = "#000000";
@@ -28,7 +28,7 @@ function App({ highContrast, spanish, animations, darkTheme }) {
         }
     }, [highContrast, darkTheme]);
 
-    useEffect(()=> {
+    useLayoutEffect(()=> {
         const mainElement = document.querySelector('html');
     
         if (spanish) {
@@ -38,7 +38,7 @@ function App({ highContrast, spanish, animations, darkTheme }) {
         };
     }, [spanish]);
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         const root = document.documentElement;
         const FOCUS_DURATION = '75ms';
         const THEME_DURATION = '400ms';

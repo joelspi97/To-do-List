@@ -22,13 +22,13 @@
         border: 0.2rem solid var(--main-color);
         padding: 0.7rem 1rem;
         width: 100%;
-
-        transition: outline var(--focus-duration) ease-in-out, 
-                    border var(--focus-duration) ease-in-out;
+        transition: border-color var(--focus-duration) ease-in-out,
+                    outline var(--focus-duration) ease-in-out;
     }
+
     &__wrapper:focus-within {
         border-color: var(--focus-color);
-        outline: 0.1rem solid var(--focus-color);
+        outline: 0.2rem solid var(--focus-color);
     }
 
     &__input {
@@ -40,11 +40,14 @@
         transition: background-color var(--theme-duration) ease-in-out,
                     color var(--theme-duration) ease-in-out;
     }
+
     &__input:focus {
         outline: none;
     }
+
     &__input::placeholder {
         font-family: $main-font;
         font-size: map-get($fs, 'sm');
+        transition: color var(--theme-duration) ease-in-out;
     }
 }
