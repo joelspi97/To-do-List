@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { toggleTodoModal, toggleTodoAnimationModal, toggleSuccessBanner } from '../actions/modalActions';
+import closeModal from './helpers/closeModal';
 import { createNewTodo, cancelUpdate, updateTodo } from '../actions/todosActions';
 import { v4 as uuidv4 } from 'uuid';
 import '../scss/components/TodoMaker.scss';
@@ -33,7 +34,6 @@ function TodoMaker(props) {
     };
 
     const editingTodo = Object.keys(currentTodo).length > 0;
-
     useEffect(() => {
         if(editingTodo) {
             setFormValue({
@@ -64,6 +64,7 @@ function TodoMaker(props) {
                 }
             ); 
             handleSuccessBanner({ newTodo: false });
+            closeModal(animations, toggleTodoModal);
             
         } else {
             createNewTodo(
@@ -76,18 +77,21 @@ function TodoMaker(props) {
             );
             
             if(animations) {
+                toggleTodoModal();
+
+                const modal = document.getElementById('modal');
                 toggleTodoAnimationModal();
-     
+                
                 setTimeout(() => {
                     toggleTodoAnimationModal();
+                    modal.classList.remove('modal--dropdown');
                 }, 3600);
-
+            
             } else {
                 handleSuccessBanner({ newTodo: true });
+                closeModal(animations, toggleTodoModal);
             };
         };
-
-        toggleTodoModal();
     };
 
     function handleDefaultCheck(inputPriority) {
@@ -96,11 +100,6 @@ function TodoMaker(props) {
         } else {
             return false;
         };
-    };
-
-    function closeModal() {
-        cancelUpdate();
-        toggleTodoModal();
     };
 
     const [formCompleted, setFormCompleted] = useState(false);
@@ -123,7 +122,7 @@ function TodoMaker(props) {
             <button 
                 type="buttton"
                 className="modal-content__close-btn" 
-                onClick={closeModal}
+                onClick={(e) => {e.preventDefault(); closeModal(animations, toggleTodoModal, cancelUpdate);}}
             >
                 <span className="icon x-icon"></span>
             </button>
@@ -193,7 +192,7 @@ function TodoMaker(props) {
                 </button>
                 <button 
                     type="button"
-                    onClick={closeModal}
+                    onClick={() => closeModal(animations, toggleTodoModal, cancelUpdate)}
                 >
                     {spanish? "Cancelar" : "Cancel"}
                 </button>

@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { toggleHeaderModal } from '../actions/modalActions';
 import { toggleHighContrast, toggleAnimations, toggleSpanish, toggleDarkTheme } from '../actions/settingsActions';
+import closeModal from './helpers/closeModal';
 import SwitchBtn from '../components/SwitchBtn';
 import '../scss/components/SettingsMenu.scss';
 
@@ -16,20 +17,19 @@ function SettingsMenu(props) {
             spanish,
             darkTheme, } = props;
 
-    function saveSettings(e) {
-        e.preventDefault();
-        alert('xd');
+    function handleCloseModal() {
+        closeModal(animations, toggleHeaderModal);
     };
 
     return (
         <form 
             className="settings modal-content"
-            onSubmit={saveSettings}
+            onSubmit={(submitEvent) => submitEvent.preventDefault()}
         >
             <button 
                 type="buttton"
                 className="modal-content__close-btn" 
-                onClick={toggleHeaderModal}
+                onClick={handleCloseModal}
             >
                 <span className="icon x-icon"></span>
             </button>
@@ -77,7 +77,7 @@ function SettingsMenu(props) {
                 <button 
                     type="button"
                     className="fill-btn"
-                    onClick={toggleHeaderModal}
+                    onClick={handleCloseModal}
                 >
                     {spanish? "Aceptar" : "Continue"}
                 </button>

@@ -3,19 +3,28 @@
 @import '../abstracts/mixins/focus.scss';
 @import '../abstracts/mixins/icon.scss';
 
-.modal {
+#modal {
 	position: fixed;
 	z-index: 1000;
-	top: 0;
+	top: -100vh;
 	right: 0;
-	bottom: 0;
+	bottom: 100vh;
 	left: 0;
 	background-color: rgba(0, 0, 0, 0.6);
+	transition: top var(--modal-duration) ease-in-out,
+	 			bottom var(--modal-duration) ease-in-out;
 
 	display: flex;
 	justify-content: center;
 	align-items: center;
 
+	&.modal--dropdown {
+		top: 0;
+		bottom: 0;
+	}
+}
+
+.modal {
 	.modal-content {
 		display: flex;
 		flex-direction: column;

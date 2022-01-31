@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { toggleTodoModal } from '../actions/modalActions';
 import { completeTodo, deleteTodo, editTodo } from '../actions/todosActions';
+import openModal from './helpers/openModal'
 import '../scss/components/TodoItem.scss';
 
 function TodoItem(props) {
@@ -28,7 +29,7 @@ function TodoItem(props) {
     function handleEdit() {
         setOpenDropdown(prevState => !prevState);
         editTodo(currentTodo);
-        toggleTodoModal();
+        openModal(toggleTodoModal);
     };
 
     return (

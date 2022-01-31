@@ -22,11 +22,11 @@ ReactDOM.render(
   }
 
   Diseño {
-    1) Elegir bien la paleta de colores
-    2) Hacer que la página sea completamente 
+    1) Hacer que la página sea completamente 
     responsive. Cuando este en desktop, que las 
-    listas no se vean en una unica columnna, 
+    listas no se vean en una única columnna, 
     que sean dos columnas lado a lado.
+    2) Elegir bien la paleta de colores
     3) Rediseñar el Header, el Footer y los 
     TodoItem's
   }

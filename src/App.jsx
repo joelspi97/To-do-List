@@ -9,6 +9,7 @@ import './scss/core/generic-classes.scss';
 function App({ highContrast, spanish, animations, darkTheme }) {
     useLayoutEffect(() => {
         const root = document.documentElement;
+        
         const MAIN_COLOR = '#288000';
         const MAIN_COLOR_HC = "#000000";
         const BG_COLOR_DARK = "#090d1c";
@@ -40,12 +41,15 @@ function App({ highContrast, spanish, animations, darkTheme }) {
 
     useLayoutEffect(() => {
         const root = document.documentElement;
+        
         const FOCUS_DURATION = '75ms';
         const THEME_DURATION = '400ms';
+        const MODAL_DURATION = '500ms';
         const BANNER_DURATION = '1000ms';
 
         root.style.setProperty('--focus-duration', animations ? FOCUS_DURATION : '0');
         root.style.setProperty('--theme-duration', animations ? THEME_DURATION : '0');
+        root.style.setProperty('--modal-duration', animations ? MODAL_DURATION : '0');
         root.style.setProperty('--banner-duration', animations ? BANNER_DURATION : '0');
     }, [animations]);
 
