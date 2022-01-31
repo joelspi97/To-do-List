@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { reorderUncompletedTodos, reorderCompletedTodos } from '../actions/todosActions';
 import NewTodoBtn from '../components/NewTodoBtn';
 import Modal from '../components/Modal'
 import TodoMaker from '../components/TodoMaker';
-import TodoAnimation from '../components/TodoAnimation';
+import NewTodoAnimation from '../components/NewTodoAnimation';
 import SearchBar from '../components/SearchBar';
 import List from '../components/List';
 import '../scss/layout/Main.scss';
@@ -40,7 +40,7 @@ function Main(props) {
 
                 {showTodoAnimationModal && (
                     <Modal>
-                        <TodoAnimation />
+                        <NewTodoAnimation />
                     </Modal>
                 )}
 
