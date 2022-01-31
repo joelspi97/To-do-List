@@ -9,15 +9,17 @@
     font-family: $main-font;
     font-size: map-get($fs, 'sm');
     text-align: center;
-
+    transition: background-color var(--theme-duration) ease-in-out;
 
     &__heading {
         margin-bottom: 1.5rem;
+        transition: color var(--theme-duration) ease-in-out;
     }
     
     &__paragraph {
         font-size: map-get($fs, 'sm');
         margin-bottom: 3rem;
+        transition: color var(--theme-duration) ease-in-out;
     
         &:last-of-type {
             margin-top: 3rem;

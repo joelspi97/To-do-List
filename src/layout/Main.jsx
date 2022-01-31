@@ -28,8 +28,7 @@ function Main(props) {
                     {spanish? "Este sitio web te permitirá escribir tu propia lista de To-Do's y controlar el avance de tus objetivos de una forma eficiente" 
                             : "This website will allow you to write down your own To-Do list and keep track of your goals in an efficient way"}
                 </p>
-            </section>
-            <section className="project-padding">
+
                 <NewTodoBtn />
                 
                 {showTodoModal && (

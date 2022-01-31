@@ -5,6 +5,10 @@
 
 .list-section {
     margin-top: 3rem;
+
+    h2 {
+        transition: color var(--theme-duration) ease-in-out;
+    }
     
     ul {
         list-style: none;

@@ -10,6 +10,7 @@
         font-size: map-get($fs, 'md');
         font-weight: map-get($fw, 'bold');
         margin-bottom: 5rem;
+        transition: color var(--theme-duration) ease-in-out;
     }
 
     &__wrapper {
@@ -36,6 +37,8 @@
         font-family: $main-font;
         font-size: map-get($fs, 'sm') + 0.2rem;
         width: 85%;
+        transition: background-color var(--theme-duration) ease-in-out,
+                    color var(--theme-duration) ease-in-out;
     }
     &__input:focus {
         outline: none;

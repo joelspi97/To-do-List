@@ -16,6 +16,7 @@
 
     &__paragraph {
         margin-bottom: 1rem;
+        transition: color var(--theme-duration) ease-in-out;
     }
 
     p:last-of-type {
@@ -25,5 +26,6 @@
     &__link {
         color: var(--footer-color);
         font-weight: map-get($fw, 'bold');
+        transition: color var(--theme-duration) ease-in-out;
     }
 }

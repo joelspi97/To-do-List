@@ -22,9 +22,7 @@ ReactDOM.render(
   }
 
   Settings {
-    1) Solucionar bug de animaciones (destiempo 
-    en el cambio de transiciones)
-    2) Que cuando la página cargue del local
+    1) Que cuando la página cargue del local
     storage no quede en blanco por ese instante 
     (¿Agregar loading screen?)
   }

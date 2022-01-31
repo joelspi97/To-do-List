@@ -41,11 +41,11 @@ function App({ highContrast, spanish, animations, darkTheme }) {
     useEffect(() => {
         const root = document.documentElement;
         const FOCUS_DURATION = '75ms';
-        const SWITCH_DURATION = '400ms';
+        const THEME_DURATION = '400ms';
         const BANNER_DURATION = '1000ms';
 
         root.style.setProperty('--focus-duration', animations ? FOCUS_DURATION : '0');
-        root.style.setProperty('--switch-duration', animations ? SWITCH_DURATION : '0');
+        root.style.setProperty('--theme-duration', animations ? THEME_DURATION : '0');
         root.style.setProperty('--banner-duration', animations ? BANNER_DURATION : '0');
     }, [animations]);
 
