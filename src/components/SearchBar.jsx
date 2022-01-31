@@ -1,8 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { searchTodo } from '../actions/todosActions';
 import '../scss/components/SearchBar.scss';
 
-function SearchBar({ searchValue, setSearchValue, spanish }) {
+function SearchBar(props) {
+    const { searchValue, 
+            searchTodo, 
+            spanish } = props;
+
     return (
         <div className="search-bar">
             <label className="search-bar__label" htmlFor="search">
@@ -14,7 +19,7 @@ function SearchBar({ searchValue, setSearchValue, spanish }) {
                     type="text" 
                     id="search" 
                     placeholder={spanish? "Filtrar por descripción..." : "Filter by description..."} 
-                    onChange={e => setSearchValue(e.target.value.toLowerCase())}
+                    onChange={e => searchTodo(e.target.value.toLowerCase())}
                     value={searchValue}
                 />
                 <span className="icon search-icon"></span>
@@ -27,8 +32,13 @@ function mapStateToProps(state) {
     return (
         {
             spanish: state.settings.spanish,
+            searchValue: state.todos.searchValue,
         }
     );
 };
 
-export default connect(mapStateToProps, null)(SearchBar);
+const mapDispatchToProps = {
+    searchTodo,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(SearchBar);

@@ -33,19 +33,18 @@ function modalsReducer(modalsState = modalsInitialState, action) {
             };
 
         case 'TOGGLE_SUCCESS_BANNER':
-
             if(action.payload.newTodo) {
                 return {
                     ...modalsState,
                     showSuccessBanner: !modalsState.showSuccessBanner,
                     newTodoMessage: !modalsState.newTodoMessage,
                 };    
-            }; 
-
-            return {
-                ...modalsState,
-                showSuccessBanner: !modalsState.showSuccessBanner,
-            };
+            } else {
+                return {
+                    ...modalsState,
+                    showSuccessBanner: !modalsState.showSuccessBanner,
+                };
+            } 
 
         default:
             return modalsState;

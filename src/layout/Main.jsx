@@ -1,14 +1,12 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { reorderUncompletedTodos, reorderCompletedTodos } from '../actions/todosActions';
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import NewTodoBtn from '../components/NewTodoBtn';
 import Modal from '../components/Modal'
 import TodoMaker from '../components/TodoMaker';
 import TodoAnimation from '../components/TodoAnimation';
 import SearchBar from '../components/SearchBar';
 import List from '../components/List';
-import TodoItem from '../components/TodoItem';
 import '../scss/layout/Main.scss';
 
 function Main(props) {
@@ -16,29 +14,9 @@ function Main(props) {
             showTodoAnimationModal,
             uncompletedTodos,
             completedTodos,
-            spanish,
             reorderUncompletedTodos,
-            reorderCompletedTodos, } = props;
-    
-    const [searchValue, setSearchValue] = useState('');
-
-    let searchedUncompletedTodos;
-    if(!searchValue.length > 0) {
-        searchedUncompletedTodos = uncompletedTodos;
-    } else {
-        searchedUncompletedTodos = uncompletedTodos.filter(todo => 
-            todo.description.toString().toLowerCase().includes(searchValue)
-        );
-    };
-
-    let searchedCompletedTodos;
-    if(!searchValue.length > 0) {
-        searchedCompletedTodos = completedTodos;
-    } else {
-        searchedCompletedTodos = completedTodos.filter(todo => 
-            todo.description.toString().toLowerCase().includes(searchValue)
-        );
-    };
+            reorderCompletedTodos,
+            spanish, } = props;
 
     return (
         <main className="main">
@@ -52,7 +30,6 @@ function Main(props) {
                 </p>
             </section>
             <section className="project-padding">
-
                 <NewTodoBtn />
                 
                 {showTodoModal && (
@@ -67,139 +44,30 @@ function Main(props) {
                     </Modal>
                 )}
 
-                <SearchBar 
-                    searchValue={searchValue}
-                    setSearchValue={setSearchValue}
-                />
+                <SearchBar />
                 
-                <p 
-                    className="main__paragraph"
-                >
-                    {spanish? "Podés arrastrar y soltar los To-do's para ordenarlos como mejor te parezca" : 
+                <p className="main__paragraph">
+                    {spanish ? "Podés arrastrar y soltar los To-do's para ordenarlos como mejor te parezca" : 
                               "You can drag and drop your To-do's to arrange them however you want"}
                 </p>
 
-                <DragDropContext 
-                    onDragEnd={result => {
-                        const {source, destination} = result;
-                        if(!destination) {
-                            return;
-                        }
-                        if(source.index === destination.index && source.droppableId === destination.droppableId) {
-                            return;
-                        }
+                <List
+                    droppableId={"pending"}
+                    heading={spanish ? "Tareas pendientes" : "Pending tasks"}
+                    todoList={uncompletedTodos}
+                    reorderAction={reorderUncompletedTodos}
+                    initialMessage={spanish ? "¡Felicitaciones! ¡No tenés ninguna tarea pendiente!" 
+                                            : "Hooray! You don't have any pending task!"}
+                />
 
-                        reorderUncompletedTodos(
-                            {
-                                startIndex: source.index, 
-                                endIndex: destination.index,
-                            }
-                        );
-                    }}
-                >
-                    <Droppable droppableId="pending">
-                        {(dropableProvided) => 
-                            <List 
-                                heading={spanish? "Tareas pendientes" : "Pending tasks"}
-                                dropableProvided={dropableProvided}
-                            >
-                                {
-                                    (uncompletedTodos.length === 0) && (
-                                        spanish ? "¡Felicitaciones! ¡No tenés ninguna tarea pendiente!" 
-                                                : "Hooray! You don't have any pending task!"
-                                    )
-                                }
-
-                                {
-                                    (uncompletedTodos.length > 0 && searchedUncompletedTodos.length === 0) && (
-                                        spanish ? "No encontramos ningún To-Do en esta lista que contenga eso... 🤔" 
-                                        : "We didn't find any To-Do's in this list that contains that... 🤔"
-                                    )
-                                }
-
-                                {searchedUncompletedTodos.map((todo, index) => 
-                                    <Draggable 
-                                        key={todo.id} 
-                                        draggableId={todo.id} 
-                                        index={index}
-                                    >
-                                        {(draggableProvided) => 
-                                            <TodoItem 
-                                                draggableProvided={draggableProvided}
-                                                description={todo.description}
-                                                id={todo.id}
-                                                key={todo.id}
-                                                priority={todo.priority}
-                                                completed={todo.completed}
-                                            />
-                                        }
-                                    </Draggable>
-                                )}
-                            </List>
-                        }
-                    </Droppable>
-                </DragDropContext>
-
-                <DragDropContext
-                    onDragEnd={result => {
-                        const {source, destination} = result;
-                        if(!destination) {
-                            return;
-                        }
-                        if(source.index === destination.index && source.droppableId === destination.droppableId) {
-                            return;
-                        }
-
-                        reorderCompletedTodos(
-                            {
-                                startIndex: source.index, 
-                                endIndex: destination.index,
-                            }
-                        );                    
-                    }}
-                >
-                    <Droppable droppableId="completed">
-                        {(dropableProvided) => 
-                            <List
-                                heading={spanish? "Tareas completadas" : "Completed tasks"}
-                                dropableProvided={dropableProvided}
-                            >
-                                {
-                                    (completedTodos.length === 0) && (
-                                        spanish ? "Los To-Do's que completes se mostrarán en esta lista" 
-                                                : "Your completed To-Do's will be displayed in this section"
-                                    )
-                                }
-
-                                {
-                                    (completedTodos.length > 0 && searchedCompletedTodos.length === 0) && (
-                                        spanish ? "No encontramos ningún To-Do en esta lista que contenga eso... 🤔" 
-                                        : "We didn't find any To-Do's in this list that contains that... 🤔"
-                                    )
-                                }
-
-                                {searchedCompletedTodos.map((todo, index) => 
-                                    <Draggable 
-                                        key={todo.id} 
-                                        draggableId={todo.id} 
-                                        index={index}
-                                    >
-                                        {(draggableProvided) => 
-                                            <TodoItem 
-                                                draggableProvided={draggableProvided}
-                                                description={todo.description}
-                                                id={todo.id}
-                                                key={todo.id}
-                                                priority={todo.priority}
-                                                completed={todo.completed}
-                                            />
-                                        }
-                                    </Draggable>
-                                )}
-                            </List>
-                        }
-                    </Droppable>
-                </DragDropContext>
+                <List
+                    droppableId={"completed"}
+                    heading={spanish ? "Tareas completadas" : "Completed tasks"}
+                    todoList={completedTodos}
+                    reorderAction={reorderCompletedTodos}
+                    initialMessage={spanish ? "Los To-Do's que completes se mostrarán en esta lista" 
+                                            : "Your completed To-Do's will be displayed in this section"}
+                />
             </section>
         </main>
     );
@@ -218,8 +86,8 @@ function mapStateToProps(state) {
 };
 
 const mapDispatchToProps = {
-    reorderUncompletedTodos,
     reorderCompletedTodos,
+    reorderUncompletedTodos,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Main);

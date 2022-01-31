@@ -2,6 +2,7 @@ const todosInitialState = {
     uncompletedTodos: [],
     completedTodos: [],
     currentTodo: {},
+    searchValue: "",
 };
 
 function todosReducer(todosState = todosInitialState, action) {
@@ -46,6 +47,12 @@ function todosReducer(todosState = todosInitialState, action) {
                 ...todosState,
                 currentTodo: {},
             };
+
+        case 'SEARCH_TODO':
+            return {
+                ...todosState,
+                searchValue: action.payload,
+            }
 
         case 'DELETE_TODO':
             if(!action.payload.completed) {

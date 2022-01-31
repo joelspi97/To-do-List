@@ -42,11 +42,19 @@ function cancelUpdate() {
     );
 };
 
-
 function deleteTodo(payload) {
     return (
         {
             type: 'DELETE_TODO',
+            payload,
+        }
+    );
+};
+
+function searchTodo(payload) {
+    return (
+        {
+            type: 'SEARCH_TODO',
             payload,
         }
     );
@@ -76,5 +84,6 @@ export { createNewTodo,
          updateTodo,
          cancelUpdate,
          deleteTodo,
+         searchTodo,
          reorderUncompletedTodos,
          reorderCompletedTodos };
