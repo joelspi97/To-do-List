@@ -37,46 +37,41 @@ function SettingsMenu(props) {
                 {spanish? "Opciones de accesibilidad" : "Accesibility options"}
             </h2>
 
-            <div>
-                <SwitchBtn
-                    optionName={spanish? "Modo de alto contraste" : "High contrast mode"}
-                    leftTag={spanish? "Apagado" : "Off"}
-                    inputId={"high-contrast"} 
-                    rightTag={spanish? "Prendido" : "On"} 
-                    defaultCheck={highContrast && "checked"}
-                    handleChange={toggleHighContrast}
-                />
-            </div>
-            <div>
-                <SwitchBtn
-                    optionName={spanish? "Animaciones" : "Animations"}
-                    leftTag={spanish? "Desactivar" : "Disable"}
-                    inputId={"animations"} 
-                    rightTag={spanish? "Activar" : "Enable"} 
-                    defaultCheck={animations && "checked"}
-                    handleChange={toggleAnimations}
-                />
-            </div>
-            <div>
-                <SwitchBtn
-                    optionName={spanish? "Idioma" : "Language"}
-                    leftTag={"ENG"}
-                    inputId={"spanish"} 
-                    rightTag={"ESP"} 
-                    defaultCheck={spanish && "checked"}
-                    handleChange={toggleSpanish}
-                />
-            </div>
-            <div>
-                <SwitchBtn
-                    optionName={spanish? "Tema" : "Theme"}
-                    leftTag={spanish? "Claro" : "Light"}
-                    inputId={"theme"} 
-                    rightTag={spanish? "Oscuro" : "Dark"} 
-                    defaultCheck={darkTheme && "checked"}
-                    handleChange={toggleDarkTheme}
-                />
-            </div>
+            <SwitchBtn
+                optionName={spanish? "Modo de alto contraste" : "High contrast mode"}
+                leftTag={spanish? "Apagado" : "Off"}
+                inputId={"high-contrast"} 
+                rightTag={spanish? "Prendido" : "On"} 
+                defaultCheck={highContrast && "checked"}
+                handleChange={toggleHighContrast}
+            />
+
+            <SwitchBtn
+                optionName={spanish? "Animaciones" : "Animations"}
+                leftTag={spanish? "Desactivar" : "Disable"}
+                inputId={"animations"} 
+                rightTag={spanish? "Activar" : "Enable"} 
+                defaultCheck={animations && "checked"}
+                handleChange={toggleAnimations}
+            />
+
+            <SwitchBtn
+                optionName={spanish? "Idioma" : "Language"}
+                leftTag={"ENG"}
+                inputId={"spanish"} 
+                rightTag={"ESP"} 
+                defaultCheck={spanish && "checked"}
+                handleChange={toggleSpanish}
+            />
+            
+            <SwitchBtn
+                optionName={spanish? "Tema" : "Theme"}
+                leftTag={spanish? "Claro" : "Light"}
+                inputId={"theme"} 
+                rightTag={spanish? "Oscuro" : "Dark"} 
+                defaultCheck={darkTheme && "checked"}
+                handleChange={toggleDarkTheme}
+            />
 
             <div className="modal-content__bottom-btns">
                 <button 
