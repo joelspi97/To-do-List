@@ -22,11 +22,9 @@ ReactDOM.render(
   }
 
   Settings {
-    1) Solucionar bug del botón de animaciones 
-    cuando se pone en español 
-    2) Solucionar bug de animaciones (destiempo 
+    1) Solucionar bug de animaciones (destiempo 
     en el cambio de transiciones)
-    3) Que cuando la página cargue del local
+    2) Que cuando la página cargue del local
     storage no quede en blanco por ese instante 
     (¿Agregar loading screen?)
   }

@@ -69,17 +69,20 @@
 
     &__left-tag,
     &__right-tag {
-        user-select: none;
         font-size: map-get($fs, 'xs');
         font-weight: map-get($fw, 's-bold');
+        user-select: none;
+        width: 8rem;
     }
 
     &__left-tag {
         margin-right: 0.5rem;
+        text-align: right;
     }
 
     &__right-tag {
         margin-left: 0.5rem;
+        text-align: left;
     }
 }
 
