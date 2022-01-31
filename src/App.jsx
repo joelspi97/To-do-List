@@ -1,5 +1,13 @@
 import React, { useLayoutEffect } from 'react';
 import { connect } from 'react-redux';
+import { MAIN_COLOR,
+         MAIN_COLOR_HC,
+         BG_COLOR_DARK,
+         WHITE,
+         FOCUS_DURATION,
+         THEME_DURATION,
+         MODAL_DURATION,
+         BANNER_DURATION, } from './helpers/constants';
 import Header from './layout/Header';
 import Main from './layout/Main';
 import Footer from './layout/Footer';
@@ -9,11 +17,6 @@ import './scss/core/generic-classes.scss';
 function App({ highContrast, spanish, animations, darkTheme }) {
     useLayoutEffect(() => {
         const root = document.documentElement;
-        
-        const MAIN_COLOR = '#288000';
-        const MAIN_COLOR_HC = "#000000";
-        const BG_COLOR_DARK = "#090d1c";
-        const WHITE = "#ffffff";
 
         root.style.setProperty('--main-color', highContrast ? MAIN_COLOR_HC : MAIN_COLOR);
         root.style.setProperty('--footer-color', WHITE);
@@ -42,11 +45,6 @@ function App({ highContrast, spanish, animations, darkTheme }) {
     useLayoutEffect(() => {
         const root = document.documentElement;
         
-        const FOCUS_DURATION = '75ms';
-        const THEME_DURATION = '400ms';
-        const MODAL_DURATION = '500ms';
-        const BANNER_DURATION = '1000ms';
-
         root.style.setProperty('--focus-duration', animations ? FOCUS_DURATION : '0');
         root.style.setProperty('--theme-duration', animations ? THEME_DURATION : '0');
         root.style.setProperty('--modal-duration', animations ? MODAL_DURATION : '0');

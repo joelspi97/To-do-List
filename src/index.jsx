@@ -17,10 +17,6 @@ ReactDOM.render(
 );
 
 /*
-  To-do's {
-    1) Agregar animación para el modal de crear todo
-  }
-
   Diseño {
     1) Hacer que la página sea completamente 
     responsive. Cuando este en desktop, que las 
