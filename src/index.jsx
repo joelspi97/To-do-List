@@ -29,7 +29,12 @@ ReactDOM.render(
 
   Accesibilidad {
     1) Revisar que toda la página sea 100% 
-    navegable usando solamente el teclado
+    navegable usando solamente el teclado {
+      a) Que todos los inputs, botones y links
+      sean selecionable y operables
+      b) Que los focus sean visibles
+      c) Que se puedan cerrar los modals con esc
+    }
     2) Asegurarse que todo sea accesible 
     para lectores de pantalla (tanto en 
     español como en inglés)

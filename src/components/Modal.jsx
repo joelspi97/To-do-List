@@ -5,10 +5,7 @@ import '../scss/components/Modal.scss';
 
 function Modal({ children }) {
     return ReactDOM.createPortal(
-        <div 
-            id="modal-backdrop"
-            className="modal project-padding"
-        >
+        <div className="project-padding">
             { children }
         </div>,
         document.getElementById('modal')
