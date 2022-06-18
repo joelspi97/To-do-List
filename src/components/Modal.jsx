@@ -3,13 +3,22 @@ import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
 import '../scss/components/Modal.scss';
 
-function Modal({ children }) {
+function Modal({ children, spanish }) {
     return ReactDOM.createPortal(
         <div className="project-padding">
+            <span className="visually-hidden" aria-live="assertive">{spanish? "Menú abierto." : "Open menu."}</span>
             { children }
         </div>,
         document.getElementById('modal')
     );
 };
 
-export default connect(null, null)(Modal);
+function mapStateToProps(state) {
+    return (
+        {
+            spanish: state.settings.spanish,
+        }
+    );
+};
+
+export default connect(mapStateToProps, null)(Modal);

@@ -11,7 +11,7 @@ function NewTodoAnimation({ spanish }) {
                 alt="" 
             />
             <p 
-                aria-live="assertive" // Revisar que esto funcione bien
+                aria-live="assertive"
             >
                 {spanish? "¡Tu nuevo To-do se creado éxitosamente!" : "Your new To-do was successfully created!"}
             </p>

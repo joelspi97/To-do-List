@@ -4,6 +4,7 @@ import { toggleTodoModal } from '../actions/modalActions';
 import { completeTodo, deleteTodo, editTodo } from '../actions/todosActions';
 import openModal from './helpers/openModal'
 import '../scss/components/TodoItem.scss';
+import { useEffect } from 'react';
 
 function TodoItem(props) {
     const { description, 
@@ -15,7 +16,9 @@ function TodoItem(props) {
             editTodo,
             deleteTodo,
             toggleTodoModal, 
-            spanish } = props;
+            spanish,
+            showTodoModal, 
+            showHeaderModal, } = props;
 
     const currentTodo = {
         description: description,
@@ -32,6 +35,19 @@ function TodoItem(props) {
         openModal(toggleTodoModal);
     };
 
+    const todoItems = Array.from(document.querySelectorAll('.todo-item'));
+    useEffect(() => {
+        if (showTodoModal || showHeaderModal) {
+            todoItems.forEach(t => {
+                t.setAttribute('tabindex', '-1');
+            });
+        } else {
+            todoItems.forEach(t => {
+                t.setAttribute('tabindex', '0');
+            });
+        }
+    }, [showTodoModal, showHeaderModal]);
+
     return (
         <li 
             className={
@@ -40,33 +56,54 @@ function TodoItem(props) {
             {...draggableProvided.draggableProps}
             ref={draggableProvided.innerRef}
             {...draggableProvided.dragHandleProps}
+            aria-label={completed
+                            ? spanish? "Tarea completada. " + description : "Completed to-do. " + description
+                            : spanish? "Tarea pendiente. " + description : "Pending to-do. " + description
+                        }
         >
 
-            {!completed && <button 
-                className="todo-item__btn" type="button"
-                onClick={() => completeTodo({...currentTodo, completed: true})} 
-            >
-                <span className="icon check-icon"></span>
-            </button>}
+            {!completed && (
+                    <button 
+                        aria-label={spanish? "Marcar item como completado" : "Mark item as completed"}
+                        className="todo-item__btn" type="button"
+                        onClick={() => completeTodo({...currentTodo, completed: true})} 
+                        disabled={showHeaderModal || showTodoModal}
+                    >
+                        <span className="icon check-icon"></span>
+                    </button>
+                )
+            }
 
             <p className="todo-item__text">
                 {description}
             </p>
 
-            {completed &&  
-                <button onClick={() => deleteTodo(currentTodo)} className="todo-item__btn" type="button">
-                        <span className="icon x-icon"></span>
-                </button>
+            {completed && ( 
+                    <button 
+                        aria-label={spanish? "Eliminar item" : "Delete item"}
+                        onClick={() => deleteTodo(currentTodo)} 
+                        className="todo-item__btn" 
+                        type="button"
+                        disabled={showHeaderModal || showTodoModal}
+                    >
+                            <span className="icon x-icon"></span>
+                    </button>
+                )
             }
             
             {!completed && 
                 <> 
                     <button 
+                        aria-label={openDropdown
+                                        ? spanish? "Cerrar menu de opciones" : "Close settings menu"
+                                        : spanish? "Abrir menu de opciones para este item" : "Open settings menu for this item"
+                                    }
                         className={`
                             todo-item__btn 
                             ${openDropdown? "todo-item__btn--open" : ""}
                         `} type="button"
                         onClick={() => setOpenDropdown(prevState => !prevState)}
+                        disabled={showHeaderModal || showTodoModal}
                     >
                         <span 
                             className={`
@@ -82,6 +119,7 @@ function TodoItem(props) {
                         <button
                             className="todo-item__btn todo-item__dropdown-option" 
                             onClick={handleEdit}
+                            disabled={showHeaderModal || showTodoModal}
                         >
                             <span>
                                 {spanish? "Editar" : "Edit"}
@@ -90,6 +128,7 @@ function TodoItem(props) {
                         <button 
                             className="todo-item__btn todo-item__dropdown-option todo-item__dropdown-option--delete" 
                             onClick={() => deleteTodo(currentTodo)}
+                            disabled={showHeaderModal || showTodoModal}
                         >
                             <span>
                                 {spanish? "Descartar" : "Delete"}
@@ -106,6 +145,8 @@ function mapStateToProps(state) {
     return (
         {
             spanish: state.settings.spanish,
+            showHeaderModal: state.modals.showHeaderModal,
+            showTodoModal: state.modals.showTodoModal,
         }
     );
 };

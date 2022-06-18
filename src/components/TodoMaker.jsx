@@ -114,12 +114,28 @@ function TodoMaker(props) {
         [formValue]
     );
 
+    function handleEscKey(e) {
+        if(e.key === 'Escape') {
+            e.preventDefault();
+            closeModal(animations, toggleTodoModal, cancelUpdate);
+        }
+    }
+
+    useEffect(() => {
+        document.addEventListener('keydown', handleEscKey);
+
+        return () => {
+            document.removeEventListener('keydown', handleEscKey)
+        }
+    }, [])
+
     return (
         <form 
             className="todo-maker modal-content"
             onSubmit={submitEvent => handleSubmit(submitEvent, formValue.description, formValue.priority)} 
         >
             <button 
+                aria-label={spanish? "Cerrar menu" : "Close menu"}
                 type="buttton"
                 className="modal-content__close-btn" 
                 onClick={(e) => {e.preventDefault(); closeModal(animations, toggleTodoModal, cancelUpdate);}}

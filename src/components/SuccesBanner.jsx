@@ -9,7 +9,6 @@ function SuccessBanner({ showSuccessBanner, newTodoMessage, spanish }) {
             `success-banner
             ${showSuccessBanner? "success-banner--active" : ""}`
         }
-        aria-hidden={showSuccessBanner}
     >
         <p aria-live="assertive">
             {newTodoMessage ? (spanish ? "To-do creado éxitosamente" : "To-do successfully created") 

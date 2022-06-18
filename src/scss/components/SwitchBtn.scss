@@ -20,6 +20,11 @@
         display: flex;
         align-items: center;
         margin: 0 auto;
+        transition: outline var(--focus-duration) ease-in-out;
+
+        &:focus-within {
+            outline: 0.3rem solid var(--focus-color);
+        }
     }
 
     &__input-wrapper {

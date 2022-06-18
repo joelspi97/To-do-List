@@ -47,19 +47,22 @@
     }
 
     &__setting-wrapper {
-        border-radius: 0.5rem;
         display: flex;
         align-items: center;
+        flex-direction: column;
+        
+        border-radius: 0.5rem;
         transition: outline var(--focus-duration) ease-in-out;
     
         label {
             cursor: pointer;
             font-size: map-get($fs, 'xs');
-            margin-right: 0.4rem;
             padding: 0.5rem;
+            padding-top: 0;
             text-align: center;
+            transition: color var(--theme-duration) ease-in-out;
             
-            @include breakpoint(600px) {
+            @include breakpoint(450px) {
                 display: none;
             }
         }

@@ -15,6 +15,10 @@
     color: var(--secondary-color);
     margin: 1.5rem 0;
     padding: 1rem 1.5rem;
+
+    &:focus {
+        outline: 0.3rem solid #000000;
+    }
     
     &--low {
         background-color: var(--main-color);
@@ -42,7 +46,7 @@
         font-weight: map-get($fw, 'bold');
     }
     &__btn:focus {
-        outline: 0.3rem solid var(--focus-color-brighter);
+        outline: 0.3rem solid #000000;
     }
     &__btn--open {
         border-radius: 2.5rem 2.5rem 0 0;

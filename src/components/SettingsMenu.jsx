@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { toggleHeaderModal } from '../actions/modalActions';
 import { toggleHighContrast, toggleAnimations, toggleSpanish, toggleDarkTheme } from '../actions/settingsActions';
@@ -21,12 +21,28 @@ function SettingsMenu(props) {
         closeModal(animations, toggleHeaderModal);
     };
 
+    function handleEscKey(e) {
+        if(e.key === 'Escape') {
+            e.preventDefault();
+            handleCloseModal();
+        }
+    }
+
+    useEffect(() => {
+        document.addEventListener('keydown', handleEscKey);
+
+        return () => {
+            document.removeEventListener('keydown', handleEscKey)
+        }
+    }, [])
+
     return (
         <form 
             className="settings modal-content"
             onSubmit={(submitEvent) => submitEvent.preventDefault()}
         >
             <button 
+                aria-label={spanish? "Cerrar menu" : "Close menu"}
                 type="buttton"
                 className="modal-content__close-btn" 
                 onClick={handleCloseModal}
@@ -38,16 +54,9 @@ function SettingsMenu(props) {
             </h2>
 
             <SwitchBtn
-                optionName={spanish? "Modo de alto contraste" : "High contrast mode"}
-                leftTag={spanish? "Apagado" : "Off"}
-                inputId={"high-contrast"} 
-                rightTag={spanish? "Prendido" : "On"} 
-                defaultCheck={highContrast && "checked"}
-                handleChange={toggleHighContrast}
-            />
-
-            <SwitchBtn
                 optionName={spanish? "Animaciones" : "Animations"}
+                optionNameId="animations-mode"
+                accessibleDescription={spanish? "Marcar para encender, desmarcar para apagar." : "Check to enable, uncheck to disable."}
                 leftTag={spanish? "Desactivar" : "Disable"}
                 inputId={"animations"} 
                 rightTag={spanish? "Activar" : "Enable"} 
@@ -57,6 +66,8 @@ function SettingsMenu(props) {
 
             <SwitchBtn
                 optionName={spanish? "Idioma" : "Language"}
+                optionNameId="language-mode"
+                accessibleDescription={spanish? "Marcar para español, desmarcar para inglés." : "Check to select Spanish, uncheck to select English."}
                 leftTag={"ENG"}
                 inputId={"spanish"} 
                 rightTag={"ESP"} 
@@ -66,6 +77,8 @@ function SettingsMenu(props) {
             
             <SwitchBtn
                 optionName={spanish? "Tema" : "Theme"}
+                optionNameId="theme-mode"
+                accessibleDescription={spanish? "Marcar para tema oscuro, desmarcar para tema claro." : "Check to enable dark mode, uncheck to enable light mode."}
                 leftTag={spanish? "Claro" : "Light"}
                 inputId={"theme"} 
                 rightTag={spanish? "Oscuro" : "Dark"} 
@@ -73,11 +86,23 @@ function SettingsMenu(props) {
                 handleChange={toggleDarkTheme}
             />
 
+            <SwitchBtn
+                optionName={spanish? "Modo de alto contraste" : "High contrast mode"}
+                optionNameId="high-contrast-mode"
+                accessibleDescription={spanish? "Marcar para encender, desmarcar para apagar." : "Check to enable, uncheck to disable."}
+                leftTag={spanish? "Apagado" : "Off"}
+                inputId={"high-contrast"} 
+                rightTag={spanish? "Prendido" : "On"} 
+                defaultCheck={highContrast && "checked"}
+                handleChange={toggleHighContrast}
+            />
+
             <div className="modal-content__bottom-btns">
                 <button 
                     type="button"
                     className="fill-btn"
                     onClick={handleCloseModal}
+                    aria-label={spanish? "Aceptar y cerrar menú" : "Continue and close menu"}
                 >
                     {spanish? "Aceptar" : "Continue"}
                 </button>

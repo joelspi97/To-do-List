@@ -4,7 +4,9 @@ import { searchTodo } from '../actions/todosActions';
 import '../scss/components/SearchBar.scss';
 
 function SearchBar(props) {
-    const { searchValue, 
+    const { showHeaderModal, 
+            showTodoModal,
+            searchValue, 
             searchTodo, 
             spanish } = props;
 
@@ -21,6 +23,7 @@ function SearchBar(props) {
                     placeholder={spanish? "Filtrar por descripción..." : "Filter by description..."} 
                     onChange={e => searchTodo(e.target.value.toLowerCase())}
                     value={searchValue}
+                    disabled={showHeaderModal || showTodoModal}
                 />
                 <span className="icon search-icon"></span>
             </div>
@@ -31,6 +34,8 @@ function SearchBar(props) {
 function mapStateToProps(state) {
     return (
         {
+            showHeaderModal: state.modals.showHeaderModal,
+            showTodoModal: state.modals.showTodoModal,
             spanish: state.settings.spanish,
             searchValue: state.todos.searchValue,
         }
