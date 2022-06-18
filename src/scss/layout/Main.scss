@@ -2,6 +2,7 @@
 @import '../abstracts/dinamic-variables.scss';
 @import '../abstracts/mixins/focus.scss';
 @import '../abstracts/mixins/icon.scss';
+@import '../abstracts/mixins/breakpoint.scss';
 
 .main {
     flex-grow: 1;
@@ -23,6 +24,17 @@
     
         &:last-of-type {
             margin-top: 3rem;
+        }
+    }
+
+    &__lists-wrapper {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        justify-items: center;
+        gap: 5rem;
+
+        @include breakpoint(900px) {
+            grid-template-columns: 1fr;
         }
     }
 }

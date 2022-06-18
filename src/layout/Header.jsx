@@ -24,15 +24,19 @@ function Header(props) {
                     <h1 className="header__heading">To-Do List!</h1>
                 </div>
 
-                <button 
-                    className="header__settings" 
-                    type="button"
-                    aria-label={spanish? "Opciones de accesibilidad" : "Accesibility options"}
-                    onClick={() => openModal(toggleHeaderModal)}
-                    disabled={showHeaderModal || showTodoModal}
-                >
-                    <span className="icon clog-icon"></span>
-                </button>
+                <div className="header__setting-wrapper">
+                    <label htmlFor="settings-button">{spanish? "Opciones de accesibilidad" : "Accessibility options"}</label>
+                    <button 
+                        className="header__settings-button" 
+                        id="settings-button"
+                        type="button"
+                        aria-label={spanish? "Opciones de accesibilidad" : "Accessibility options"}
+                        onClick={() => openModal(toggleHeaderModal)}
+                        disabled={showHeaderModal || showTodoModal}
+                    >
+                        <span className="icon clog-icon"></span>
+                    </button>
+                </div>
 
                 {showHeaderModal && (
                     <Modal>

@@ -50,23 +50,25 @@ function Main(props) {
                               "You can drag and drop your To-do's to arrange them however you want"}
                 </p>
 
-                <List
-                    droppableId={"pending"}
-                    heading={spanish ? "Tareas pendientes" : "Pending tasks"}
-                    todoList={uncompletedTodos}
-                    reorderAction={reorderUncompletedTodos}
-                    initialMessage={spanish ? "¡Felicitaciones! ¡No tenés ninguna tarea pendiente!" 
-                                            : "Hooray! You don't have any pending task!"}
-                />
+                <div className="main__lists-wrapper">
+                    <List
+                        droppableId={"pending"}
+                        heading={spanish ? "Tareas pendientes" : "Pending tasks"}
+                        todoList={uncompletedTodos}
+                        reorderAction={reorderUncompletedTodos}
+                        initialMessage={spanish ? "¡Felicitaciones! ¡No tenés ninguna tarea pendiente!" 
+                                                : "Hooray! You don't have any pending task!"}
+                    />
 
-                <List
-                    droppableId={"completed"}
-                    heading={spanish ? "Tareas completadas" : "Completed tasks"}
-                    todoList={completedTodos}
-                    reorderAction={reorderCompletedTodos}
-                    initialMessage={spanish ? "Los To-Do's que completes se mostrarán en esta lista" 
-                                            : "Your completed To-Do's will be displayed in this section"}
-                />
+                    <List
+                        droppableId={"completed"}
+                        heading={spanish ? "Tareas completadas" : "Completed tasks"}
+                        todoList={completedTodos}
+                        reorderAction={reorderCompletedTodos}
+                        initialMessage={spanish ? "Los To-Do's que completes se mostrarán en esta lista" 
+                                                : "Your completed To-Do's will be displayed in this section"}
+                    />
+                </div>
             </section>
         </main>
     );

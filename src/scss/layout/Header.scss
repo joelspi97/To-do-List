@@ -2,6 +2,7 @@
 @import '../abstracts/dinamic-variables.scss';
 @import '../abstracts/mixins/focus.scss';
 @import '../abstracts/mixins/icon.scss';
+@import '../abstracts/mixins/breakpoint.scss';
 
 .header {
     display: flex;
@@ -45,22 +46,43 @@
         margin-right: 1rem;
     }
 
-    &__settings {
+    &__setting-wrapper {
+        border-radius: 0.5rem;
+        display: flex;
+        align-items: center;
+        transition: outline var(--focus-duration) ease-in-out;
+    
+        label {
+            cursor: pointer;
+            font-size: map-get($fs, 'xs');
+            margin-right: 0.4rem;
+            padding: 0.5rem;
+            text-align: center;
+            
+            @include breakpoint(600px) {
+                display: none;
+            }
+        }
+
+        &:focus-within {
+            outline: 0.3rem solid var(--focus-color);
+        }
+    }
+
+    &__settings-button {
         grid-column: 4;
         display: flex;
         align-items: center;
         justify-content: center;
-    
+        
         background-color: transparent;
         border: none;
-        border-radius: 0.5rem;
         padding: 0.5rem;
+        
         cursor: pointer;
-    
-        transition: outline var(--focus-duration) ease-in-out;
-    
+
         &:focus {
-            outline: 0.3rem solid var(--focus-color);
+            outline: none;
         }
     }
 }

@@ -16,10 +16,12 @@
     &__wrapper {
         display: flex;
         align-items: center;
-        justify-content: space-around;
+        justify-content: space-between;
 
         border-radius: 0.5rem;
         border: 0.2rem solid var(--main-color);
+        margin: 0 auto;
+        max-width: 65rem;
         padding: 0.7rem 1rem;
         width: 100%;
         transition: border-color var(--focus-duration) ease-in-out,
@@ -34,6 +36,7 @@
     &__input {
         background-color: var(--secondary-color);
         border: none;
+        flex-grow: 1;
         font-family: $main-font;
         font-size: map-get($fs, 'sm') + 0.2rem;
         width: 85%;

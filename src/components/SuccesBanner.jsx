@@ -11,9 +11,7 @@ function SuccessBanner({ showSuccessBanner, newTodoMessage, spanish }) {
         }
         aria-hidden={showSuccessBanner}
     >
-        <p
-            aria-live="assertive"
-        >
+        <p aria-live="assertive">
             {newTodoMessage ? (spanish ? "To-do creado éxitosamente" : "To-do successfully created") 
                             : (spanish ? "To-do editado éxitosamente" : "To-do successfully edited")}
         </p>

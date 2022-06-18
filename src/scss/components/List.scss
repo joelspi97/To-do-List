@@ -5,6 +5,8 @@
 
 .list-section {
     margin-top: 3rem;
+    max-width: 65rem;
+    width: 100%;
 
     h2 {
         transition: color var(--theme-duration) ease-in-out;
